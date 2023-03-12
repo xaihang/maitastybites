@@ -35,7 +35,6 @@ function Nav() {
     setAnchorElUser(event.currentTarget);
   };
 
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -91,17 +90,36 @@ function Nav() {
             {/* search input box here */}
             <Box className="searchBox">
               <SearchIcon className="searchIcon" />
-              <InputBase placeholder="search recipes" className="searchInput" />
+              <InputBase
+                placeholder="search recipes"
+                className="searchInput"
+                sx={{
+                  "&:focus": {
+                    outline: "none",
+                    boxShadow: (theme) =>
+                      `0 0 0 2px ${theme.palette.primary.main} inset`,
+                  },
+                  "&:hover": {
+                    backgroundColor: (theme) => theme.palette.action.hover,
+                  },
+                  borderRadius: "25px",
+                  padding: "10px 15px",
+                  width: "300px",
+                  height: "40px",
+                }}
+              />
             </Box>
 
             <Link to={`/home`} className="navlink">
-              {'Home'}
+              {"Home"}
             </Link>
 
             {/* User is not login, show login/register link  */}
-           {!user.id && <Link to={`/login`} className="navlink">
-              {"Login/Register"}
-            </Link>}
+            {!user.id && (
+              <Link to={`/login`} className="navlink">
+                {"Login/Register"}
+              </Link>
+            )}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             {user.id && (
