@@ -36,8 +36,9 @@ const CustomButton = styled(Button)(({ theme }) => ({
   },
   "&.editBtn": {
     color: "black",
+    textTransform: "lowercase",
     outline: "none",
-    padding: "10px 20px",
+    padding: "5px 10px",
     marginRight: "10px",
     transition: "all 0.3s ease",
     "&:hover": {
@@ -46,8 +47,9 @@ const CustomButton = styled(Button)(({ theme }) => ({
   },
   "&.deleteBtn": {
     color: "black",
+    textTransform: "lowercase",
     outline: "none",
-    padding: "10px 20px",
+    padding: "5px 10px",
     marginRight: "10px",
     transition: "all 0.3s ease",
     "&:hover": {
