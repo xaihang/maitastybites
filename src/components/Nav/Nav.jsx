@@ -12,17 +12,18 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
+import avatarImage from '../Nav/user.png'
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
 const pages = ["Home", "Info"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Dashboard", "Logout"];
 
 const NavTitle = styled("h2")({
   fontSize: "24px",
   fontWeight: 700,
-  color: "#f2f2f2",
+  color: "black",
   paddingLeft: "10px",
   margin: 0,
 });
@@ -64,7 +65,7 @@ function Nav() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IconButton
@@ -93,7 +94,7 @@ function Nav() {
               textDecoration: "none",
             }}
           >
-            <NavTitle>MaiTastyBites</NavTitle>
+            <NavTitle>Mai-Tasty-Bites</NavTitle>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -110,7 +111,7 @@ function Nav() {
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       alt="User Avatar"
-                      src="/static/images/avatar/2.jpg"
+                      src={avatarImage}
                     />
                   </IconButton>
                 </Tooltip>
