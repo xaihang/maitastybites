@@ -40,4 +40,8 @@
       margin-top: 3rem;
     }
   }
+
+  .createdViewBtn, .savedViewBtn, .addRecipeBtn {
+    border-radius: 25px;
+  }
   
