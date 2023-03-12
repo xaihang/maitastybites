@@ -18,31 +18,24 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import './Nav.css';
 
 const pages = ["Home", "Info"];
 const settings = ["Dashboard", "Logout"];
 
-const NavTitle = styled("h2")({
-  fontSize: "24px",
-  fontWeight: 700,
-  color: "black",
-  paddingLeft: "10px",
-  margin: 0,
-});
-
 const NavLink = styled(Link)({
   display: "inline-block",
   color: "#f2f2f2",
-  backgroundColor: "#00acb0",
   textAlign: "center",
   padding: "24px 10px",
   textDecoration: "none",
   fontSize: "15px",
+  color: "black",
   border: "none",
   cursor: "pointer",
   outline: 0,
   "&:hover": {
-    backgroundColor: "#008183",
+    backgroundColor: "#F0F3F4",
   },
 });
 
@@ -96,7 +89,7 @@ function Nav() {
               textDecoration: "none",
             }}
           >
-            <NavTitle>Mai-Tasty-Bites</NavTitle>
+            <h2 className="navtitle">Mai-Tasty-Bites</h2>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -110,7 +103,7 @@ function Nav() {
                 paddingLeft: 2,
                 paddingRight: 2,
                 marginLeft: 70,
-                marginRight: 2, // Add a margin of 10px to the right
+                marginRight: 1, // Add a margin of 10px to the right
                 marginTop: 2,
                 width: 300, // Make the width 300px
                 height: 40, // Change the height to 40px
@@ -134,7 +127,7 @@ function Nav() {
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="User Avatar" src={avatarImage} />
+                    <Avatar className="avatar" alt="User Avatar" src={avatarImage} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -162,9 +155,9 @@ function Nav() {
               </>
             )}
             {!user.id && (
-              <NavLink className="navLink" to="/login">
+              <div className="navlink" to="/login">
                 Login / Register
-              </NavLink>
+              </div>
             )}
           </Box>
         </Toolbar>
