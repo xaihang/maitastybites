@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./UserPage.css";
 import CustomButton from "./CustomButton";
 import {
@@ -11,52 +12,37 @@ import {
 } from "@mui/material";
 
 export default function RecipeItem({ handleOpenModal }) {
+  const [isHoveredEdit, setIsHoveredEdit] = useState(false);
+  const [isHoveredDelete, setIsHoveredDelete] = useState(false);
   return (
     <>
       <TableRow>
         <TableCell>Bacons with Eggs</TableCell>
         <TableCell>Very nice!</TableCell>
-        <TableCell>
-          <CustomButton
-            variant="text"
-            className="editBtn"
-            onClick={handleOpenModal}
+        <TableCell align="right">
+          <p
+            onClick={() => console.log("je")}
+            style={{
+              cursor: "pointer",
+              textDecoration: isHoveredEdit ? "underline" : "none",
+            }}
+            onMouseEnter={() => setIsHoveredEdit(true)}
+            onMouseLeave={() => setIsHoveredEdit(false)}
           >
             Edit
-          </CustomButton>
+          </p>
         </TableCell>
         <TableCell>
-          <CustomButton variant="text" className="deleteBtn">
+          <p
+            onClick={() => console.log("sss")}
+            className={isHoveredDelete ? "delete-hovered" : ""}
+            onMouseEnter={() => setIsHoveredDelete(true)}
+            onMouseLeave={() => setIsHoveredDelete(false)}
+          >
             Delete
-          </CustomButton>
+          </p>
         </TableCell>
       </TableRow>
     </>
   );
 }
-
-
-// export default function RecipeItem({ recipe, handleOpenModal }) {
-//   return (
-//     <>
-//       <TableRow>
-//         <TableCell>{recipe.name}</TableCell>
-//         <TableCell>{recipe.description}</TableCell>
-//         <TableCell>
-//           <CustomButton
-//             variant="text"
-//             className="editBtn"
-//             onClick={handleOpenModal}
-//           >
-//             Edit
-//           </CustomButton>
-//         </TableCell>
-//         <TableCell>
-//           <CustomButton variant="text" className="deleteBtn">
-//             Delete
-//           </CustomButton>
-//         </TableCell>
-//       </TableRow>
-//     </>
-//   );
-// }
