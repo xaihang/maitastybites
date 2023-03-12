@@ -19,13 +19,10 @@ export default function RecipeItem({ handleOpenModal }) {
       <TableRow>
         <TableCell>Bacons with Eggs</TableCell>
         <TableCell>Very nice!</TableCell>
-        <TableCell align="right">
+        <TableCell>
           <p
             onClick={() => console.log("je")}
-            style={{
-              cursor: "pointer",
-              textDecoration: isHoveredEdit ? "underline" : "none",
-            }}
+            className={isHoveredEdit ? "edit-hovered" : ""}
             onMouseEnter={() => setIsHoveredEdit(true)}
             onMouseLeave={() => setIsHoveredEdit(false)}
           >

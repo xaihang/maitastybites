@@ -84,3 +84,10 @@
     text-decoration: underline red;
     cursor: pointer;
   }
+
+
+  .edit-hovered {
+    color: #1875D1;
+    text-decoration: underline #1875D1;
+    cursor: pointer;
+  }
