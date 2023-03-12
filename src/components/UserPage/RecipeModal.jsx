@@ -42,6 +42,7 @@ function RecipeModal({ open, handleClose }) {
             required
             placeholder="Recipe Name*"
             name="recipeName"
+            className="recipe-name-textfield"
             value={formValues.recipeName}
             onChange={handleChange}
             sx={{ width: '90%', mb: 1.5 }}
@@ -52,7 +53,7 @@ function RecipeModal({ open, handleClose }) {
             name="description"
             value={formValues.description}
             onChange={handleChange}
-            sx={{ width: '90%', mb: 1.5 }}
+            sx={{ width: '90%', mb: 1.5, height: '300px' }}
             />
           <TextField
             required
