@@ -45,6 +45,8 @@ function UserPage() {
     <div className="dashboard-container">
       <h2>Welcome, {user.username}!</h2>
       {/* <p>Your ID is: {user.id}</p> */}
+      <div className="button-group">
+
       <CustomButton variant="text" className="createdViewBtn">
         Created
       </CustomButton>
@@ -55,6 +57,7 @@ function UserPage() {
         <CustomButton variant="contained" className="addRecipeBtn">
           Add Recipe
         </CustomButton>
+      </div>
       </div>
     </div>
   );
