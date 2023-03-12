@@ -8,9 +8,9 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-<button className="add-recipe-button"></button>
-<button className="view-saved-recipes-button"></button>
+      {/* <p>Your ID is: {user.id}</p> */}
+<button className="add-recipe-button">add recipe</button>
+<button className="view-saved-recipes-button">view recipes</button>
     </div>
   );
 }
