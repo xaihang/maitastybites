@@ -42,7 +42,8 @@ const CustomButton = styled(Button)(({ theme }) => ({
     marginRight: "10px",
     transition: "all 0.3s ease",
     "&:hover": {
-      backgroundColor: "#f0f3f4",
+      backgroundColor: "transparent",
+      textDecoration: "underline",
     },
   },
   "&.deleteBtn": {
@@ -53,8 +54,9 @@ const CustomButton = styled(Button)(({ theme }) => ({
     marginRight: "10px",
     transition: "all 0.3s ease",
     "&:hover": {
-      backgroundColor: '#f0f3f4',
+      backgroundColor: 'transparent',
       color: "red",
+      textDecoration: "underline",
     },
   }
 }));
