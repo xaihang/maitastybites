@@ -6,6 +6,7 @@
   margin: 0;
 }
 
+
 .appbar {
   background-color: white;
 }
@@ -34,5 +35,26 @@
   }
   
   
+  .searchBox {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f4;
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 600px;
+    margin-right: 10px;
+    margin-top: 14.5px;
+    width: 300px;
+    height: 40px;
+  }
   
+  .searchIcon {
+    color: gray;
+  }
+  
+  .searchInput {
+    margin-left: 1px;
+    flex: 5;
+  }
   

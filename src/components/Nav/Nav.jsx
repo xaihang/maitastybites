@@ -93,31 +93,18 @@ function Nav() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/* Add the search input box here */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                backgroundColor: "#f1f3f4",
-                borderRadius: 4,
-                paddingLeft: 2,
-                paddingRight: 2,
-                marginLeft: 70,
-                marginRight: 1, // Add a margin of 10px to the right
-                marginTop: 2,
-                width: 300, // Make the width 300px
-                height: 40, // Change the height to 40px
-              }}
-            >
-              <SearchIcon sx={{ color: "gray" }} />
-              <InputBase
-                placeholder="search recipes"
-                sx={{ marginLeft: 1, flex: 5 }}
-              />
+            {/* search input box here */}
+            <Box className="searchBox">
+              <SearchIcon className="searchIcon" />
+              <InputBase placeholder="search recipes" className="searchInput" />
             </Box>
             {/* End of search input box */}
             {pages.map((page) => (
-              <Link key={page} to={`/${page.toLowerCase()}`} className="navlink">
+              <Link
+                key={page}
+                to={`/${page.toLowerCase()}`}
+                className="navlink"
+              >
                 {page}
               </Link>
             ))}
@@ -158,11 +145,7 @@ function Nav() {
                 </Menu>
               </>
             )}
-            {!user.id && (
-              <div to="/login">
-                Login / Register
-              </div>
-            )}
+            {!user.id && <div to="/login">Login / Register</div>}
           </Box>
         </Toolbar>
       </Container>
