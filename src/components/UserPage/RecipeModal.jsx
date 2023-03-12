@@ -26,6 +26,7 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
     };
     dispatch({ type: "ADD_RECIPE", payload: recipeData });
     handleClose();
+    setFormValues(initialFormValues); // Clear input values
   };
 
   const handleCloseModal = () => {
