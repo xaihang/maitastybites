@@ -53,7 +53,7 @@ function RecipeModal({ open, handleClose }) {
             name="description"
             value={formValues.description}
             onChange={handleChange}
-            sx={{ width: '90%', mb: 1.5, height: '300px' }}
+            sx={{ width: '90%', mb: 1.5 }}
             />
           <TextField
             required
