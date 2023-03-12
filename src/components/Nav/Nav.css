@@ -9,3 +9,30 @@
 .appbar {
   background-color: white;
 }
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  }
+
+  .navlink {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 24px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+  }
+  
+  .navlink:hover {
+    background-color: #f0f3f4;
+  }
+  
+  
+  
+  

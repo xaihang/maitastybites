@@ -18,26 +18,26 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import './Nav.css';
+import "./Nav.css";
 
 const pages = ["Home", "Info"];
 const settings = ["Dashboard", "Logout"];
 
-const NavLink = styled(Link)({
-  display: "inline-block",
-  color: "#f2f2f2",
-  textAlign: "center",
-  padding: "24px 10px",
-  textDecoration: "none",
-  fontSize: "15px",
-  color: "black",
-  border: "none",
-  cursor: "pointer",
-  outline: 0,
-  "&:hover": {
-    backgroundColor: "#F0F3F4",
-  },
-});
+// const NavLink = styled(Link)({
+//   display: "inline-block",
+//   color: "#f2f2f2",
+//   textAlign: "center",
+//   padding: "24px 10px",
+//   textDecoration: "none",
+//   fontSize: "15px",
+//   color: "black",
+//   border: "none",
+//   cursor: "pointer",
+//   outline: 0,
+//   "&:hover": {
+//     backgroundColor: "#F0F3F4",
+//   },
+// });
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -117,9 +117,9 @@ function Nav() {
             </Box>
             {/* End of search input box */}
             {pages.map((page) => (
-              <NavLink key={page} to={`/${page.toLowerCase()}`}>
+              <Link key={page} to={`/${page.toLowerCase()}`} className="navlink">
                 {page}
-              </NavLink>
+              </Link>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
@@ -127,7 +127,11 @@ function Nav() {
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar className="avatar" alt="User Avatar" src={avatarImage} />
+                    <Avatar
+                      className="avatar"
+                      alt="User Avatar"
+                      src={avatarImage}
+                    />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -155,7 +159,7 @@ function Nav() {
               </>
             )}
             {!user.id && (
-              <div className="navlink" to="/login">
+              <div to="/login">
                 Login / Register
               </div>
             )}
