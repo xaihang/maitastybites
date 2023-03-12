@@ -1,42 +1,62 @@
-.nav {
-  /* flex box layout */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 0 0 30px;
-  background-color: #00acb0;
-  overflow: hidden;
-}
-
-.nav a {
-  text-decoration: none;
-}
-
-.nav-title {
+.navtitle {
   font-size: 24px;
   font-weight: 700;
-  color: #f2f2f2;
+  color: black;
   padding-left: 10px;
   margin: 0;
+  margin-right: 230px;
 }
 
-.navLink {
-  display: inline-block;
-  color: #f2f2f2;
-  background-color: #00acb0;
-  text-align: center;
-  padding: 24px 10px;
-  text-decoration: none;
-  font-size: 15px;
 
-  /* these last two make the logout button in
-  the nav bar look like another link */
-  border: none;
-  cursor: pointer;
-  outline: 0;
+.appbar {
+  background-color: white;
 }
 
-.navLink:hover {
-  background-color: #008183;
-}
+.avatar {
+  width: 30px;
+  height: 30px;
+  /* margin-right: 10px; */
+  margin: 0;
+  }
+
+  .navlink {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 24px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+  }
+  
+  .navlink:hover {
+    background-color: #f0f3f4;
+  }
+  
+  
+  .searchBox {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f4;
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 600px;
+    margin-right: 10px;
+    margin-top: 14.5px;
+    width: 300px;
+    height: 40px;
+  }
+  
+  .searchIcon {
+    color: gray;
+  }
+  
+  .searchInput {
+    margin-left: 1px;
+    flex: 5;
+  }
+  
