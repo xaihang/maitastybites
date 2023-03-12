@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Modal, Button, TextField } from "@mui/material";
 import "./UserPage.css";
 
 function RecipeModal({ open, handleClose, currentRecipe }) {
+  const dispatch = useDispatch();
+
   const initialFormValues = {
     recipeName: currentRecipe ? currentRecipe.name : "",
     description: currentRecipe ? currentRecipe.description : "",
@@ -13,23 +16,26 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
 
   const [formValues, setFormValues] = useState(initialFormValues);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
-
   const handleSave = (event) => {
     event.preventDefault();
-    console.log(formValues);
+    const recipeData = {
+      title: formValues.recipeName,
+      ingredients: formValues.ingredients,
+      directions: formValues.instructions,
+      url: formValues.imageUrl,
+    };
+    dispatch({ type: "ADD_RECIPE", payload: recipeData });
     handleClose();
   };
 
   const handleCloseModal = () => {
     setFormValues(initialFormValues);
     handleClose();
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
   return (
@@ -44,6 +50,7 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
               className="recipe-name-textfield"
               value={formValues.recipeName}
               onChange={handleChange}
+              type="text"
               sx={{ width: "90%", mb: 1.5 }}
             />
             <TextField
