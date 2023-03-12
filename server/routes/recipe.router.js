@@ -3,14 +3,27 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET
+ * GET - get user's recipes from database 
  */
 router.get('/', (req, res) => {
-  // GET route code here
+  const userId = req.user.id;
+
+  const queryText = `
+    SELECT * FROM "recipe" WHERE id = $1;
+  `;
+
+  pool.query(queryText, [userId])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error getting user recipes:', error);
+      res.sendStatus(500);
+    });
 });
 
 /**
- * POST 
+ * POST - add a new recipe to the database
  */
 router.post('/', (req, res) => {
   const recipeData = req.body;
