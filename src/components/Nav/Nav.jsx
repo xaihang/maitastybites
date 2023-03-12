@@ -109,10 +109,10 @@ function Nav() {
                 borderRadius: 4,
                 paddingLeft: 2,
                 paddingRight: 2,
-                marginLeft: 2,
+                marginLeft: 70,
                 marginRight: 2, // Add a margin of 10px to the right
                 marginTop: 2,
-                width: 430, // Make the width 300px
+                width: 300, // Make the width 300px
                 height: 40, // Change the height to 40px
               }}
             >
