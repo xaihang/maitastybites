@@ -25,7 +25,7 @@
   
   .addRecipeBtn {
     margin-top: 1rem;
-    margin-left: 2.25rem;
+    margin-left: 2.25rem !important;
   }
   
   
@@ -42,6 +42,6 @@
   }
 
   .createdViewBtn, .savedViewBtn, .addRecipeBtn {
-    border-radius: 25px;
+    border-radius: 25px !important;
   }
   
