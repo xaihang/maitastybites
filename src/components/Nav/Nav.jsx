@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
+import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
-import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,7 +13,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import avatarImage from "../Nav/user.png";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import InputBase from "@mui/material/InputBase";
@@ -21,25 +20,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./Nav.css";
 
 const pages = ["Home", "Info"];
-const settings = ["Dashboard", "Logout"];
-
-// const NavLink = styled(Link)({
-//   display: "inline-block",
-//   color: "#f2f2f2",
-//   textAlign: "center",
-//   padding: "24px 10px",
-//   textDecoration: "none",
-//   fontSize: "15px",
-//   color: "black",
-//   border: "none",
-//   cursor: "pointer",
-//   outline: 0,
-//   "&:hover": {
-//     backgroundColor: "#F0F3F4",
-//   },
-// });
+const settings = ["Dashboard", "Log Out"];
 
 function Nav() {
+  const dispatch = useDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const user = useSelector((store) => store.user);
@@ -58,6 +42,10 @@ function Nav() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
@@ -75,6 +63,7 @@ function Nav() {
             <MenuIcon />
           </IconButton>
           <Typography
+            className="navTitle"
             variant="h6"
             noWrap
             component={Link}
@@ -137,11 +126,23 @@ function Nav() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
+                  {settings.map((setting) =>
+                    setting === "Dashboard" ? (
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">{setting}</Typography>
+                      </MenuItem>
+                    ) : (
+                      <MenuItem
+                        key={setting}
+                        onClick={() => {
+                          handleCloseUserMenu();
+                          handleLogout();
+                        }}
+                      >
+                        <Typography textAlign="center">Log Out</Typography>
+                      </MenuItem>
+                    )
+                  )}
                 </Menu>
               </>
             )}
