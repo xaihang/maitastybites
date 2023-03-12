@@ -12,10 +12,12 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import avatarImage from '../Nav/user.png'
+import avatarImage from "../Nav/user.png";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
 
 const pages = ["Home", "Info"];
 const settings = ["Dashboard", "Logout"];
@@ -65,7 +67,7 @@ function Nav() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'white' }}>
+    <AppBar position="static" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IconButton
@@ -98,6 +100,29 @@ function Nav() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {/* Add the search input box here */}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "#f1f3f4",
+                borderRadius: 4,
+                paddingLeft: 2,
+                paddingRight: 2,
+                marginLeft: 2,
+                marginRight: 2, // Add a margin of 10px to the right
+                marginTop: 2,
+                width: 430, // Make the width 300px
+                height: 40, // Change the height to 40px
+              }}
+            >
+              <SearchIcon sx={{ color: "gray" }} />
+              <InputBase
+                placeholder="search recipes"
+                sx={{ marginLeft: 1, flex: 5 }}
+              />
+            </Box>
+            {/* End of search input box */}
             {pages.map((page) => (
               <NavLink key={page} to={`/${page.toLowerCase()}`}>
                 {page}
@@ -109,10 +134,7 @@ function Nav() {
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="User Avatar"
-                      src={avatarImage}
-                    />
+                    <Avatar alt="User Avatar" src={avatarImage} />
                   </IconButton>
                 </Tooltip>
                 <Menu
