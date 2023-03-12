@@ -66,3 +66,14 @@
     margin: auto;
   }
   
+  .modal-textfield {
+    margin-right: 1rem;
+    margin-left: 4rem;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2.5rem;
+    margin-left: 6rem;
+  }

@@ -36,6 +36,8 @@ function RecipeModal({ open, handleClose }) {
     <Modal open={open} onClose={handleCloseModal} className="modal-container">
       <div className="modal-container">
         <form onSubmit={handleSave}>
+            <div className="modal-textfield">
+
           <TextField
             required
             placeholder="Recipe Name*"
@@ -43,7 +45,7 @@ function RecipeModal({ open, handleClose }) {
             value={formValues.recipeName}
             onChange={handleChange}
             sx={{ width: '90%', mb: 1.5 }}
-          />
+            />
           <TextField
             required
             placeholder="Description*"
@@ -51,7 +53,7 @@ function RecipeModal({ open, handleClose }) {
             value={formValues.description}
             onChange={handleChange}
             sx={{ width: '90%', mb: 1.5 }}
-          />
+            />
           <TextField
             required
             placeholder="Ingredients*"
@@ -67,15 +69,16 @@ function RecipeModal({ open, handleClose }) {
             value={formValues.instructions}
             onChange={handleChange}
             sx={{ width: '90%', mb: 1.5 }}
-          />
+            />
           <TextField
              placeholder="Image URL"
-            name="imageUrl"
-            value={formValues.imageUrl}
-            onChange={handleChange}
-            sx={{ width: '90%', mb: 1.5 }}
-          />
-          <div className="button-group">
+             name="imageUrl"
+             value={formValues.imageUrl}
+             onChange={handleChange}
+             sx={{ width: '90%', mb: 1.5 }}
+             />
+             </div>
+          <div className="modal-buttons">
             <Button onClick={handleCloseModal}>Cancel</Button>
             <Button type="submit" variant="contained" color="primary">
               Save
