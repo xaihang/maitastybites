@@ -11,7 +11,7 @@ import {
 
 import "./UserPage.css";
 
-export default function CreatedTable() {
+export default function RecipeList({handleOpenModal}) {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -25,10 +25,40 @@ export default function CreatedTable() {
         </TableHead>
         <TableBody>
 
-          <RecipeItem />
-          
+        <RecipeItem handleOpenModal={handleOpenModal} />
+
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
+
+
+
+// export default function RecipeList({handleOpenModal}) {
+//   return (
+//     <TableContainer component={Paper}>
+//       <Table>
+//         <TableHead>
+//           <TableRow>
+//             <TableCell>Recipe Name</TableCell>
+//             <TableCell>Description</TableCell>
+//             <TableCell>Edit</TableCell>
+//             <TableCell>Delete</TableCell>
+//           </TableRow>
+//         </TableHead>
+//         <TableBody>
+
+//         {recipes.map((recipe) => (
+//             <RecipeItem
+//               key={recipe.id}
+//               recipe={recipe}
+//               handleOpenModal={() => handleOpenModal(recipe)}
+//             />
+//           ))}
+
+//         </TableBody>
+//       </Table>
+//     </TableContainer>
+//   );
+// }

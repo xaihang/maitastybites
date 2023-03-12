@@ -7,10 +7,11 @@ import "./UserPage.css";
 
 function UserPage() {
   const [modalOpen, setModalOpen] = useState(false);
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const user = useSelector((store) => store.user);
+  const [currentRecipe, setCurrentRecipe] = useState(null); // hold the current recipe that needs to be edited
+  const user = useSelector((store) => store.user);   // this component doesn't do much to start, just renders some user reducer info to the DOM
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (recipe) => {
+    setCurrentRecipe(recipe);
     setModalOpen(true);
   };
 
