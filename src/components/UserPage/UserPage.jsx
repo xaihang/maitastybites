@@ -1,11 +1,23 @@
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import RecipeList from "./RecipeList";
 import CustomButton from "./CustomButton";
+import RecipeModal from "./RecipeModal";
 import "./UserPage.css";
 
 function UserPage() {
+  const [modalOpen, setModalOpen] = useState(false);
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="dashboard-container">
       <h2>Welcome, {user.username}!</h2>
@@ -18,13 +30,15 @@ function UserPage() {
           Saved
         </CustomButton>
         <div>
-          <CustomButton variant="contained" className="addRecipeBtn">
+          <CustomButton variant="contained" className="addRecipeBtn" onClick={handleOpenModal}> 
             Add Recipe
           </CustomButton>
         </div>
       </div>
 
     <RecipeList />
+
+    <RecipeModal open={modalOpen} handleClose={handleCloseModal} />
 
     </div>
   );
