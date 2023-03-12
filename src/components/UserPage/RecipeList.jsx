@@ -9,18 +9,16 @@ import {
   Paper,
 } from "@mui/material";
 import "./UserPage.css";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
-const MUICustomTableContainer = styled('div')({
-  maxWidth: '90%',
-  margin: 'auto',
+const MUICustomTableContainer = styled("div")({
+  maxWidth: "90%",
+  margin: "auto",
 });
 
-
-export default function RecipeList({handleOpenModal}) {
-
+export default function RecipeList({ handleOpenModal }) {
   return (
-    <MUICustomTableContainer  component={Paper}>
+    <MUICustomTableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
@@ -31,11 +29,9 @@ export default function RecipeList({handleOpenModal}) {
           </TableRow>
         </TableHead>
         <TableBody>
-
-        <RecipeItem handleOpenModal={handleOpenModal} />
-
+          <RecipeItem handleOpenModal={handleOpenModal} />
         </TableBody>
       </Table>
-    </MUICustomTableContainer >
+    </MUICustomTableContainer>
   );
 }
