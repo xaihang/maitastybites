@@ -34,6 +34,27 @@ const CustomButton = styled(Button)(({ theme }) => ({
       backgroundColor: "darkred",
     },
   },
+  "&.editBtn": {
+    color: "black",
+    outline: "none",
+    padding: "10px 20px",
+    marginRight: "10px",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      backgroundColor: "#f0f3f4",
+    },
+  },
+  "&.deleteBtn": {
+    color: "black",
+    outline: "none",
+    padding: "10px 20px",
+    marginRight: "10px",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      backgroundColor: '#f0f3f4',
+      color: "red",
+    },
+  }
 }));
 
 export default CustomButton;

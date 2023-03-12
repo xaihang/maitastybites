@@ -42,7 +42,7 @@
     }
   }
 
-  .createdViewBtn, .savedViewBtn, .addRecipeBtn {
+  .createdViewBtn, .savedViewBtn, .addRecipeBtn, .deleteBtn, .editBtn {
     border-radius: 25px !important;
   }
   

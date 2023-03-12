@@ -1,4 +1,5 @@
 import "./UserPage.css";
+import CustomButton from "./CustomButton";
 import {
   Table,
   TableBody,
@@ -9,17 +10,25 @@ import {
   Paper,
 } from "@mui/material";
 
-export default function RecipeItem() {
+export default function RecipeItem({ handleOpenModal }) {
   return (
     <>
       <TableRow>
         <TableCell>Bacons with Eggs</TableCell>
         <TableCell>Very nice!</TableCell>
         <TableCell>
-          <button>Edit</button>
+          <CustomButton
+            variant="text"
+            className="editBtn"
+            onClick={handleOpenModal}
+          >
+            Edit
+          </CustomButton>
         </TableCell>
         <TableCell>
-          <button>Delete</button>
+          <CustomButton variant="text" className="deleteBtn">
+            Delete
+          </CustomButton>
         </TableCell>
       </TableRow>
     </>
