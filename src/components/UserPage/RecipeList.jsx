@@ -25,7 +25,7 @@ export default function RecipeList({handleOpenModal}) {
         <TableHead>
           <TableRow>
             <TableCell>Recipe Name</TableCell>
-            {/* <TableCell>Description</TableCell> */}
+            <TableCell>Description</TableCell>
             <TableCell>Edit</TableCell>
             <TableCell>Delete</TableCell>
           </TableRow>
@@ -39,33 +39,3 @@ export default function RecipeList({handleOpenModal}) {
     </MUICustomTableContainer >
   );
 }
-
-
-
-// export default function RecipeList({handleOpenModal}) {
-//   return (
-//     <TableContainer component={Paper}>
-//       <Table>
-//         <TableHead>
-//           <TableRow>
-//             <TableCell>Recipe Name</TableCell>
-//             <TableCell>Description</TableCell>
-//             <TableCell>Edit</TableCell>
-//             <TableCell>Delete</TableCell>
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-
-//         {recipes.map((recipe) => (
-//             <RecipeItem
-//               key={recipe.id}
-//               recipe={recipe}
-//               handleOpenModal={() => handleOpenModal(recipe)}
-//             />
-//           ))}
-
-//         </TableBody>
-//       </Table>
-//     </TableContainer>
-//   );
-// }

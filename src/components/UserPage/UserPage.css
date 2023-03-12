@@ -78,3 +78,9 @@
     margin-right: 2.5rem;
     margin-left: 6rem;
   }
+
+  .delete-hovered {
+    color: red;
+    text-decoration: underline red;
+    cursor: pointer;
+  }
