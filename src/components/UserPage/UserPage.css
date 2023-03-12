@@ -45,3 +45,24 @@
     border-radius: 25px !important;
   }
   
+  .modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 650px;
+    height: 100%;
+    max-height: 700px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  

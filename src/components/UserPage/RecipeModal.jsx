@@ -33,42 +33,47 @@ function RecipeModal({ open, handleClose }) {
   };
 
   return (
-    <Modal open={open} onClose={handleCloseModal}>
+    <Modal open={open} onClose={handleCloseModal} className="modal-container">
       <div className="modal-container">
         <form onSubmit={handleSave}>
           <TextField
             required
-            label="Recipe Name"
+            placeholder="Recipe Name*"
             name="recipeName"
             value={formValues.recipeName}
             onChange={handleChange}
+            sx={{ width: '90%', mb: 1.5 }}
           />
           <TextField
             required
-            label="Description"
+            placeholder="Description*"
             name="description"
             value={formValues.description}
             onChange={handleChange}
+            sx={{ width: '90%', mb: 1.5 }}
           />
           <TextField
             required
-            label="Ingredients"
+            placeholder="Ingredients*"
             name="ingredients"
             value={formValues.ingredients}
             onChange={handleChange}
+            sx={{ width: '90%', mb: 1.5 }}
           />
           <TextField
             required
-            label="Instructions"
+            placeholder="Instructions*"
             name="instructions"
             value={formValues.instructions}
             onChange={handleChange}
+            sx={{ width: '90%', mb: 1.5 }}
           />
           <TextField
-            label="Image URL"
+             placeholder="Image URL"
             name="imageUrl"
             value={formValues.imageUrl}
             onChange={handleChange}
+            sx={{ width: '90%', mb: 1.5 }}
           />
           <div className="button-group">
             <Button onClick={handleCloseModal}>Cancel</Button>
