@@ -24,8 +24,9 @@
   }
   
   .addRecipeBtn {
-    margin-top: 1rem;
+    margin-top: 3rem !important;
     margin-left: 2.25rem !important;
+    margin-bottom: 2rem !important;
   }
   
   
