@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -19,14 +19,14 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Nav.css";
 
-const pages = ["Home", "Info"];
 const settings = ["Dashboard", "Log Out"];
 
 function Nav() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector((store) => store.user);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const user = useSelector((store) => store.user);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,18 +35,23 @@ function Nav() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  
+
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
 
+  const handleNavTitleClick = () => {
+    history.replace("/home");
+  };
+
+  const handleDashBoardClick = () => {
+    history.replace("/user");
+    handleCloseUserMenu();
+  };
   return (
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl">
@@ -68,6 +73,7 @@ function Nav() {
             noWrap
             component={Link}
             to="/home"
+            onClick={handleNavTitleClick}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -87,16 +93,15 @@ function Nav() {
               <SearchIcon className="searchIcon" />
               <InputBase placeholder="search recipes" className="searchInput" />
             </Box>
-            {/* End of search input box */}
-            {pages.map((page) => (
-              <Link
-                key={page}
-                to={`/${page.toLowerCase()}`}
-                className="navlink"
-              >
-                {page}
-              </Link>
-            ))}
+
+            <Link to={`/home`} className="navlink">
+              {'Home'}
+            </Link>
+
+            {/* User is not login, show login/register link  */}
+           {!user.id && <Link to={`/login`} className="navlink">
+              {"Login/Register"}
+            </Link>}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             {user.id && (
@@ -128,7 +133,7 @@ function Nav() {
                 >
                   {settings.map((setting) =>
                     setting === "Dashboard" ? (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <MenuItem key={setting} onClick={handleDashBoardClick}>
                         <Typography textAlign="center">{setting}</Typography>
                       </MenuItem>
                     ) : (
@@ -150,32 +155,6 @@ function Nav() {
           </Box>
         </Toolbar>
       </Container>
-      <Menu
-        id="nav-menu"
-        anchorEl={anchorElNav}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        open={Boolean(anchorElNav)}
-        onClose={handleCloseNavMenu}
-      >
-        {pages.map((page) => (
-          <MenuItem
-            key={page}
-            onClick={handleCloseNavMenu}
-            component={Link}
-            to={`/${page.toLowerCase()}`}
-          >
-            {page}
-          </MenuItem>
-        ))}
-      </Menu>
     </AppBar>
   );
 }

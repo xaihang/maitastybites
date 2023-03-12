@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Redirect,
   Route,
   Switch,
@@ -106,14 +106,14 @@ function App() {
             exact
             path="/home"
           >
-            {user.id ?
+            {/* {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
               <Redirect to="/user" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            } */}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
