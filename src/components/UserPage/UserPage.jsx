@@ -1,6 +1,5 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import CreatedTable from "./CreatedTable";
+import RecipeList from "./RecipeList";
 import CustomButton from "./CustomButton";
 import "./UserPage.css";
 
@@ -25,7 +24,7 @@ function UserPage() {
         </div>
       </div>
 
-    <CreatedTable />
+    <RecipeList />
 
     </div>
   );

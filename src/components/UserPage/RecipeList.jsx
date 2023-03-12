@@ -7,7 +7,8 @@ import {
     TableRow,
     Paper,
   } from "@mui/material";
-
+  import "./UserPage.css";
+  
 export default function CreatedTable() {
   return (
     <TableContainer component={Paper}>
