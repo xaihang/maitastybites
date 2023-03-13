@@ -1,4 +1,5 @@
 import RecipeItem from "./RecipeItem";
+import { useSelector } from "react-redux";
 import {
   Table,
   TableBody,
@@ -17,6 +18,14 @@ const MUICustomTableContainer = styled("div")({
 });
 
 export default function RecipeList({ handleOpenModal }) {
+  const {recipes} = useSelector((store) => store.recipe);
+  console.log('recipes111', recipes)
+
+  if(recipes.length === 0){
+    return <p>Nothing to show...yet! Pins you create will live here.
+    </p>
+  }
+
   return (
     <MUICustomTableContainer component={Paper}>
       <Table>
@@ -29,7 +38,15 @@ export default function RecipeList({ handleOpenModal }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          <RecipeItem handleOpenModal={handleOpenModal} />
+          {
+            recipes?.map((recipe) => (
+              <RecipeItem
+                key={recipe?.recipeID}
+                recipe={recipe}
+                handleOpenModal={handleOpenModal}
+              />
+            ))
+            }
         </TableBody>
       </Table>
     </MUICustomTableContainer>

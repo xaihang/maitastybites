@@ -2,7 +2,7 @@
 # Prime Solo Project Starting Repo
 This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+We **STRONGLY** recommend following these direction carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
 ## Use the Template for This Repository (Don't Clone)
 
@@ -31,7 +31,7 @@ CREATE TABLE "user" (
 
 If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
-## Development Setup Instructions
+## Development Setup direction
 
 - Run `npm install`
 - Create a `.env` file at the root of the project and paste this line into the file:

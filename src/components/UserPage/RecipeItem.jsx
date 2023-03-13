@@ -11,21 +11,19 @@ import {
   Paper,
 } from "@mui/material";
 
-export default function RecipeItem({ handleOpenModal }) {
+export default function RecipeItem({ recipe, handleOpenModal }) {
   const [isHoveredEdit, setIsHoveredEdit] = useState(false);
   const [isHoveredDelete, setIsHoveredDelete] = useState(false);
+
   return (
     <>
-      <TableRow>
-        <TableCell>Bacons with Eggs</TableCell>
-        <TableCell>Very nice!</TableCell>
-        <TableCell align="right">
+     <TableRow>
+      <TableCell>{recipe?.recipename}</TableCell>
+      <TableCell>{recipe?.description}</TableCell>
+      <TableCell>
           <p
             onClick={() => console.log("je")}
-            style={{
-              cursor: "pointer",
-              textDecoration: isHoveredEdit ? "underline" : "none",
-            }}
+            className={isHoveredEdit ? "edit-hovered" : ""}
             onMouseEnter={() => setIsHoveredEdit(true)}
             onMouseLeave={() => setIsHoveredEdit(false)}
           >
