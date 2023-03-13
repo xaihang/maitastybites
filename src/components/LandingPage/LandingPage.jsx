@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import RecipeList from '../UserPage/RecipeList';
+import RecipeCard from './RecipeCard';
 
 
 function LandingPage() {
@@ -22,7 +22,18 @@ console.log('recipesAll', recipesAll)
   return (
     <div className="container">
       <h1>All Recipes</h1>
-    
+      <div className="recipe-list">
+        {recipesAll.map((recipe) => (
+          <RecipeCard
+            key={recipe.recipeID}
+            name={recipe.recipename}
+            description={recipe.description}
+            ingredients={recipe.ingredients}
+            direction={recipe.direction}
+            imageUrl={recipe.url}
+          />
+        ))}
+      </div>
     </div>
   );
 }
