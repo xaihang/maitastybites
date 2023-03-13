@@ -5,21 +5,26 @@ const initialState = {
 
 export default function recipeReducer(state = initialState, action) {
   switch (action.type) {
-    case 'ADD_RECIPE_SUCCESS':
+    case "ADD_RECIPE_SUCCESS":
       return {
         ...state,
         recipesUser: [...state.recipesUser, action.payload],
       };
-    case 'GET_USER_RECIPES_SUCCESS':
+    case "GET_USER_RECIPES_SUCCESS":
       return {
         ...state,
         recipesUser: action.payload,
       };
-      case 'GET_ALL_RECIPES_SUCCESS':
-        return {
-          ...state,
-          recipesAll: action.payload,
-        };
+    case "GET_ALL_RECIPES_SUCCESS":
+      return {
+        ...state,
+        recipesAll: action.payload,
+      };
+    case "GET_SELECTED_RECIPE_SUCCESS":
+      return {
+        ...state,
+        selectedRecipe: action.payload,
+      };
     default:
       return state;
   }
