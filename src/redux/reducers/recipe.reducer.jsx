@@ -9,11 +9,16 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         recipes: [...state.recipes, action.payload],
       };
-    case 'GET_RECIPES_SUCCESS':
+    case 'GET_USER_RECIPES_SUCCESS':
       return {
         ...state,
         recipes: action.payload,
       };
+      case 'GET_ALL_RECIPES_SUCCESS':
+        return {
+          ...state,
+          recipes: action.payload,
+        };
     default:
       return state;
   }
