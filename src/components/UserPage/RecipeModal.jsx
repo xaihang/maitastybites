@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button, TextField } from "@mui/material";
 import "./UserPage.css";
 
 function RecipeModal({ open, handleClose, currentRecipe }) {
   const dispatch = useDispatch();
-
+  const user = useSelector((store) => store.user);
+  console.log('useruser', user)
   const initialFormValues = {
-    recipeName: currentRecipe ? currentRecipe.name : "",
-    description: currentRecipe ? currentRecipe.description : "",
+    recipename: "",
+    description: "",
     ingredients: "",
-    instructions: "",
+    direction: "",
     imageUrl: "",
   };
 
@@ -19,11 +20,14 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
   const handleSave = (event) => {
     event.preventDefault();
     const recipeData = {
-      title: formValues.recipeName,
+      recipename: formValues.recipename,
+      description: formValues.description,
       ingredients: formValues.ingredients,
-      directions: formValues.instructions,
+      direction: formValues.direction,
       url: formValues.imageUrl,
+      userId: user.id,
     };
+    console.log('recipeData===', recipeData)
     dispatch({ type: "ADD_RECIPE", payload: recipeData });
     handleClose();
     setFormValues(initialFormValues); // Clear input values
@@ -47,9 +51,9 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
             <TextField
               required
               placeholder="Recipe Name*"
-              name="recipeName"
+              name="recipename"
               className="recipe-name-textfield"
-              value={formValues.recipeName}
+              value={formValues.recipename}
               onChange={handleChange}
               type="text"
               sx={{ width: "90%", mb: 1.5 }}
@@ -72,9 +76,9 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
             />
             <TextField
               required
-              placeholder="Instructions*"
-              name="instructions"
-              value={formValues.instructions}
+              placeholder="direction*"
+              name="direction"
+              value={formValues.direction}
               onChange={handleChange}
               sx={{ width: "90%", mb: 1.5 }}
             />

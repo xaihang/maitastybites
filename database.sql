@@ -8,9 +8,10 @@ CREATE TABLE "user" (
 
 CREATE TABLE "recipe" (
      "recipeID" SERIAL PRIMARY KEY, 
-     "title" VARCHAR(255), 
+     "recipename" VARCHAR(255), 
+     "description" VARCHAR(255),
      "ingredients" TEXT, 
-     "directions" TEXT, 
+     "direction" TEXT, 
      "url" TEXT, 
      "id" INT REFERENCES "user"
      ); 
@@ -65,7 +66,7 @@ CREATE TABLE "public.recipes" (
 	"userID" integer NOT NULL,
 	"title" varchar(255) NOT NULL,
 	"ingredients" varchar(255) NOT NULL,
-	"instructions" varchar(255) NOT NULL,
+	"direction" varchar(255) NOT NULL,
 	"url" TEXT(1000),
 	CONSTRAINT "recipes_pk" PRIMARY KEY ("recipeID")
 ) WITH (

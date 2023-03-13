@@ -12,8 +12,10 @@ router.get('/', (req, res) => {
     SELECT * FROM "recipe" WHERE id = $1;
   `;
 
+
   pool.query(queryText, [userId])
     .then((result) => {
+      console.log('result===', result.rows)
       res.send(result.rows);
     })
     .catch((error) => {
@@ -27,14 +29,16 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   const recipeData = req.body;
-  const { title, ingredients, directions, url, userId } = recipeData;
+  const { recipename, description, ingredients, direction, url, userId } = recipeData;
 
+  console.log('userId', userId)
+  console.log('recipeData', recipeData)
   const queryText = `
-    INSERT INTO "recipe" (title, ingredients, directions, url, id)
-    VALUES ($1, $2, $3, $4, $5);
+    INSERT INTO "recipe" (recipename, description, ingredients, direction, url, id)
+    VALUES ($1, $2, $3, $4, $5, $6);
   `;
 
-  const queryValues = [title, ingredients, directions, url, userId];
+  const queryValues = [recipename, description, ingredients, direction, url, userId];
 
   pool.query(queryText, queryValues)
     .then(() => res.sendStatus(201))

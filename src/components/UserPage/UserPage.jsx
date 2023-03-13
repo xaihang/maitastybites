@@ -3,12 +3,21 @@ import { useSelector } from "react-redux";
 import RecipeList from "./RecipeList";
 import CustomButton from "./CustomButton";
 import RecipeModal from "./RecipeModal";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "./UserPage.css";
 
 function UserPage() {
+  const dispatch = useDispatch();
+const recipes = useSelector((store) => store.recipes);
+
   const [modalOpen, setModalOpen] = useState(false);
   const [currentRecipe, setCurrentRecipe] = useState(null); // hold the current recipe that needs to be edited
   const user = useSelector((store) => store.user); // this component doesn't do much to start, just renders some user reducer info to the DOM
+
+  useEffect(() => {
+    dispatch({ type: "GET_RECIPES" });
+  }, [dispatch]);
 
   const handleOpenModal = (recipe) => {
     setCurrentRecipe(recipe);

@@ -12,7 +12,7 @@ import recipeReducer from './recipe.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  recipeReducer,
+  recipe: recipeReducer,
 });
 
 export default rootReducer;
