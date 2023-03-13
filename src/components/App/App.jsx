@@ -114,6 +114,7 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             } */}
+                <LandingPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

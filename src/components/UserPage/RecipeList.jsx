@@ -22,7 +22,7 @@ export default function RecipeList({ handleOpenModal }) {
   console.log('recipes111', recipes)
 
   if(recipes.length === 0){
-    return <p>Nothing to show...yet! Pins you create will live here.
+    return <p>Nothing to show...yet! Recipes you create will live here.
     </p>
   }
 
