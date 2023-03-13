@@ -26,7 +26,8 @@ function LandingPage() {
       <ImageList sx={{ width: '100%' }} variant="woven" cols={3} gap={8}>
         <ListSubheader>All Recipes</ListSubheader>
         {recipesAll.map((recipe) => (
-          <ImageListItem key={recipe.recipeID}>
+          <ImageListItem key={recipe.recipeID} className="ImageList-item">
+            <div className="overlay"></div>
             <img src={recipe.url} alt={recipe.recipename} loading="lazy" />
             <ImageListItemBar
               title={recipe.recipename}
