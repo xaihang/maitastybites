@@ -16,7 +16,7 @@ const recipes = useSelector((store) => store.recipes);
   const user = useSelector((store) => store.user); // this component doesn't do much to start, just renders some user reducer info to the DOM
 
   useEffect(() => {
-    dispatch({ type: "GET_RECIPES" });
+    dispatch({ type: "GET_USER_RECIPES" });
   }, [dispatch]);
 
   const handleOpenModal = (recipe) => {

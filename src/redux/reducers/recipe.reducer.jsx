@@ -1,5 +1,6 @@
 const initialState = {
-  recipes: [],
+  recipesAll: [],
+  recipesUser: [],
 };
 
 export default function recipeReducer(state = initialState, action) {
@@ -7,13 +8,18 @@ export default function recipeReducer(state = initialState, action) {
     case 'ADD_RECIPE_SUCCESS':
       return {
         ...state,
-        recipes: [...state.recipes, action.payload],
+        recipesUser: [...state.recipesUser, action.payload],
       };
-    case 'GET_RECIPES_SUCCESS':
+    case 'GET_USER_RECIPES_SUCCESS':
       return {
         ...state,
-        recipes: action.payload,
+        recipesUser: action.payload,
       };
+      case 'GET_ALL_RECIPES_SUCCESS':
+        return {
+          ...state,
+          recipesAll: action.payload,
+        };
     default:
       return state;
   }
