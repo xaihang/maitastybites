@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./LandingPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import RecipeListGallery from "./RecipeListGallery";
+import heroImage from '../LandingPage/hero.png';
 
 function LandingPage() {
   const history = useHistory();
@@ -18,6 +19,7 @@ function LandingPage() {
 
   return (
     <div className="container">
+      <img src={heroImage} alt="hero image" />
       <RecipeListGallery />
     </div>
   );
