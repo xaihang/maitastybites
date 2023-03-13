@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
 
   const queryText = `
-    SELECT * FROM "recipe";
+    SELECT * FROM "recipe" ORDER BY "id" DESC;
   `;
 
   pool
@@ -40,6 +40,25 @@ router.get("/user", (req, res) => {
     })
     .catch((error) => {
       console.log("Error getting user recipes:", error);
+      res.sendStatus(500);
+    });
+});
+
+
+// GET recipe by ID
+router.get("/:id", (req, res) => {
+  const recipeId = req.params.id;
+  const queryText = `
+    SELECT * FROM "recipe" WHERE recipeID = $1;
+  `;
+
+  pool
+    .query(queryText, [recipeId])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log("Error getting recipe by ID:", error);
       res.sendStatus(500);
     });
 });

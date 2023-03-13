@@ -1,3 +1,15 @@
+-- ! the relationships between each table in the ERD:
+--     * the user table has a one-to-many relationship with the recipe table. 
+--         (means that a user can have many recipes, but each recipe belongs to only one user)
+
+--     * the recipe table has a many-to-many relationship with the user table through the save table. 
+--        (means that a recipe can be saved by many users, and a user can save many recipes)
+
+--     * the recipe table has a one-to-many relationship with the comments table. 
+--         (means that a recipe can have many comments, but each comment belongs to only one recipe)
+
+--     * the user table has a one-to-many relationship with the comments table. 
+--         (means that a user can make many comments, but each comment belongs to only one user)
 
 CREATE TABLE "user" ( 
     "id" SERIAL PRIMARY KEY, 
@@ -28,17 +40,3 @@ CREATE TABLE "comments" (
      "id" INT REFERENCES "user", 
      "comment" TEXT 
      );
-
-
--- ! the relationships between each table in the ERD:
---     * the user table has a one-to-many relationship with the recipe table. 
---         (means that a user can have many recipes, but each recipe belongs to only one user)
-
---     * the recipe table has a many-to-many relationship with the user table through the save table. 
---        (means that a recipe can be saved by many users, and a user can save many recipes)
-
---     * the recipe table has a one-to-many relationship with the comments table. 
---         (means that a recipe can have many comments, but each comment belongs to only one recipe)
-
---     * the user table has a one-to-many relationship with the comments table. 
---         (means that a user can make many comments, but each comment belongs to only one user)
