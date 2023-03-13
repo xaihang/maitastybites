@@ -13,8 +13,8 @@ function LandingPage() {
     dispatch({ type: 'GET_ALL_RECIPES' });
   }, [dispatch]);
 
-  const recipes = useSelector((state) => state.recipe.recipes);
-
+  const {recipesAll} = useSelector((state) => state.recipe);
+console.log('recipesAll', recipesAll)
   const onLogin = (event) => {
     history.push('/login');
   };
@@ -22,7 +22,7 @@ function LandingPage() {
   return (
     <div className="container">
       <h1>All Recipes</h1>
-      <RecipeList recipes={recipes} />
+    
     </div>
   );
 }

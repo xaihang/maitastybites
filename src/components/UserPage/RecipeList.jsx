@@ -18,10 +18,10 @@ const MUICustomTableContainer = styled("div")({
 });
 
 export default function RecipeList({ handleOpenModal }) {
-  const {recipes} = useSelector((store) => store.recipe);
-  console.log('recipes111', recipes)
+  const {recipesUser} = useSelector((store) => store.recipe);
+  console.log('recipes111', recipesUser)
 
-  if(recipes.length === 0){
+  if(recipesUser?.length === 0){
     return <p>Nothing to show...yet! Recipes you create will live here.
     </p>
   }
@@ -39,7 +39,7 @@ export default function RecipeList({ handleOpenModal }) {
         </TableHead>
         <TableBody>
           {
-            recipes?.map((recipe) => (
+            recipesUser?.map((recipe) => (
               <RecipeItem
                 key={recipe?.recipeID}
                 recipe={recipe}

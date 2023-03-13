@@ -6,15 +6,15 @@ const router = express.Router();
  * GET - get ALL recipes from database from all users:
  */
 router.get("/", (req, res) => {
-  const userId = req.user.id;
 
   const queryText = `
     SELECT * FROM "recipe";
   `;
 
   pool
-    .query(queryText, [userId])
+    .query(queryText)
     .then((result) => {
+      console.log('resultall', result.rows)
       res.send(result.rows);
     })
     .catch((error) => {
