@@ -1,6 +1,7 @@
 const initialState = {
   recipesAll: [],
   recipesUser: [],
+  selectedRecipe: null,
 };
 
 export default function recipeReducer(state = initialState, action) {
