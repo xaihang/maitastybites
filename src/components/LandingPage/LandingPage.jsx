@@ -1,9 +1,9 @@
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import RecipeCard from './RecipeCard';
-
 
 function LandingPage() {
   const history = useHistory();
@@ -13,8 +13,8 @@ function LandingPage() {
     dispatch({ type: 'GET_ALL_RECIPES' });
   }, [dispatch]);
 
-  const {recipesAll} = useSelector((state) => state.recipe);
-console.log('recipesAll', recipesAll)
+  const { recipesAll } = useSelector((state) => state.recipe);
+
   const onLogin = (event) => {
     history.push('/login');
   };
@@ -22,18 +22,17 @@ console.log('recipesAll', recipesAll)
   return (
     <div className="container">
       <h1>All Recipes</h1>
-      <div className="recipe-list">
+      <ImageList sx={{ width: '100%' }} variant="woven" cols={3} gap={8}>
         {recipesAll.map((recipe) => (
-          <RecipeCard
-            key={recipe.recipeID}
-            name={recipe.recipename}
-            description={recipe.description}
-            ingredients={recipe.ingredients}
-            direction={recipe.direction}
-            imageUrl={recipe.url}
-          />
+          <ImageListItem key={recipe.recipeID}>
+            <img
+              src={recipe.url}
+              alt={recipe.recipename}
+              loading="lazy"
+            />
+          </ImageListItem>
         ))}
-      </div>
+      </ImageList>
     </div>
   );
 }
