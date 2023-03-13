@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
 
   const queryText = `
-    SELECT * FROM "recipe";
+    SELECT * FROM "recipe" ORDER BY "id" DESC;
   `;
 
   pool
@@ -40,6 +40,25 @@ router.get("/user", (req, res) => {
     })
     .catch((error) => {
       console.log("Error getting user recipes:", error);
+      res.sendStatus(500);
+    });
+});
+
+
+// GET recipe by ID
+router.get("/:id", (req, res) => {
+  const recipeId = req.params.id;
+  const queryText = `
+    SELECT * FROM "recipe" WHERE recipeID = $1;
+  `;
+
+  pool
+    .query(queryText, [recipeId])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log("Error getting recipe by ID:", error);
       res.sendStatus(500);
     });
 });
@@ -80,9 +99,56 @@ router.post("/", (req, res) => {
 /**
  * DELETE - route here:
  */
+// DELETE recipe
+// router.delete("/:id", (req, res) => {
+//   const recipeId = req.params.id;
+//   const queryText = `
+//     DELETE FROM "recipe" WHERE recipeID = $1;
+//   `;
+
+//   pool
+//     .query(queryText, [recipeId])
+//     .then(() => res.sendStatus(204))
+//     .catch((error) => {
+//       console.log("Error deleting recipe from database", error);
+//       res.sendStatus(500);
+//     });
+// });
 
 /**
  * PUT - route here:
  */
+/**
+ * PUT - update a recipe in the database (recipe id)
+ */
+// router.put("/:id", (req, res) => {
+//   const recipeData = req.body;
+//   const { recipename, description, ingredients, direction, url, userId } =
+//     recipeData;
+//   const id = req.params.id;
+
+//   const queryText = `
+//     UPDATE "recipe"
+//     SET "recipename" = $1, "description" = $2, "ingredients" = $3, "direction" = $4, "url" = $5
+//     WHERE "recipeID" = $6;
+//   `;
+
+//   const queryValues = [
+//     recipename,
+//     description,
+//     ingredients,
+//     direction,
+//     url,
+//     id,
+//   ];
+
+//   pool
+//     .query(queryText, queryValues)
+//     .then(() => res.sendStatus(200))
+//     .catch((error) => {
+//       console.log("Error updating recipe:", error);
+//       res.sendStatus(500);
+//     });
+// });
 
 module.exports = router;

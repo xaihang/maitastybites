@@ -36,6 +36,17 @@ function* addRecipe(action) {
   }
 }
 
+function* getRecipeById(action) {
+  try {
+    const response = yield call(axios.get, `/api/recipe/${action.payload}`);
+    yield put({ type: 'GET_RECIPE_BY_ID_SUCCESS', payload: response.data });
+  } catch (error) {
+    console.log('Error getting recipe by id:', error);
+    yield put({ type: 'GET_RECIPE_BY_ID_ERROR' });
+  }
+}
+
+
 function* recipeSaga() {
   yield takeLatest('ADD_RECIPE', addRecipe);
   yield takeEvery('GET_ALL_RECIPES', getAllRecipes);
@@ -44,5 +55,6 @@ function* recipeSaga() {
     yield call(getUserRecipes);
     console.log('GET_USER_RECIPES finished');
   });
+  yield takeLatest('GET_RECIPE_BY_ID', getRecipeById);
 }
 export default recipeSaga;
