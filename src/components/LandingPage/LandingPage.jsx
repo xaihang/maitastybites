@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import { useDispatch, useSelector } from 'react-redux';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import ListSubheader from '@mui/material/ListSubheader';
 
 function LandingPage() {
   const history = useHistory();
@@ -21,14 +23,14 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h1>All Recipes</h1>
       <ImageList sx={{ width: '100%' }} variant="woven" cols={3} gap={8}>
+        <ListSubheader>All Recipes</ListSubheader>
         {recipesAll.map((recipe) => (
           <ImageListItem key={recipe.recipeID}>
-            <img
-              src={recipe.url}
-              alt={recipe.recipename}
-              loading="lazy"
+            <img src={recipe.url} alt={recipe.recipename} loading="lazy" />
+            <ImageListItemBar
+              title={recipe.recipename}
+              subtitle={recipe.description}
             />
           </ImageListItem>
         ))}
