@@ -25,8 +25,7 @@ function LandingPage() {
       <div className="rounded-rectangle">
         <div className="rounded-rectangle-text">
           <p>
-            Join our community of food lovers and share your delicious creations
-            with the world!
+          Join our foodie family and share your amazing recipes!
           </p>
           <SignUpButton />
         </div>

@@ -21,19 +21,14 @@
   }
     
 
-  .sign-up-button {
-    margin-top: -200px;
-  }
-
   .rounded-rectangle {
     position: absolute;
-    top: 40%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 700px;
     height: 200px;
     background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid black;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -50,12 +45,15 @@
     text-align: center;
     color: black;
     z-index: 1;
+    width: 600px;
+    height: 100px;
   }
   
   .rounded-rectangle-text p {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: bold;
-    margin-top: -60px;
+    margin-top: -20px;
+    font-family: Georgia, serif;
   }
   
 
