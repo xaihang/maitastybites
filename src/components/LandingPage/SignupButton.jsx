@@ -10,7 +10,7 @@ const SignUpButton = () => {
     };
   
     return (
-        <Button
+      <Button
         variant="contained"
         sx={{
           backgroundColor: "red",
@@ -24,13 +24,10 @@ const SignUpButton = () => {
             backgroundColor: "darkred",
           },
           position: "absolute",
-          top: "50%",
+          bottom: "-20px",
           left: "50%",
-          transform: "translate(-50%, -50%)",
+          transform: "translateX(-50%)",
           zIndex: 2,
-          "&.sign-up-button": {
-            marginTop: "-30px",
-          },
         }}
         onClick={handleClick}
         className="sign-up-button"

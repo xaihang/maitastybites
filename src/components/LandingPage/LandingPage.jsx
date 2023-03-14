@@ -22,7 +22,15 @@ function LandingPage() {
   return (
     <div className="container">
       <img src={heroImage} alt="hero image" />
-      <SignUpButton />
+      <div className="rounded-rectangle">
+        <div className="rounded-rectangle-text">
+          <p>
+            Join our community of food lovers and share your delicious creations
+            with the world!
+          </p>
+          <SignUpButton />
+        </div>
+      </div>
       <RecipeListGallery />
     </div>
   );
