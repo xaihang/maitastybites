@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./UserPage.css";
-import CustomButton from "./CustomButton";
+import RecipeModal from "./RecipeModal";
 import {
   Table,
   TableBody,
@@ -15,6 +15,10 @@ export default function RecipeItem({ recipe, handleOpenModal }) {
   const [isHoveredEdit, setIsHoveredEdit] = useState(false);
   const [isHoveredDelete, setIsHoveredDelete] = useState(false);
 
+  const handleOpenEditModal = () => {
+    setEditModalOpen(true);
+  };
+
   return (
     <>
      <TableRow>
@@ -22,7 +26,7 @@ export default function RecipeItem({ recipe, handleOpenModal }) {
       <TableCell>{recipe?.description}</TableCell>
       <TableCell>
           <p
-            onClick={() => console.log("je")}
+             onClick={handleOpenEditModal}
             className={isHoveredEdit ? "edit-hovered" : ""}
             onMouseEnter={() => setIsHoveredEdit(true)}
             onMouseLeave={() => setIsHoveredEdit(false)}
@@ -41,6 +45,14 @@ export default function RecipeItem({ recipe, handleOpenModal }) {
           </p>
         </TableCell>
       </TableRow>
+      {editModalOpen && (
+        <RecipeModal
+          open={editModalOpen}
+          handleClose={() => setEditModalOpen(false)}
+          currentRecipe={recipe}
+          handleSave={(editedRecipe) => console.log(editedRecipe)}
+        />
+      )}
     </>
   );
 }
