@@ -119,39 +119,32 @@ router.post("/", (req, res) => {
 // });
 
 /**
- * PUT - route here:
+ * PUT - edit a recipe by ID
  */
-/**
- * PUT - update a recipe in the database (recipe id)
- */
-// router.put("/:id", (req, res) => {
-//   const recipeData = req.body;
-//   const { recipename, description, ingredients, direction, url, userId } =
-//     recipeData;
-//   const id = req.params.id;
+router.put("/:id", (req, res) => {
+  const recipeID = req.params.id;
+  const userId = req.user.id;
+  const { recipename, description, ingredients, direction, url } = req.body;
 
-//   const queryText = `
-//     UPDATE "recipe"
-//     SET "recipename" = $1, "description" = $2, "ingredients" = $3, "direction" = $4, "url" = $5
-//     WHERE "recipeID" = $6;
-//   `;
+  const queryText = `
+    UPDATE "recipe" 
+    SET "recipename" = $1, 
+        "description" = $2, 
+        "ingredients" = $3, 
+        "direction" = $4, 
+        "url" = $5 
+    WHERE "recipeID" = $6 AND "id" = $7;
+  `;
 
-//   const queryValues = [
-//     recipename,
-//     description,
-//     ingredients,
-//     direction,
-//     url,
-//     id,
-//   ];
+  const queryValues = [recipename, description, ingredients, direction, url, recipeID, userId];
 
-//   pool
-//     .query(queryText, queryValues)
-//     .then(() => res.sendStatus(200))
-//     .catch((error) => {
-//       console.log("Error updating recipe:", error);
-//       res.sendStatus(500);
-//     });
-// });
+  pool
+    .query(queryText, queryValues)
+    .then(() => res.sendStatus(200))
+    .catch((error) => {
+      console.log("Error updating recipe:", error);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
