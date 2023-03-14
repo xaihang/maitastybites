@@ -4,41 +4,8 @@ import "./LandingPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import RecipeListGallery from "./RecipeListGallery";
 import heroImage from '../LandingPage/hero.png';
-import Button from "@mui/material/Button";
+import FreeSignUpButton from "./FreeSignupButton";
 
-const FreeSignUpButton = () => {
-  const history = useHistory();
-
-  const handleClick = () => {
-    history.push('/registration');
-  };
-
-  return (
-    <Button
-      variant="contained"
-      sx={{
-        backgroundColor: "red",
-        color: "white",
-        border: "none",
-        padding: "10px 20px",
-        marginTop: "10px",
-        transition: "all 0.3s ease",
-        borderRadius: 25,
-        "&:hover": {
-          backgroundColor: "darkred",
-        },
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: 2,
-      }}
-      onClick={handleClick}
-    >
-      Free Sign up!
-    </Button>
-  );
-};
 
 function LandingPage() {
   const history = useHistory();
