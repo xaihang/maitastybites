@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+
 const DetailsRecipePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const recipe = useSelector((state) => state.recipesAll.find((r) => r.recipeID === id));
+const recipe = useSelector((state) => state.recipe.selectedRecipe)
 
   useEffect(() => {
     dispatch({ type: 'GET_RECIPE_BY_ID', payload: id });

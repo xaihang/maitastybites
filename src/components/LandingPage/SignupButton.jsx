@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import "./LandingPage.css";
 
-const FreeSignUpButton = () => {
+const SignUpButton = () => {
     const history = useHistory();
   
     const handleClick = () => {
@@ -35,9 +35,9 @@ const FreeSignUpButton = () => {
         onClick={handleClick}
         className="sign-up-button"
       >
-        Free Sign up!
+        Sign up
       </Button>
     );
   };
   
-  export default FreeSignUpButton; 
+  export default SignUpButton; 

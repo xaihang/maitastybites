@@ -39,7 +39,7 @@ function* addRecipe(action) {
 function* getRecipeById(action) {
   try {
     const response = yield call(axios.get, `/api/recipe/${action.payload}`);
-    yield put({ type: 'GET_RECIPE_BY_ID_SUCCESS', payload: response.data });
+    yield put({ type: 'GET_SELECTED_RECIPE_SUCCESS', payload: response.data });
   } catch (error) {
     console.log('Error getting recipe by id:', error);
     yield put({ type: 'GET_RECIPE_BY_ID_ERROR' });

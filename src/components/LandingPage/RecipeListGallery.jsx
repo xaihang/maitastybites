@@ -1,7 +1,7 @@
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 export default function RecipeListGallery() {
@@ -9,7 +9,7 @@ export default function RecipeListGallery() {
   const { recipesAll } = useSelector((state) => state.recipe);
 
   const handleClick = (recipeID) => {
-    history.push(`/recipes/${recipeID}`);
+    history.push(`/details/${recipeID}`);
   };
 
   return (

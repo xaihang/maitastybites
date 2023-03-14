@@ -47,14 +47,17 @@ router.get("/user", (req, res) => {
 
 // GET recipe by ID
 router.get("/:id", (req, res) => {
-  const recipeId = req.params.id;
+  const recipeID = req.params.id;
+
+  console.log('recipeID', recipeID)
   const queryText = `
-    SELECT * FROM "recipe" WHERE recipeID = $1;
+    SELECT * FROM "recipe" WHERE "recipeID" = $1;
   `;
 
   pool
-    .query(queryText, [recipeId])
+    .query(queryText, [recipeID])
     .then((result) => {
+      console.log('GETSINGLE result.rows', result.rows)
       res.send(result.rows);
     })
     .catch((error) => {
