@@ -4,6 +4,8 @@ import "./LandingPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import RecipeListGallery from "./RecipeListGallery";
 import heroImage from '../LandingPage/hero.png';
+import FreeSignUpButton from "./FreeSignupButton";
+
 
 function LandingPage() {
   const history = useHistory();
@@ -20,6 +22,7 @@ function LandingPage() {
   return (
     <div className="container">
       <img src={heroImage} alt="hero image" />
+      <FreeSignUpButton />
       <RecipeListGallery />
     </div>
   );
