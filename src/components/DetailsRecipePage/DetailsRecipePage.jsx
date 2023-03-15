@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import "./DetailsRecipePage.css";
 
 
 const DetailsRecipePage = () => {
@@ -17,7 +18,7 @@ const recipe = useSelector((state) => state.recipe.selectedRecipe)
   }
 
   return (
-    <div>
+    <div className="details-container">
       <h1>{recipe.recipename}</h1>
       <p>{recipe.description}</p>
       <img src={recipe.url} alt={recipe.recipename} />
