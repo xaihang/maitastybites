@@ -1,12 +1,10 @@
 import RecipeItem from "./RecipeItem";
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import RecipeModal from "./RecipeForm";
+import React, { useEffect } from 'react';
 import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TableRow,
   Paper,
@@ -25,11 +23,14 @@ export default function RecipeList() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
   const handleEditRecipe = (recipeID) => {
     console.log('recipeID', recipeID)
     dispatch({ type: "GET_RECIPE_BY_ID", payload: recipeID });
     history.push(`/add/${recipeID}`);
   };
+
+
 
   // if logged in user have on recipe contribution this msg will display on dashboard
   if (recipesUser?.length === 0) {

@@ -37,6 +37,7 @@ function* addRecipe(action) {
 }
 
 function* getRecipeById(action) {
+  console.log('calllll')
   try {
     const response = yield call(axios.get, `/api/recipe/${action.payload}`);
     yield put({ type: "GET_SELECTED_RECIPE_SUCCESS", payload: response.data });
