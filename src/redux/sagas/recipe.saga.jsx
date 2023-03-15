@@ -79,6 +79,19 @@ function* deleteRecipe(action) {
   }
 }
 
+// add comment to a recipe
+function* addComment(action) {
+  try {
+    yield call(axios.post, `/api/comments`, action.payload);
+    yield put({ type: "ADD_COMMENT_SUCCESS" });
+    yield put({ type: "GET_COMMENTS" }); // Refresh comments
+  } catch (error) {
+    console.log("Error adding comment:", error);
+    yield put({ type: "ADD_COMMENT_ERROR" });
+  }
+}
+
+
 function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
   yield takeEvery("GET_ALL_RECIPES", getAllRecipes);
@@ -90,5 +103,6 @@ function* recipeSaga() {
   yield takeLatest("GET_RECIPE_BY_ID", getRecipeById);
   yield takeLatest("UPDATE_RECIPE", updateRecipe);
   yield takeLatest("DELETE_RECIPE", deleteRecipe);
+  yield takeLatest("ADD_COMMENT", addComment);
 }
 export default recipeSaga;
