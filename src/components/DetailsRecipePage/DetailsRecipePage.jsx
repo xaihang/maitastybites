@@ -21,12 +21,13 @@ const recipe = useSelector((state) => state.recipe.selectedRecipe)
     <div className="parent-details-container">
       <div className="child-details-container">
         <div className="recipe-details">
-          <div className="recipe-image">
-            <img src={recipe.url} alt={recipe.recipename} />
-          </div>
+          
           <div className="recipe-info">
             <h1>{recipe.recipename}</h1>
             <p>{recipe.description}</p>
+          </div>
+          <div className="recipe-image">
+            <img src={recipe.url} alt={recipe.recipename} />
           </div>
         </div>
         <div className="recipe-ingredients">
