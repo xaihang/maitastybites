@@ -2,6 +2,7 @@ const initialState = {
   recipesAll: [],
   recipesUser: [],
   selectedRecipe: null,
+  comment: [],
 };
 
 export default function recipeReducer(state = initialState, action) {
@@ -28,13 +29,25 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         selectedRecipe: action.payload[0],
       };
-    case "UPDATE_RECIPE_SUCCESS": 
+    case "UPDATE_RECIPE_SUCCESS":
       return state;
-      case "DELETE_RECIPE_SUCCESS":
-        return {
-          ...state,
-          recipesUser: state.recipesUser.filter(recipe => recipe.recipeID !== action.payload)
-        }
+    case "DELETE_RECIPE_SUCCESS":
+      return {
+        ...state,
+        recipesUser: state.recipesUser.filter(
+          (recipe) => recipe.recipeID !== action.payload
+        ),
+      };
+    case "ADD_COMMENT_SUCCESS":
+      return {
+        ...state,
+        comments: [...state.comments, action.payload],
+      };
+    case "GET_COMMENTS_SUCCESS":
+      return {
+        ...state,
+        comments: action.payload,
+      };
     default:
       return state;
   }
