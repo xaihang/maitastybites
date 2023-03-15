@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
-import { Modal, Button, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import "./UserPage.css";
 
-function RecipeForm({ open, handleClose, currentRecipe }) {
+function RecipeForm({ onSave, currentRecipe }) {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const history = useHistory();
+
 
   const initialFormValues = {
     recipename: "",
@@ -33,6 +36,7 @@ function RecipeForm({ open, handleClose, currentRecipe }) {
     }
   }, [currentRecipe]);
 
+
   const handleSave = (event) => {
     event.preventDefault();
     const recipeData = {
@@ -51,13 +55,11 @@ function RecipeForm({ open, handleClose, currentRecipe }) {
     } else {
       dispatch({ type: "ADD_RECIPE", payload: recipeData });
     }
-    handleClose();
+    if (onSave) {
+      onSave();
+    }
     setFormValues(initialFormValues); // Clear input values
-  };
-
-  const handleCloseModal = () => {
-    setFormValues(initialFormValues);
-    handleClose();
+    history.push("/user"); // Navigate back to the /user view
   };
 
   const handleChange = (event) => {
@@ -65,9 +67,13 @@ function RecipeForm({ open, handleClose, currentRecipe }) {
     setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
+  const handleCancel = () => {
+    history.push("/user");
+  };
+
   return (
-    <Modal open={open} onClose={handleCloseModal} className="modal-container">
-      <div className="modal-container">
+  
+      <div className="form-container">
         <form onSubmit={handleSave}>
           <div className="modal-textfield">
             <TextField
@@ -113,14 +119,14 @@ function RecipeForm({ open, handleClose, currentRecipe }) {
             />
           </div>
           <div className="modal-buttons">
-            <Button onClick={handleCloseModal}>Cancel</Button>
+            <Button onClick={handleCancel}>Cancel</Button>
             <Button type="submit" variant="contained" color="primary">
               Save
             </Button>
           </div>
         </form>
       </div>
-    </Modal>
+
   );
 }
 
