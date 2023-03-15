@@ -91,6 +91,17 @@ function* addComment(action) {
   }
 }
 
+// get comments 
+function* getComments(action) {
+  try {
+    const response = yield call(axios.get, `/api/comments/${action.payload}`);
+    yield put({ type: "GET_COMMENTS_SUCCESS", payload: response.data });
+  } catch (error) {
+    console.log("Error getting comments:", error);
+    yield put({ type: "GET_COMMENTS_ERROR" });
+  }
+}
+
 
 function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
@@ -104,5 +115,6 @@ function* recipeSaga() {
   yield takeLatest("UPDATE_RECIPE", updateRecipe);
   yield takeLatest("DELETE_RECIPE", deleteRecipe);
   yield takeLatest("ADD_COMMENT", addComment);
+  yield takeLatest("GET_COMMENTS", getComments);
 }
 export default recipeSaga;
