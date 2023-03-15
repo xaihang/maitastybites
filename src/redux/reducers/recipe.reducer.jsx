@@ -30,6 +30,11 @@ export default function recipeReducer(state = initialState, action) {
       };
     case "UPDATE_RECIPE_SUCCESS": 
       return state;
+      case "DELETE_RECIPE_SUCCESS":
+        return {
+          ...state,
+          recipesUser: state.recipesUser.filter(recipe => recipe.recipeID !== action.payload)
+        }
     default:
       return state;
   }

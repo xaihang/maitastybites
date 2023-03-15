@@ -102,21 +102,21 @@ router.post("/", (req, res) => {
 /**
  * DELETE - route here:
  */
-// DELETE recipe
-// router.delete("/:id", (req, res) => {
-//   const recipeId = req.params.id;
-//   const queryText = `
-//     DELETE FROM "recipe" WHERE recipeID = $1;
-//   `;
+// DELETE recipe by id 
+router.delete("/:id", (req, res) => {
+  const recipeId = req.params.id;
+  const queryText = `
+    DELETE FROM "recipe" WHERE recipeID = $1;
+  `;
 
-//   pool
-//     .query(queryText, [recipeId])
-//     .then(() => res.sendStatus(204))
-//     .catch((error) => {
-//       console.log("Error deleting recipe from database", error);
-//       res.sendStatus(500);
-//     });
-// });
+  pool
+    .query(queryText, [recipeId])
+    .then(() => res.sendStatus(204))
+    .catch((error) => {
+      console.log("Error deleting recipe from database", error);
+      res.sendStatus(500);
+    });
+});
 
 /**
  * PUT - edit a recipe by ID
