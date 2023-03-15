@@ -51,9 +51,6 @@ function UserPage() {
 
 export default UserPage;
 
-
-
-
 // import React, { useState } from "react";
 // import { useSelector } from "react-redux";
 // import RecipeList from "./RecipeList";

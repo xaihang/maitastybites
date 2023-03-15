@@ -10,7 +10,6 @@ function RecipeForm({ onSave, currentRecipe }) {
   const user = useSelector((store) => store.user);
   const history = useHistory();
 
-
   const initialFormValues = {
     recipename: "",
     description: "",
@@ -35,7 +34,6 @@ function RecipeForm({ onSave, currentRecipe }) {
       setFormValues(initialFormValues);
     }
   }, [currentRecipe]);
-
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -72,61 +70,59 @@ function RecipeForm({ onSave, currentRecipe }) {
   };
 
   return (
-  
-      <div className="form-container">
-        <form onSubmit={handleSave}>
-          <div className="modal-textfield">
-            <TextField
-              required
-              label="Recipe Name"
-              name="recipename"
-              className="recipe-name-textfield"
-              value={formValues.recipename}
-              onChange={handleChange}
-              type="text"
-              sx={{ width: "90%", mb: 1.5 }}
-            />
-            <TextField
-              required
-              label="Description"
-              name="description"
-              value={formValues.description}
-              onChange={handleChange}
-              sx={{ width: "90%", mb: 1.5 }}
-            />
-            <TextField
-              required
-              label="Ingredients"
-              name="ingredients"
-              value={formValues.ingredients}
-              onChange={handleChange}
-              sx={{ width: "90%", mb: 1.5 }}
-            />
-            <TextField
-              required
-              label="Direction"
-              name="direction"
-              value={formValues.direction}
-              onChange={handleChange}
-              sx={{ width: "90%", mb: 1.5 }}
-            />
-            <TextField
+    <div className="form-container">
+      <form onSubmit={handleSave}>
+        <div className="modal-textfield">
+          <TextField
+            required
+            label="Recipe Name"
+            name="recipename"
+            className="recipe-name-textfield"
+            value={formValues.recipename}
+            onChange={handleChange}
+            type="text"
+            sx={{ width: "90%", mb: 1.5 }}
+          />
+          <TextField
+            required
+            label="Description"
+            name="description"
+            value={formValues.description}
+            onChange={handleChange}
+            sx={{ width: "90%", mb: 1.5 }}
+          />
+          <TextField
+            required
+            label="Ingredients"
+            name="ingredients"
+            value={formValues.ingredients}
+            onChange={handleChange}
+            sx={{ width: "90%", mb: 1.5 }}
+          />
+          <TextField
+            required
+            label="Direction"
+            name="direction"
+            value={formValues.direction}
+            onChange={handleChange}
+            sx={{ width: "90%", mb: 1.5 }}
+          />
+          <TextField
             label="Image URL"
-              name="imageUrl"
-              value={formValues.imageUrl}
-              onChange={handleChange}
-              sx={{ width: "90%", mb: 1.5 }}
-            />
-          </div>
-          <div className="modal-buttons">
-            <Button onClick={handleCancel}>Cancel</Button>
-            <Button type="submit" variant="contained" color="primary">
-              Save
-            </Button>
-          </div>
-        </form>
-      </div>
-
+            name="imageUrl"
+            value={formValues.imageUrl}
+            onChange={handleChange}
+            sx={{ width: "90%", mb: 1.5 }}
+          />
+        </div>
+        <div className="modal-buttons">
+          <Button onClick={handleCancel}>Cancel</Button>
+          <Button type="submit" variant="contained" color="primary">
+            Save
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }
 

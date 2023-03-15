@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import "./UserPage.css";
 import { styled } from "@mui/material/styles";
+import { useHistory } from "react-router-dom";
 
 const MUICustomTableContainer = styled("div")({
   maxWidth: "90%",
@@ -22,25 +23,14 @@ const MUICustomTableContainer = styled("div")({
 export default function RecipeList() {
   const { recipesUser } = useSelector((store) => store.recipe);
   const dispatch = useDispatch();
-  const [openModal, setOpenModal] = useState(false);
-  const [currentRecipe, setCurrentRecipe] = useState(null);
+  const history = useHistory();
 
-  const handleOpenModal = (recipe) => {
-    setCurrentRecipe(recipe);
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setCurrentRecipe(null);
-    setOpenModal(false);
-  };
-
-  const handleEditRecipe = (recipe) => {
+  const handleEditRecipe = (recipe, recipeID) => {
     dispatch({ type: "GET_RECIPE_BY_ID", payload: recipe.recipeID });
-    handleOpenModal(recipe);
+    history.push(`/add/${recipeID}`);
   };
 
-  //* if logged in user have on recipe contribution this msg will display on dashboard
+  // if logged in user have on recipe contribution this msg will display on dashboard
   if (recipesUser?.length === 0) {
     return <p>Nothing to show...yet! Recipes you create will live here.</p>;
   }
@@ -68,11 +58,6 @@ export default function RecipeList() {
           </TableBody>
         </Table>
       </MUICustomTableContainer>
-      <RecipeModal
-        open={openModal}
-        handleClose={handleCloseModal}
-        currentRecipe={currentRecipe}
-      />
     </>
   );
 }
