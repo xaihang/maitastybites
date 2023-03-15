@@ -17,7 +17,7 @@ const SignUpButton = () => {
           color: "white",
           border: "none",
           padding: "5px 20px",
-          marginTop: "10px",
+          marginTop: "30px",
           transition: "all 0.3s ease",
           textTransform: "lowercase",
           borderRadius: 25,

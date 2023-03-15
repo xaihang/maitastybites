@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap');@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Rubik:wght@500&display=swap');@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap');@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap');
 
 .ImageList-item:hover img {
     opacity: 0.8;
@@ -51,6 +51,8 @@
     height: 100px;
   }
   
+
+  
   .rounded-rectangle-text h1 {
     font-size: 70px;
     font-weight: bold;
@@ -63,6 +65,14 @@
     font-weight: bold;
     margin-top: -50px;
     text-align: left;
+    font-family: 'Bebas Neue', cursive;
+  }
+  
+  .rounded-rectangle-text span {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: -90px;
+    text-align: center;
     font-family: 'Bebas Neue', cursive;
   }
   
