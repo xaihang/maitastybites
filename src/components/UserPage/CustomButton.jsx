@@ -34,6 +34,18 @@ const CustomButton = styled(Button)(({ theme }) => ({
       backgroundColor: "darkred",
     },
   },
+  "&.postCommentBtn": {
+    backgroundColor: "black",
+    color: "white",
+    border: "none",
+    padding: "10px 20px",
+    marginTop: "10px",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      backgroundColor: "white",
+      color: "black"
+    },
+  },
   // "&.editBtn": {
   //   color: "black",
   //   textTransform: "lowercase",

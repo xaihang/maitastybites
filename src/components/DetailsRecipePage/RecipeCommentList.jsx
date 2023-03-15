@@ -5,18 +5,9 @@ const RecipeCommentList = () => {
   return (
     <Box sx={{ mt: 4 }}>
       <Typography variant="h6" gutterBottom>
-        Reviews
+        Comments
       </Typography>
-      {/* <List dense>
-        {comments.map((comment, index) => (
-          <ListItem key={index}>
-            <ListItemText
-              primary={`Rating: ${comment.rating} stars`}
-              secondary={comment.comment}
-            />
-          </ListItem>
-        ))}
-      </List> */}
+      
     </Box>
   );
 };

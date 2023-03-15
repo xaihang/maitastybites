@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CustomButton from "../UserPage/CustomButton";
 import {
   Box,
   Button,
@@ -43,42 +44,49 @@ const RecipeCommentForm = () => {
   };
 
   return (
-    <Box sx={{ mb: 2 }}>
-      <form onSubmit={handleSubmit}>
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-        <Typography sx={{mr: 2}} fontWeight="bold">
-    Made it? Leave a review!
-  </Typography>
-          <Rating
-            name="rating"
-            value={rating}
-            precision={1}
-            onChange={handleRatingChange}
-            emptyIcon={<StarIcon style={{ opacity: 0.55 }} />}
-          />
-        </Box>
-        <Box sx={{ mt: 2, width: '50%' }}>
-          <TextField
-            id="comment"
-            label="Comment (optional)"
-            multiline
-            rows={4}
-            value={comment}
-            onChange={handleCommentChange}
-            fullWidth
-          />
-        </Box>
-        <Box sx={{ mt: 2 }}>
-          <Button type="submit" variant="contained" color="primary">
+    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Box sx={{ width: "50%" }}>
+      <h1>Leave a reply</h1>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+            <Typography sx={{mr: 2}} fontWeight="bold">
+              Made it? Leave a review!
+            </Typography>
+            <Rating
+              name="rating"
+              value={rating}
+              precision={1}
+              onChange={handleRatingChange}
+              emptyIcon={<StarIcon style={{ opacity: 0.55 }} />}
+            />
+          </Box>
+          <Box sx={{ mt: 2 }}>
+            <TextField
+              id="comment"
+              label="Comment (optional)"
+              multiline
+              rows={4}
+              value={comment}
+              onChange={handleCommentChange}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ mt: 2 }}>
+          <CustomButton
+            variant="contained"
+            className="postCommentBtn"
+    
+          >
             Post Comment
-          </Button>
-        </Box>
-      </form>
-      <Snackbar open={submitSuccess} autoHideDuration={6000} onClose={handleSnackbarClose}>
-        <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
-          Comment submitted successfully!
-        </Alert>
-      </Snackbar>
+          </CustomButton>
+          </Box>
+        </form>
+        <Snackbar open={submitSuccess} autoHideDuration={6000} onClose={handleSnackbarClose}>
+          <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+            Comment submitted successfully!
+          </Alert>
+        </Snackbar>
+      </Box>
     </Box>
   );
 };
