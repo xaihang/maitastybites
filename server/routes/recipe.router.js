@@ -6,7 +6,6 @@ const router = express.Router();
  * GET - get ALL recipes from database from all users:
  */
 router.get("/", (req, res) => {
-
   const queryText = `
     SELECT * FROM "recipe" ORDER BY "id" DESC;
   `;
@@ -14,7 +13,7 @@ router.get("/", (req, res) => {
   pool
     .query(queryText)
     .then((result) => {
-      console.log('resultall', result.rows)
+      console.log("resultall", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -44,12 +43,11 @@ router.get("/user", (req, res) => {
     });
 });
 
-
 // GET recipe by ID
 router.get("/:id", (req, res) => {
   const recipeID = req.params.id;
 
-  console.log('recipeID', recipeID)
+  console.log("recipeID", recipeID);
   const queryText = `
     SELECT * FROM "recipe" WHERE "recipeID" = $1;
   `;
@@ -57,7 +55,7 @@ router.get("/:id", (req, res) => {
   pool
     .query(queryText, [recipeID])
     .then((result) => {
-      console.log('GETSINGLE result.rows', result.rows)
+      console.log("GETSINGLE result.rows", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -102,21 +100,19 @@ router.post("/", (req, res) => {
 /**
  * DELETE - route here:
  */
-// DELETE recipe
-// router.delete("/:id", (req, res) => {
-//   const recipeId = req.params.id;
-//   const queryText = `
-//     DELETE FROM "recipe" WHERE recipeID = $1;
-//   `;
+// DELETE recipe by id
+router.delete("/:id", (req, res) => {
+  const recipeId = req.params.id;
+  const queryText = `DELETE FROM "recipe" WHERE "recipeID" = $1;`;
 
-//   pool
-//     .query(queryText, [recipeId])
-//     .then(() => res.sendStatus(204))
-//     .catch((error) => {
-//       console.log("Error deleting recipe from database", error);
-//       res.sendStatus(500);
-//     });
-// });
+  pool
+    .query(queryText, [recipeId])
+    .then(() => res.sendStatus(204))
+    .catch((error) => {
+      console.log("Error deleting recipe from database", error);
+      res.sendStatus(500);
+    });
+});
 
 /**
  * PUT - edit a recipe by ID
@@ -136,7 +132,15 @@ router.put("/:id", (req, res) => {
     WHERE "recipeID" = $6 AND "id" = $7;
   `;
 
-  const queryValues = [recipename, description, ingredients, direction, url, recipeID, userId];
+  const queryValues = [
+    recipename,
+    description,
+    ingredients,
+    direction,
+    url,
+    recipeID,
+    userId,
+  ];
 
   pool
     .query(queryText, queryValues)

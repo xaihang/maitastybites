@@ -67,6 +67,17 @@ function* updateRecipe(action) {
   }
 }
 
+function* deleteRecipe(action) {
+  try {
+    yield call(axios.delete, `/api/recipe/${action.payload}`);
+    yield put({ type: "DELETE_RECIPE_SUCCESS" });
+    yield put({ type: "GET_USER_RECIPES" }); // refresh the user's recipes
+  } catch (error) {
+    console.log("Error deleting recipe:", error);
+    yield put({ type: "DELETE_RECIPE_ERROR" });
+  }
+}
+
 function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
   yield takeEvery("GET_ALL_RECIPES", getAllRecipes);
@@ -77,5 +88,6 @@ function* recipeSaga() {
   });
   yield takeLatest("GET_RECIPE_BY_ID", getRecipeById);
   yield takeLatest("UPDATE_RECIPE", updateRecipe);
+  yield takeLatest("DELETE_RECIPE", deleteRecipe);
 }
 export default recipeSaga;
