@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import RecipeList from "./RecipeList";
 import CustomButton from "./CustomButton";
-import RecipeModal from "./RecipeModal";
+import RecipeModal from "./RecipeForm";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./UserPage.css";

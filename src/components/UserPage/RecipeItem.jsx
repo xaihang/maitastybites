@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./UserPage.css";
-import RecipeModal from "./RecipeModal";
+import RecipeModal from "./RecipeForm";
 import {
   Table,
   TableBody,

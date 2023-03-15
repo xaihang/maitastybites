@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Modal, Button, TextField } from "@mui/material";
 import "./UserPage.css";
 
-function RecipeModal({ open, handleClose, currentRecipe }) {
+function RecipeForm({ open, handleClose, currentRecipe }) {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
 
@@ -72,7 +72,7 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
           <div className="modal-textfield">
             <TextField
               required
-              placeholder="Recipe Name*"
+              label="Recipe Name"
               name="recipename"
               className="recipe-name-textfield"
               value={formValues.recipename}
@@ -82,7 +82,7 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
             />
             <TextField
               required
-              placeholder="Description*"
+              label="Description"
               name="description"
               value={formValues.description}
               onChange={handleChange}
@@ -90,7 +90,7 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
             />
             <TextField
               required
-              placeholder="Ingredients*"
+              label="Ingredients"
               name="ingredients"
               value={formValues.ingredients}
               onChange={handleChange}
@@ -98,14 +98,14 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
             />
             <TextField
               required
-              placeholder="direction*"
+              label="Direction"
               name="direction"
               value={formValues.direction}
               onChange={handleChange}
               sx={{ width: "90%", mb: 1.5 }}
             />
             <TextField
-              placeholder="Image URL"
+            label="Image URL"
               name="imageUrl"
               value={formValues.imageUrl}
               onChange={handleChange}
@@ -124,4 +124,4 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
   );
 }
 
-export default RecipeModal;
+export default RecipeForm;
