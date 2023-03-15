@@ -28,15 +28,18 @@ CREATE TABLE "recipe" (
      "id" INT REFERENCES "user"
      ); 
 
-CREATE TABLE "save" (
-     "saveID" SERIAL PRIMARY KEY, 
-     "id" INT REFERENCES "user", 
-     "recipeID" INT REFERENCES "recipe"
-     ); 
 
 CREATE TABLE "comments" (
      "commentID" SERIAL PRIMARY KEY, 
      "recipeID" INT REFERENCES "recipe", 
      "id" INT REFERENCES "user", 
-     "comment" TEXT 
+     "comment" TEXT,
+     "rating" INT 
      );
+
+
+CREATE TABLE "save" (
+     "saveID" SERIAL PRIMARY KEY, 
+     "id" INT REFERENCES "user", 
+     "recipeID" INT REFERENCES "recipe"
+     ); 
