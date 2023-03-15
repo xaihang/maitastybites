@@ -7,7 +7,7 @@ import "./UserPage.css";
 function RecipeModal({ open, handleClose, currentRecipe }) {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  
+
   const initialFormValues = {
     recipename: "",
     description: "",
@@ -33,8 +33,6 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
     }
   }, [currentRecipe]);
 
-  
-
   const handleSave = (event) => {
     event.preventDefault();
     const recipeData = {
@@ -45,27 +43,17 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
       url: formValues.imageUrl,
       userId: user.id,
     };
-    console.log('recipeData===', recipeData)
-    dispatch({ type: "ADD_RECIPE", payload: recipeData });
+
+    if (currentRecipe) {
+      // If currentRecipe exists, update recipe with the same recipeID
+      recipeData.recipeID = currentRecipe.recipeID;
+      dispatch({ type: "UPDATE_RECIPE", payload: recipeData });
+    } else {
+      dispatch({ type: "ADD_RECIPE", payload: recipeData });
+    }
     handleClose();
     setFormValues(initialFormValues); // Clear input values
   };
-
-  // const handleSave = (event) => {
-  //   event.preventDefault();
-  //   const recipeData = {
-  //     recipename: formValues.recipename,
-  //     description: formValues.description,
-  //     ingredients: formValues.ingredients,
-  //     direction: formValues.direction,
-  //     url: formValues.imageUrl,
-  //     userId: user.id,
-  //     recipeID: currentRecipe.recipeID,
-  //   };
-  //   dispatch({ type: "UPDATE_RECIPE", payload: recipeData });
-  //   handleClose();
-  // };
-
 
   const handleCloseModal = () => {
     setFormValues(initialFormValues);

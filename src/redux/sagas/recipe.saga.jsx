@@ -46,11 +46,11 @@ function* getRecipeById(action) {
   }
 }
 
+
 function* updateRecipe(action) {
   try {
-    const { recipename, description, ingredients, direction, url } =
+    const { recipename, description, ingredients, direction, url, recipeID } =
       action.payload;
-    const recipeID = action.payload.recipeID;
     yield call(axios.put, `/api/recipe/${recipeID}`, {
       recipename,
       description,
@@ -60,6 +60,7 @@ function* updateRecipe(action) {
     });
     yield put({ type: "UPDATE_RECIPE_SUCCESS" });
     yield put({ type: "GET_USER_RECIPES" }); // refresh the user's recipes
+    handleClose();
   } catch (error) {
     console.log("Error updating recipe:", error);
     yield put({ type: "UPDATE_RECIPE_ERROR" });
@@ -73,8 +74,8 @@ function* recipeSaga() {
     console.log("GET_USER_RECIPES action dispatched");
     yield call(getUserRecipes);
     console.log("GET_USER_RECIPES finished");
-    yield takeLatest("UPDATE_RECIPE", updateRecipe);
   });
   yield takeLatest("GET_RECIPE_BY_ID", getRecipeById);
+  yield takeLatest("UPDATE_RECIPE", updateRecipe);
 }
 export default recipeSaga;
