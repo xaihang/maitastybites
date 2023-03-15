@@ -24,7 +24,7 @@ export default function recipeReducer(state = initialState, action) {
         recipesAll: action.payload,
       };
     case "GET_SELECTED_RECIPE_SUCCESS":
-      console.log("action.payload[0]===", action.payload[0]);
+      // console.log("action.payload[0]===", action.payload[0]);
       return {
         ...state,
         selectedRecipe: action.payload[0],
