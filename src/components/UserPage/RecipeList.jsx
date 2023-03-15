@@ -1,5 +1,7 @@
 import RecipeItem from "./RecipeItem";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import RecipeModal from "./RecipeModal";
 import {
   Table,
   TableBody,
@@ -17,7 +19,7 @@ const MUICustomTableContainer = styled("div")({
   margin: "auto",
 });
 
-export default function RecipeList({ handleOpenModal }) {
+export default function RecipeList() {
   const { recipesUser } = useSelector((store) => store.recipe);
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
