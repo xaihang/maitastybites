@@ -167,6 +167,20 @@ router.post('/comments', async (req, res) => {
   }
 });
 
+// Route to get all comments and ratings for a recipe
+router.get('/comments/:recipeID', async (req, res) => {
+  const { recipeID } = req.params;
 
+  try {
+    const result = await pool.query(
+      'SELECT * FROM comments WHERE recipeID = $1',
+      [recipeID]
+    );
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching comments.' });
+  }
+});
 
 module.exports = router;
