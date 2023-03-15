@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./UserPage.css";
 import RecipeModal from "./RecipeModal";
 import {
@@ -16,6 +17,7 @@ export default function RecipeItem({ recipe }) {
   const [isHoveredDelete, setIsHoveredDelete] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [currentRecipe, setCurrentRecipe] = useState(recipe);
+  const dispatch = useDispatch();
 
   const handleOpenEditModal = () => {
     setEditModalOpen(true);
@@ -24,6 +26,10 @@ export default function RecipeItem({ recipe }) {
   const handleSaveRecipe = (updatedRecipe) => {
     setCurrentRecipe(updatedRecipe);
     setEditModalOpen(false);
+  };
+
+  const handleDeleteRecipe = (recipeID) => {
+    dispatch({ type: "DELETE_RECIPE", payload: recipeID });
   };
 
   return (
@@ -43,7 +49,7 @@ export default function RecipeItem({ recipe }) {
         </TableCell>
         <TableCell>
           <p
-            onClick={() => console.log("sss")}
+            onClick={() => handleDeleteRecipe(currentRecipe?.recipeID)}
             className={isHoveredDelete ? "delete-hovered" : ""}
             onMouseEnter={() => setIsHoveredDelete(true)}
             onMouseLeave={() => setIsHoveredDelete(false)}
