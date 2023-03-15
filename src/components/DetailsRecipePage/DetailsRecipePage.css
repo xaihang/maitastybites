@@ -56,3 +56,10 @@
     margin-bottom: 10px;
   }
   
+  .comment-container {
+    margin-top: 80px;
+  }
+
+  .comment-container h2 {
+    margin-top: 70px;
+  }

@@ -37,7 +37,6 @@ function* addRecipe(action) {
 }
 
 function* getRecipeById(action) {
-  console.log('calllll')
   try {
     const response = yield call(axios.get, `/api/recipe/${action.payload}`);
     yield put({ type: "GET_SELECTED_RECIPE_SUCCESS", payload: response.data });
@@ -79,6 +78,31 @@ function* deleteRecipe(action) {
   }
 }
 
+// add comment to a recipe
+function* addComment(action) {
+  try {
+    yield call(axios.post, `/api/comments`, action.payload);
+    yield put({ type: "ADD_COMMENT_SUCCESS" });
+    yield put({ type: "GET_COMMENTS" }); // Refresh comments
+  } catch (error) {
+    console.log("Error adding comment:", error);
+    yield put({ type: "ADD_COMMENT_ERROR" });
+  }
+}
+
+// get comments 
+function* getComments(action) {
+  console.log('getcomments on saga====');
+  try {
+    const response = yield call(axios.get, `/api/comments/${action.payload}`);
+    yield put({ type: "GET_COMMENTS_SUCCESS", payload: response.data });
+  } catch (error) {
+    console.log("Error getting comments:", error);
+    yield put({ type: "GET_COMMENTS_ERROR" });
+  }
+}
+
+
 function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
   yield takeEvery("GET_ALL_RECIPES", getAllRecipes);
@@ -90,5 +114,7 @@ function* recipeSaga() {
   yield takeLatest("GET_RECIPE_BY_ID", getRecipeById);
   yield takeLatest("UPDATE_RECIPE", updateRecipe);
   yield takeLatest("DELETE_RECIPE", deleteRecipe);
+  yield takeLatest("ADD_COMMENT", addComment);
+  yield takeLatest("GET_COMMENTS", getComments);
 }
 export default recipeSaga;
