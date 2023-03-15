@@ -40,8 +40,14 @@
   
   .recipe-info h1 {
     margin-top: 0;
+    font-size: 38px;
   }
   
+  .recipe-info p {
+    font-size: 20px;
+    font-style: italic;
+    width: 90%; 
+  }
   .recipe-ingredients, .recipe-directions {
     padding: 10px;
   }
