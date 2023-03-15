@@ -49,6 +49,7 @@ function App() {
           <Route path="/details/:id">
             <DetailsRecipePage />
           </Route>
+          
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
@@ -69,6 +70,13 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/add"
+          >
+            <RecipeForm />
           </ProtectedRoute>
 
           <ProtectedRoute
