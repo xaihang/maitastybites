@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import "./DetailsRecipePage.css";
+import RecipeCommentForm from './RecipeCommentForm';
+import RecipeCommentList from './RecipeCommentList';
 
 
 const DetailsRecipePage = () => {
@@ -18,6 +20,7 @@ const recipe = useSelector((state) => state.recipe.selectedRecipe)
   }
 
   return (
+    <>
     <div className="parent-details-container">
       <div className="child-details-container">
         <div className="recipe-details">
@@ -35,7 +38,7 @@ const recipe = useSelector((state) => state.recipe.selectedRecipe)
           <ul>
             {recipe.ingredients.split('\n').map((ingredient, index) => (
               <li key={index}>{ingredient}</li>
-            ))}
+              ))}
           </ul>
         </div>
         <div className="recipe-directions">
@@ -43,11 +46,17 @@ const recipe = useSelector((state) => state.recipe.selectedRecipe)
           <ol>
             {recipe.direction.split('\n').map((step, index) => (
               <li key={index}>{step}</li>
-            ))}
+              ))}
           </ol>
         </div>
       </div>
     </div>
+    <div className="app-container">
+      <h1>Leave a reply</h1>
+      <RecipeCommentForm />
+      <RecipeCommentList />
+    </div>
+              </>
   );
 };
 
