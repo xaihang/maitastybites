@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { Modal, Button, TextField } from "@mui/material";
 import "./UserPage.css";
 
 function RecipeModal({ open, handleClose, currentRecipe }) {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  console.log('useruser', user)
+
   const initialFormValues = {
     recipename: "",
     description: "",
@@ -16,6 +17,21 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
   };
 
   const [formValues, setFormValues] = useState(initialFormValues);
+
+  useEffect(() => {
+    // Update formValues state with current recipe info when currentRecipe prop changes
+    if (currentRecipe) {
+      setFormValues({
+        recipename: currentRecipe.recipename || "",
+        description: currentRecipe.description || "",
+        ingredients: currentRecipe.ingredients || "",
+        direction: currentRecipe.direction || "",
+        imageUrl: currentRecipe.url || "",
+      });
+    } else {
+      setFormValues(initialFormValues);
+    }
+  }, [currentRecipe]);
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -27,8 +43,14 @@ function RecipeModal({ open, handleClose, currentRecipe }) {
       url: formValues.imageUrl,
       userId: user.id,
     };
-    console.log('recipeData===', recipeData)
-    dispatch({ type: "ADD_RECIPE", payload: recipeData });
+
+    if (currentRecipe) {
+      // If currentRecipe exists, update recipe with the same recipeID
+      recipeData.recipeID = currentRecipe.recipeID;
+      dispatch({ type: "UPDATE_RECIPE", payload: recipeData });
+    } else {
+      dispatch({ type: "ADD_RECIPE", payload: recipeData });
+    }
     handleClose();
     setFormValues(initialFormValues); // Clear input values
   };

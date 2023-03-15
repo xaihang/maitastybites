@@ -19,8 +19,9 @@ const recipe = useSelector((state) => state.recipe.selectedRecipe)
   return (
     <div>
       <h1>{recipe.recipename}</h1>
-      <img src={recipe.url} alt={recipe.recipename} />
       <p>{recipe.description}</p>
+      <img src={recipe.url} alt={recipe.recipename} />
+     
       <h2>Ingredients</h2>
       <ul>
         {recipe.ingredients.split('\n').map((ingredient, index) => (
