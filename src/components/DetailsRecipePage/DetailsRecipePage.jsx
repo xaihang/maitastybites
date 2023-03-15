@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./DetailsRecipePage.css";
 import RecipeCommentForm from "./RecipeCommentForm";
-import RecipeCommentList from "./RecipeCommentList";
 
 const DetailsRecipePage = () => {
   const dispatch = useDispatch();
@@ -49,11 +48,8 @@ const DetailsRecipePage = () => {
           </div>
         </div>
       </div>
-      <div className="app-container">
-        
-        <RecipeCommentForm />
-        <RecipeCommentList />
-      </div>
+
+      <RecipeCommentForm />
     </>
   );
 };

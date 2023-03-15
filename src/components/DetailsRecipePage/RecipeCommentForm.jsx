@@ -44,7 +44,8 @@ const RecipeCommentForm = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <div className="comment-container">
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
       <Box sx={{ width: "50%" }}>
       <h1>Leave a reply</h1>
         <form onSubmit={handleSubmit}>
@@ -69,6 +70,7 @@ const RecipeCommentForm = () => {
               value={comment}
               onChange={handleCommentChange}
               fullWidth
+              sx={{ borderColor: "#E0E0E0", borderRadius: 0 }}
             />
           </Box>
           <Box sx={{ mt: 2 }}>
@@ -79,6 +81,7 @@ const RecipeCommentForm = () => {
           >
             Post Comment
           </CustomButton>
+          <h2>Comments</h2>
           </Box>
         </form>
         <Snackbar open={submitSuccess} autoHideDuration={6000} onClose={handleSnackbarClose}>
@@ -88,6 +91,7 @@ const RecipeCommentForm = () => {
         </Snackbar>
       </Box>
     </Box>
+    </div>
   );
 };
 
