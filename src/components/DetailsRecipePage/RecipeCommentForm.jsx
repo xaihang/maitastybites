@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CustomButton from "../UserPage/CustomButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
   Button,
