@@ -37,7 +37,6 @@ function* addRecipe(action) {
 }
 
 function* getRecipeById(action) {
-  console.log('calllll')
   try {
     const response = yield call(axios.get, `/api/recipe/${action.payload}`);
     yield put({ type: "GET_SELECTED_RECIPE_SUCCESS", payload: response.data });
@@ -93,6 +92,7 @@ function* addComment(action) {
 
 // get comments 
 function* getComments(action) {
+  console.log('getcomments on saga====');
   try {
     const response = yield call(axios.get, `/api/comments/${action.payload}`);
     yield put({ type: "GET_COMMENTS_SUCCESS", payload: response.data });
