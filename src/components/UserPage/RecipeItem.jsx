@@ -1,32 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./UserPage.css";
-import RecipeModal from "./RecipeModal";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from "@mui/material";
+import RecipeModal from "./RecipeForm";
+import { TableCell, TableRow } from "@mui/material";
 
-export default function RecipeItem({ recipe }) {
+export default function RecipeItem({ recipe, handleEditRecipe }) {
   const [isHoveredEdit, setIsHoveredEdit] = useState(false);
   const [isHoveredDelete, setIsHoveredDelete] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [currentRecipe, setCurrentRecipe] = useState(recipe);
+
   const dispatch = useDispatch();
-
-  const handleOpenEditModal = () => {
-    setEditModalOpen(true);
-  };
-
-  const handleSaveRecipe = (updatedRecipe) => {
-    setCurrentRecipe(updatedRecipe);
-    setEditModalOpen(false);
-  };
 
   const handleDeleteRecipe = (recipeID) => {
     dispatch({ type: "DELETE_RECIPE", payload: recipeID });
@@ -35,11 +17,11 @@ export default function RecipeItem({ recipe }) {
   return (
     <>
       <TableRow>
-        <TableCell>{currentRecipe?.recipename}</TableCell>
-        <TableCell>{currentRecipe?.description}</TableCell>
+        <TableCell>{recipe?.recipename}</TableCell>
+        <TableCell>{recipe?.description}</TableCell>
         <TableCell>
           <p
-            onClick={handleOpenEditModal}
+            onClick={() => handleEditRecipe(recipe.recipeID)}
             className={isHoveredEdit ? "edit-hovered" : ""}
             onMouseEnter={() => setIsHoveredEdit(true)}
             onMouseLeave={() => setIsHoveredEdit(false)}
@@ -49,7 +31,7 @@ export default function RecipeItem({ recipe }) {
         </TableCell>
         <TableCell>
           <p
-            onClick={() => handleDeleteRecipe(currentRecipe?.recipeID)}
+            onClick={() => handleDeleteRecipe(recipe?.recipeID)}
             className={isHoveredDelete ? "delete-hovered" : ""}
             onMouseEnter={() => setIsHoveredDelete(true)}
             onMouseLeave={() => setIsHoveredDelete(false)}
@@ -58,14 +40,6 @@ export default function RecipeItem({ recipe }) {
           </p>
         </TableCell>
       </TableRow>
-      {editModalOpen && (
-        <RecipeModal
-          open={editModalOpen}
-          handleClose={() => setEditModalOpen(false)}
-          currentRecipe={currentRecipe}
-          handleSave={handleSaveRecipe}
-        />
-      )}
     </>
   );
 }

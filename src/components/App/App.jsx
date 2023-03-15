@@ -20,6 +20,7 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import DetailsRecipePage from "../DetailsRecipePage/DetailsRecipePage";
+import RecipeForm from "../UserPage/RecipeForm";
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -49,6 +50,7 @@ function App() {
           <Route path="/details/:id">
             <DetailsRecipePage />
           </Route>
+          
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
@@ -69,6 +71,13 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/add/:id"
+          >
+            <RecipeForm />
           </ProtectedRoute>
 
           <ProtectedRoute
