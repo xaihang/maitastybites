@@ -24,9 +24,10 @@ function LandingPage() {
       <img src={heroImage} alt="hero image" />
       <div className="rounded-rectangle">
         <div className="rounded-rectangle-text">
-          <p>
-          Join our foodie family and share your amazing recipes!
-          </p>
+          <p>Welcome to</p>
+          <h1>
+          Mai Tasty Bites! 
+          </h1>
           <SignUpButton />
         </div>
       </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap');@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&display=swap');
+
 .ImageList-item:hover img {
     opacity: 0.8;
   }
@@ -49,12 +51,18 @@
     height: 100px;
   }
   
-  .rounded-rectangle-text p {
-    font-size: 26px;
+  .rounded-rectangle-text h1 {
+    font-size: 70px;
     font-weight: bold;
     margin-top: -20px;
-    font-family: Helvetica;
+    font-family: 'Lobster', cursive;
   }
   
-
+  .rounded-rectangle-text p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: -50px;
+    text-align: left;
+    font-family: 'Bebas Neue', cursive;
+  }
   
