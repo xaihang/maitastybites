@@ -98,9 +98,8 @@ router.post("/", (req, res) => {
 });
 
 /**
- * DELETE - route here:
+ * DELETE - recipe by id
  */
-// DELETE recipe by id
 router.delete("/:id", (req, res) => {
   const recipeId = req.params.id;
   const queryText = `DELETE FROM "recipe" WHERE "recipeID" = $1;`;

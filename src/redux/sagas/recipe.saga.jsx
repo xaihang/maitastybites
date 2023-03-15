@@ -2,7 +2,7 @@ import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
 function* getUserRecipes() {
-  console.log("getUserRecipes");
+  // console.log("getUserRecipes");
   try {
     const response = yield call(axios.get, "/api/recipe/user");
     console.log("response", response);
@@ -14,7 +14,7 @@ function* getUserRecipes() {
 }
 
 function* getAllRecipes() {
-  console.log("getAllRecipes");
+  // console.log("getAllRecipes");
   try {
     const response = yield call(axios.get, "/api/recipe");
     console.log("response", response);
