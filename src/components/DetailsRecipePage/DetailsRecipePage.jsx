@@ -18,7 +18,8 @@ const recipe = useSelector((state) => state.recipe.selectedRecipe)
   }
 
   return (
-    <div className="details-container">
+    <div className="parent-details-container">
+    <div className="child-details-container">
       <h1>{recipe.recipename}</h1>
       <p>{recipe.description}</p>
       <img src={recipe.url} alt={recipe.recipename} />
@@ -35,6 +36,7 @@ const recipe = useSelector((state) => state.recipe.selectedRecipe)
           <li key={index}>{step}</li>
         ))}
       </ol>
+    </div>
     </div>
   );
 };
