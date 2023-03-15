@@ -72,7 +72,12 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
-
+          <ProtectedRoute
+            exact
+            path="/add"
+          >
+            <RecipeForm />
+          </ProtectedRoute>
           <ProtectedRoute
             exact
             path="/add/:id"

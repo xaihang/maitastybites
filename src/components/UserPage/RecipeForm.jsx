@@ -4,36 +4,41 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import "./UserPage.css";
+import { useParams } from 'react-router-dom';
 
-function RecipeForm({ onSave, currentRecipe }) {
+function RecipeForm() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const history = useHistory();
+  const { id } = useParams();
 
-  const initialFormValues = {
+  const recipe = useSelector((state) => state.recipe.selectedRecipe);
+
+  const [formValues, setFormValues] = useState({
     recipename: "",
     description: "",
     ingredients: "",
     direction: "",
     imageUrl: "",
-  };
-
-  const [formValues, setFormValues] = useState(initialFormValues);
+  });
 
   useEffect(() => {
-    // Update formValues state with current recipe info when currentRecipe prop changes
-    if (currentRecipe) {
-      setFormValues({
-        recipename: currentRecipe.recipename || "",
-        description: currentRecipe.description || "",
-        ingredients: currentRecipe.ingredients || "",
-        direction: currentRecipe.direction || "",
-        imageUrl: currentRecipe.url || "",
-      });
-    } else {
-      setFormValues(initialFormValues);
+    if (id) {
+      dispatch({ type: "GET_RECIPE_BY_ID", payload: id });
     }
-  }, [currentRecipe]);
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (recipe && id) {
+      setFormValues({
+        recipename: recipe.recipename || "",
+        description: recipe.description || "",
+        ingredients: recipe.ingredients || "",
+        direction: recipe.direction || "",
+        imageUrl: recipe.url || "",
+      });
+    }
+  }, [recipe]);
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -46,18 +51,14 @@ function RecipeForm({ onSave, currentRecipe }) {
       userId: user.id,
     };
 
-    if (currentRecipe) {
-      // If currentRecipe exists, update recipe with the same recipeID
-      recipeData.recipeID = currentRecipe.recipeID;
+    if (id) {
+      recipeData.recipeID = id;
       dispatch({ type: "UPDATE_RECIPE", payload: recipeData });
     } else {
       dispatch({ type: "ADD_RECIPE", payload: recipeData });
     }
-    if (onSave) {
-      onSave();
-    }
-    setFormValues(initialFormValues); // Clear input values
-    history.push("/user"); // Navigate back to the /user view
+
+    history.push("/user");
   };
 
   const handleChange = (event) => {
@@ -78,7 +79,7 @@ function RecipeForm({ onSave, currentRecipe }) {
             label="Recipe Name"
             name="recipename"
             className="recipe-name-textfield"
-            value={formValues.recipename}
+            value={formValues?.recipename}
             onChange={handleChange}
             type="text"
             sx={{ width: "90%", mb: 1.5 }}
@@ -87,7 +88,7 @@ function RecipeForm({ onSave, currentRecipe }) {
             required
             label="Description"
             name="description"
-            value={formValues.description}
+            value={formValues?.description}
             onChange={handleChange}
             sx={{ width: "90%", mb: 1.5 }}
           />
@@ -95,7 +96,7 @@ function RecipeForm({ onSave, currentRecipe }) {
             required
             label="Ingredients"
             name="ingredients"
-            value={formValues.ingredients}
+            value={formValues?.ingredients}
             onChange={handleChange}
             sx={{ width: "90%", mb: 1.5 }}
           />
@@ -103,14 +104,14 @@ function RecipeForm({ onSave, currentRecipe }) {
             required
             label="Direction"
             name="direction"
-            value={formValues.direction}
+            value={formValues?.direction}
             onChange={handleChange}
             sx={{ width: "90%", mb: 1.5 }}
           />
           <TextField
             label="Image URL"
             name="imageUrl"
-            value={formValues.imageUrl}
+            value={formValues?.imageUrl}
             onChange={handleChange}
             sx={{ width: "90%", mb: 1.5 }}
           />
