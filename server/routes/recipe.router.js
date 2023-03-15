@@ -150,4 +150,23 @@ router.put("/:id", (req, res) => {
     });
 });
 
+
+// Route to add a new comment and rating to the comments table
+router.post('/comments', async (req, res) => {
+  const { recipeID, id, comment, rating } = req.body;
+
+  try {
+    const result = await pool.query(
+      'INSERT INTO comments (recipeID, id, comment, rating) VALUES ($1, $2, $3, $4) RETURNING *',
+      [recipeID, id, comment, rating]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while adding the comment.' });
+  }
+});
+
+
+
 module.exports = router;
