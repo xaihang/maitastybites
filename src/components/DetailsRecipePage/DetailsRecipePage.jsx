@@ -49,7 +49,7 @@ const DetailsRecipePage = () => {
         </div>
       </div>
 
-      <RecipeCommentForm />
+      <RecipeCommentForm recipeId={id} />
     </>
   );
 };

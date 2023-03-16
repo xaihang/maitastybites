@@ -14,12 +14,15 @@ import {
 import StarIcon from '@mui/icons-material/Star';
 
 const RecipeCommentForm = ({ recipeId }) => {
+  console.log('recipeId', recipeId)
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const dispatch = useDispatch();
     const comments = useSelector(state => state.recipe.comments);
-  
+    console.log('commentscomments', comments)
+    const user = useSelector((store) => store.user);
+    console.log('user', user)
     const handleRatingChange = (event, value) => {
       setRating(value);
     };
@@ -33,9 +36,13 @@ const RecipeCommentForm = ({ recipeId }) => {
       const newComment = {
         rating: rating,
         comment: comment.trim(),
-        recipeId: recipeId
+        recipeid: recipeId,
+        id: user.id
       };
+      console.log('newComment', newComment)
+      console.log('recipeId', recipeId); 
       dispatch({ type: "ADD_COMMENT", payload: newComment });
+      dispatch({ type: "GET_COMMENTS", payload: recipeId });
       setRating(0);
       setComment("");
       setSubmitSuccess(true);
@@ -49,8 +56,8 @@ const RecipeCommentForm = ({ recipeId }) => {
     };
   
     useEffect(() => {
-        dispatch({ type: "GET_COMMENTS", payload: recipeId });
-      }, [dispatch, recipeId]);
+      dispatch({ type: "GET_COMMENTS", payload: recipeId });
+    }, [dispatch, recipeId]);
 
     return (
       <div className="comment-container">

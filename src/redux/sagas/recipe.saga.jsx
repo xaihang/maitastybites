@@ -82,7 +82,7 @@ function* deleteRecipe(action) {
 function* addComment(action) {
   try {
     yield call(axios.post, `/api/comments`, action.payload);
-    yield put({ type: "ADD_COMMENT_SUCCESS" });
+    // yield put({ type: "ADD_COMMENT_SUCCESS" });
     yield put({ type: "GET_COMMENTS" }); // Refresh comments
   } catch (error) {
     console.log("Error adding comment:", error);
@@ -92,7 +92,7 @@ function* addComment(action) {
 
 // get comments 
 function* getComments(action) {
-  console.log('getcomments on saga====');
+  console.log('getcomments on saga====', action);
   try {
     const response = yield call(axios.get, `/api/comments/${action.payload}`);
     yield put({ type: "GET_COMMENTS_SUCCESS", payload: response.data });

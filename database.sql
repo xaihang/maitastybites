@@ -30,11 +30,12 @@ CREATE TABLE "recipe" (
 
 
 CREATE TABLE "comments" (
-     "commentID" SERIAL PRIMARY KEY, 
-     "recipeID" INT REFERENCES "recipe", 
+    "commentID" SERIAL PRIMARY KEY, 
+     "recipeid" INT REFERENCES "recipe", 
      "id" INT REFERENCES "user", 
      "comment" TEXT,
-     "rating" INT 
+     "rating" INT,
+     "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
      );
 
 
