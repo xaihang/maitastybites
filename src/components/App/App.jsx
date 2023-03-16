@@ -22,12 +22,8 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import DetailsRecipePage from "../DetailsRecipePage/DetailsRecipePage";
 import RecipeForm from "../UserPage/RecipeForm";
 
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-
 import "./App.css";
+import SearchPage from "../SearchPage/SearchPage";
 
 
 function App() {
@@ -49,6 +45,10 @@ function App() {
 
           <Route path="/details/:id">
             <DetailsRecipePage />
+          </Route>
+
+          <Route path="/search">
+            <SearchPage />
           </Route>
           
 

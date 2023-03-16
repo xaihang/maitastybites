@@ -27,6 +27,7 @@ function Nav() {
   const user = useSelector((store) => store.user);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -51,6 +52,13 @@ function Nav() {
     history.replace("/user");
     handleCloseUserMenu();
   };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    history.push(`/search?query=${searchTerm}`);
+    setSearchTerm("");
+  };
+
   return (
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl">
