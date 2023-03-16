@@ -83,7 +83,7 @@ function* addComment(action) {
   try {
     yield call(axios.post, `/api/comments`, action.payload);
     // yield put({ type: "ADD_COMMENT_SUCCESS" });
-    yield put({ type: "GET_COMMENTS" }); // Refresh comments
+    yield put({ type: "GET_COMMENTS", payload: action.payload.recipeid }); // Refresh comments
   } catch (error) {
     console.log("Error adding comment:", error);
     yield put({ type: "ADD_COMMENT_ERROR" });
