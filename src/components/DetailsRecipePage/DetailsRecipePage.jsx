@@ -27,8 +27,8 @@ const DetailsRecipePage = () => {
   }
 
     // Calculate the average rating
-    const sumRating = comments.reduce((acc, comment) => acc + comment.rating, 0);
-    const avgRating = sumRating / comments.length;
+    const sumRating = comments?.reduce((acc, comment) => acc + comment.rating, 0);
+    const avgRating = sumRating / comments?.length;
 
   return (
     <>

@@ -29,7 +29,7 @@ const RecipeCommentForm = ({ recipeId }) => {
 
 
   // format timestamp
-  const formattedComments = comments.map((comment) => ({
+  const formattedComments = comments?.map((comment) => ({
     ...comment,
     formattedTimestamp: moment(comment.created_at).format(
       "MMMM D, YYYY [at] h:mm a"
@@ -113,7 +113,7 @@ const RecipeCommentForm = ({ recipeId }) => {
               <h2>Comments</h2>
               </div>
 
-              {formattedComments.map((comment) => (
+              {formattedComments?.map((comment) => (
                 <Box key={comment.commentID} sx={{ mt: 2 }}>
                   <Typography variant="subtitle1"  sx={{ fontWeight: 'bold' }}>
                     {comment.username} - {comment.formattedTimestamp}
