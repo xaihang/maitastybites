@@ -33,7 +33,9 @@ export default function SearchPage() {
           <button type="submit">Search</button>
         </form>
       </div>
+      <div className="container-search-results">
       <RecipeListGallery recipes={searchResult} />
+      </div>
     </div>
   );
 }
