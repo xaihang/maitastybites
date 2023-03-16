@@ -18,6 +18,9 @@ function LandingPage() {
     history.push("/login");
   };
 
+    const { recipesAll } = useSelector((state) => state.recipe);
+
+
   return (
     <div className="container">
       <div className="hero-image-landing-page">
@@ -33,7 +36,7 @@ function LandingPage() {
           </div> */}
         </div>
       </div>
-      <RecipeListGallery />
+      <RecipeListGallery recipesList={recipesAll}/>
     </div>
   );
 }

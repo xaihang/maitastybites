@@ -3,6 +3,7 @@ const initialState = {
   recipesUser: [],
   selectedRecipe: null,
   comment: [],
+  searchResult: [],
 };
 
 export default function recipeReducer(state = initialState, action) {
@@ -52,7 +53,7 @@ export default function recipeReducer(state = initialState, action) {
       case "SEARCH_RECIPES_SUCCESS":
       return {
         ...state,
-        recipesAll: action.payload,
+        searchResult: action.payload,
       };
     default:
       return state;

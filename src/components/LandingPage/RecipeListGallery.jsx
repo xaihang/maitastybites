@@ -4,18 +4,19 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-export default function RecipeListGallery() {
+export default function RecipeListGallery({recipesList}) {
   const history = useHistory();
-  const { recipesAll } = useSelector((state) => state.recipe);
 
   const handleClick = (recipeID) => {
     history.push(`/details/${recipeID}`);
   };
 
+  console.log('recipesLisasdadat', recipesList)
+
   return (
     <div>
       <ImageList sx={{ width: "100%" }} variant="woven" cols={3} gap={8}>
-        {recipesAll.map((recipe) => (
+        {recipesList?.map((recipe) => (
           <ImageListItem
             key={recipe.recipeID}
             className="ImageList-item"

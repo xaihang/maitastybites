@@ -92,10 +92,10 @@ function* addComment(action) {
 
 // get comments 
 function* getComments(action) {
-  console.log('getcomments on saga====ssasd', action.payload);
+  // console.log('getcomments on saga====ssasd', action.payload);
 
   const recipeid = action.payload
-console.log('hmmm', recipeid)
+// console.log('hmmm', recipeid)
   try {
     const response = yield call(axios.get, `/api/comments/${recipeid}`);
     yield put({ type: "GET_COMMENTS_SUCCESS", payload: response.data });
@@ -107,6 +107,7 @@ console.log('hmmm', recipeid)
 
 
 function* searchRecipe(action) {
+  console.log('here', action)
   try {
     const response = yield call(axios.get, `/api/search/${action.payload}`);
     yield put({ type: "SEARCH_RECIPE_SUCCESS", payload: response.data });
