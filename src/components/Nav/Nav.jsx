@@ -83,7 +83,7 @@ function Nav() {
               textDecoration: "none",
             }}
           >
-            <h2 className="navtitle">Mai-Tasty-Bites</h2>
+            <h2 className="navtitle">MTB</h2>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>

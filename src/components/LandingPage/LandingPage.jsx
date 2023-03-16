@@ -3,9 +3,8 @@ import { useHistory } from "react-router-dom";
 import "./LandingPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import RecipeListGallery from "./RecipeListGallery";
-import heroImage from '../LandingPage/hero.png';
+import heroImage from "../LandingPage/hero.png";
 import SignUpButton from "./SignupButton";
-
 
 function LandingPage() {
   const history = useHistory();
@@ -24,10 +23,12 @@ function LandingPage() {
       <img src={heroImage} alt="hero image" />
       <div className="rounded-rectangle">
         <div className="rounded-rectangle-text">
-          <p>
-          Join our foodie family and share your amazing recipes!
-          </p>
-          <SignUpButton />
+          <p>Welcome to</p>
+          <h1>Mai Tasty Bites!</h1>
+          {/* <span>Let's get happy cooking together</span> */}
+          {/* <div className="signup-button">
+            <SignUpButton />
+          </div> */}
         </div>
       </div>
       <RecipeListGallery />
