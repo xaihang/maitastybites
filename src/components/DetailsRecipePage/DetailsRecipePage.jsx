@@ -3,19 +3,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./DetailsRecipePage.css";
 import RecipeCommentForm from "./RecipeCommentForm";
+import StarIcon from "@mui/icons-material/Star";
+import Rating from "@mui/material/Rating";
+import { Box, Typography } from "@mui/material";
+
 
 const DetailsRecipePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const recipe = useSelector((state) => state.recipe.selectedRecipe);
+  const comments = useSelector((state) => state.recipe.comments);
+
+ 
 
   useEffect(() => {
     dispatch({ type: "GET_RECIPE_BY_ID", payload: id });
+    dispatch({ type: "GET_COMMENTS", payload: id });
   }, [dispatch, id]);
+
 
   if (!recipe) {
     return <div>Loading...</div>;
   }
+
+    // Calculate the average rating
+    const sumRating = comments.reduce((acc, comment) => acc + comment.rating, 0);
+    const avgRating = sumRating / comments.length;
 
   return (
     <>
@@ -25,10 +38,22 @@ const DetailsRecipePage = () => {
             <div className="recipe-info">
               <h1>{recipe.recipename}</h1>
               <p>{recipe.description}</p>
+
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Rating value={avgRating} precision={0.5} readOnly />
+                <Typography
+                  variant="subtitle2"
+                  sx={{ ml: 1, color: "text.secondary" }}
+                >
+                  ({avgRating.toFixed(1)} stars)
+                </Typography>
+              </Box>
+
             </div>
             <div className="recipe-image">
               <img src={recipe.url} alt={recipe.recipename} />
             </div>
+
           </div>
           <div className="recipe-ingredients">
             <h2>Ingredients</h2>

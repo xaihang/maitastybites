@@ -23,8 +23,8 @@ router.post("/", async (req, res) => {
 
 // Route to get all comments and ratings for a recipe
 router.get("/:recipeid", async (req, res) => {
+  console.log('req.params', req.params)
   const { recipeid } = req.params;
-  console.log('req.params====',req.params)
 
   if (!recipeid) {
     return res.status(400).json({ error: "Missing recipeid parameter" });
@@ -32,8 +32,8 @@ router.get("/:recipeid", async (req, res) => {
 
   try {
     const result = await pool.query(
-      `SELECT * FROM "comments" WHERE "recipeid" = $1;`,
-      [recipeid]
+      `SELECT c.*, u.username FROM "comments" c JOIN "user" u ON u.id = c.id WHERE c.recipeid = $1;`,
+      [parseInt(recipeid)]
     );
     console.log('result', result)
     res.status(200).json(result.rows);

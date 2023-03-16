@@ -63,3 +63,7 @@
   .comment-container h2 {
     margin-top: 70px;
   }
+
+  .comments-header {
+text-decoration: underline;
+  }

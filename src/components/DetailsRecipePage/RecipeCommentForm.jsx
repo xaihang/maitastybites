@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import CustomButton from "../UserPage/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import moment from "moment";
+import "./DetailsRecipePage.css";
+
 import {
   Box,
   Button,
@@ -11,62 +14,70 @@ import {
   Alert,
   Typography,
 } from "@mui/material";
-import StarIcon from '@mui/icons-material/Star';
+import StarIcon from "@mui/icons-material/Star";
 
 const RecipeCommentForm = ({ recipeId }) => {
-  console.log('recipeId', recipeId)
-    const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState("");
-    const [submitSuccess, setSubmitSuccess] = useState(false);
-    const dispatch = useDispatch();
-    const comments = useSelector(state => state.recipe.comments);
-    console.log('commentscomments', comments)
-    const user = useSelector((store) => store.user);
-    console.log('user', user)
-    const handleRatingChange = (event, value) => {
-      setRating(value);
-    };
-  
-    const handleCommentChange = (event) => {
-      setComment(event.target.value);
-    };
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const newComment = {
-        rating: rating,
-        comment: comment.trim(),
-        recipeid: recipeId,
-        id: user.id
-      };
-      console.log('newComment', newComment)
-      console.log('recipeId', recipeId); 
-      dispatch({ type: "ADD_COMMENT", payload: newComment });
-      dispatch({ type: "GET_COMMENTS", payload: recipeId });
-      setRating(0);
-      setComment("");
-      setSubmitSuccess(true);
-    };
-  
-    const handleSnackbarClose = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setSubmitSuccess(false);
-    };
-  
-    useEffect(() => {
-      dispatch({ type: "GET_COMMENTS", payload: recipeId });
-    }, [dispatch, recipeId]);
+  console.log("recipeId", recipeId);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const dispatch = useDispatch();
+  const comments = useSelector((state) => state.recipe.comments);
+  console.log("commentscomments", comments);
+  const user = useSelector((store) => store.user);
+  console.log("user", user);
 
-    return (
-      <div className="comment-container">
-          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+
+  // format timestamp
+  const formattedComments = comments.map((comment) => ({
+    ...comment,
+    formattedTimestamp: moment(comment.created_at).format(
+      "MMMM D, YYYY [at] h:mm a"
+    ),
+  }));
+
+  const handleRatingChange = (event, value) => {
+    setRating(value);
+  };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newComment = {
+      rating: rating,
+      comment: comment.trim(),
+      recipeid: recipeId,
+      id: user.id,
+    };
+    console.log("newComment", newComment);
+    console.log("recipeId", recipeId);
+    dispatch({ type: "ADD_COMMENT", payload: newComment });
+    dispatch({ type: "GET_COMMENTS", payload: recipeId });
+    setRating(0);
+    setComment("");
+    setSubmitSuccess(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSubmitSuccess(false);
+  };
+
+  return (
+    <div className="comment-container">
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
         <Box sx={{ width: "50%" }}>
-        <h1>Leave a reply</h1>
+          <h1>Leave a reply</h1>
           <form onSubmit={handleSubmit}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-              <Typography sx={{mr: 2}} fontWeight="bold">
+            <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+              <Typography sx={{ mr: 2 }} fontWeight="bold">
                 Made it? Leave a review!
               </Typography>
               <Rating
@@ -90,26 +101,48 @@ const RecipeCommentForm = ({ recipeId }) => {
               />
             </Box>
             <Box sx={{ mt: 2 }}>
-            <CustomButton
-              type="submit"
-              variant="contained"
-              className="postCommentBtn"
-      
-            >
-              Post Comment
-            </CustomButton>
-            <h2>Comments</h2>
+              <CustomButton
+                type="submit"
+                variant="contained"
+                className="postCommentBtn"
+              >
+                Post Comment
+              </CustomButton>
+              <div className="comments-header">
+
+              <h2>Comments</h2>
+              </div>
+
+              {formattedComments.map((comment) => (
+                <Box key={comment.commentID} sx={{ mt: 2 }}>
+                  <Typography variant="subtitle1"  sx={{ fontWeight: 'bold' }}>
+                    {comment.username} - {comment.formattedTimestamp}
+                  </Typography>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Rating value={comment.rating} precision={0.5} readOnly />
+                  </Box>
+                  <Typography variant="body1">{comment.comment}</Typography>
+                </Box>
+              ))}
             </Box>
           </form>
-          <Snackbar open={submitSuccess} autoHideDuration={6000} onClose={handleSnackbarClose}>
-            <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+          <Snackbar
+            open={submitSuccess}
+            autoHideDuration={6000}
+            onClose={handleSnackbarClose}
+          >
+            <Alert
+              onClose={handleSnackbarClose}
+              severity="success"
+              sx={{ width: "100%" }}
+            >
               Comment submitted successfully!
             </Alert>
           </Snackbar>
         </Box>
       </Box>
-      </div>
-    );
-  };
-  
+    </div>
+  );
+};
+
 export default RecipeCommentForm;
