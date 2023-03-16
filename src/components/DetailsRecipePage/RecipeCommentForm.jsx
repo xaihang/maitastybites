@@ -3,6 +3,7 @@ import CustomButton from "../UserPage/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import moment from "moment";
+import "./DetailsRecipePage.css";
 
 import {
   Box,
@@ -107,11 +108,14 @@ const RecipeCommentForm = ({ recipeId }) => {
               >
                 Post Comment
               </CustomButton>
+              <div className="comments-header">
+
               <h2>Comments</h2>
+              </div>
 
               {formattedComments.map((comment) => (
                 <Box key={comment.commentID} sx={{ mt: 2 }}>
-                  <Typography variant="subtitle1">
+                  <Typography variant="subtitle1"  sx={{ fontWeight: 'bold' }}>
                     {comment.username} - {comment.formattedTimestamp}
                   </Typography>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
