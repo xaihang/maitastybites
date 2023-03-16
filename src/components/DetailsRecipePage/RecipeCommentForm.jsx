@@ -3,7 +3,7 @@ import CustomButton from "../UserPage/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import moment from "moment";
-import { Rating } from "@mui/material";
+
 import {
   Box,
   Button,
@@ -36,11 +36,7 @@ const RecipeCommentForm = ({ recipeId }) => {
     ),
   }));
 
-  // calculate the average rating on recipe
-  const recipeComments = useSelector((state) => state.recipe.comments);
-const recipeAverageRating =
-  recipeComments.reduce((acc, comment) => acc + comment.rating, 0) /
-  recipeComments.length;
+
 
   const handleRatingChange = (event, value) => {
     setRating(value);
@@ -119,17 +115,20 @@ const recipeAverageRating =
                 Post Comment
               </CustomButton>
               <h2>Comments</h2>
+
               {formattedComments.map((comment) => (
-                <div key={comment.commentID}>
-                  <Typography variant="body1" fontWeight="bold">
-                    {comment.username} - {comment.formattedTimestamp}
-                  </Typography>
-                  <Rating value={comment.rating} readOnly />
-                  <Typography variant="body2">
-                    comments: {comment.comment}
-                  </Typography>
-                </div>
-              ))}
+    <Box key={comment.commentID} sx={{ mt: 2 }}>
+      <Typography variant="subtitle1">
+        {comment.username} - {comment.formattedTimestamp}
+      </Typography>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Rating value={comment.rating} precision={0.5} readOnly />
+      </Box>
+      <Typography variant="body1">{comment.comment}</Typography>
+    </Box>
+  ))}
+
+
             </Box>
           </form>
           <Snackbar

@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 import "./DetailsRecipePage.css";
 import RecipeCommentForm from "./RecipeCommentForm";
 
+
 const DetailsRecipePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const recipe = useSelector((state) => state.recipe.selectedRecipe);
+
+ 
 
   useEffect(() => {
     dispatch({ type: "GET_RECIPE_BY_ID", payload: id });
@@ -29,6 +32,7 @@ const DetailsRecipePage = () => {
             <div className="recipe-image">
               <img src={recipe.url} alt={recipe.recipename} />
             </div>
+
           </div>
           <div className="recipe-ingredients">
             <h2>Ingredients</h2>
