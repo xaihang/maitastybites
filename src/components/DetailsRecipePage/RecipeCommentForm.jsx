@@ -25,8 +25,7 @@ const RecipeCommentForm = ({ recipeId }) => {
   console.log("commentscomments", comments);
   const user = useSelector((store) => store.user);
   console.log("user", user);
-  const username = useSelector((store) => store.username);
-  console.log("username", user.username);
+
 
   // format timestamp
   const formattedComments = comments.map((comment) => ({
@@ -67,10 +66,6 @@ const RecipeCommentForm = ({ recipeId }) => {
     }
     setSubmitSuccess(false);
   };
-
-  useEffect(() => {
-    dispatch({ type: "GET_COMMENTS", payload: recipeId });
-  }, [dispatch, recipeId]);
 
   return (
     <div className="comment-container">

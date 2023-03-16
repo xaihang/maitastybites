@@ -92,9 +92,12 @@ function* addComment(action) {
 
 // get comments 
 function* getComments(action) {
-  console.log('getcomments on saga====', action);
+  console.log('getcomments on saga====ssasd', action.payload);
+
+  const recipeid = action.payload
+console.log('hmmm', recipeid)
   try {
-    const response = yield call(axios.get, `/api/comments/${action.payload}`);
+    const response = yield call(axios.get, `/api/comments/${recipeid}`);
     yield put({ type: "GET_COMMENTS_SUCCESS", payload: response.data });
   } catch (error) {
     console.log("Error getting comments:", error);

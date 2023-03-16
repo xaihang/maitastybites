@@ -21,6 +21,7 @@ const DetailsRecipePage = () => {
     dispatch({ type: "GET_COMMENTS", payload: id });
   }, [dispatch, id]);
 
+
   if (!recipe) {
     return <div>Loading...</div>;
   }
