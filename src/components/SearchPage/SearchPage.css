@@ -1,0 +1,45 @@
+.hero-search-container {
+    background-color: #F0F3F4;
+    height: 160px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  .hero-search-title h1 {
+    font-size: 16px;
+    font-weight: bold;
+    /* padding: 20px; */
+  }
+  
+  .search-box-search-input {
+    width: 550px;
+    height: 25px;
+    border: 1px solid black;
+    padding: 12px;
+    font-size: 18px;
+    margin-right: 12px;
+    margin-left: 100px;
+    /* margin-left: 20px */
+  }
+  
+  button[type="submit"] {
+    height: 48px;
+    font-size: 18px;
+    background-color: #F0F3F4;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0 24px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #D1D8DC;
+  }
+  
+  .container-search-results {
+padding: 20px; 
+  }
