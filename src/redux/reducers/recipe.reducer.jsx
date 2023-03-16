@@ -49,6 +49,11 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         comments: action.payload,
       };
+      case "SEARCH_RECIPES_SUCCESS":
+      return {
+        ...state,
+        recipesAll: action.payload,
+      };
     default:
       return state;
   }

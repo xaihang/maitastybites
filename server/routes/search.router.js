@@ -5,14 +5,14 @@ const router = express.Router();
 /**
  * GET - search recipes by recipe name
  */
-router.get("/search", (req, res) => {
-    const searchQuery = req.query.q;
+router.get("/:q", (req, res) => {
+    const searchTerm = req.query.q;
     const queryText = `
       SELECT * FROM "recipe" WHERE "recipename" ILIKE '%' || $1 || '%';
     `;
   
     pool
-      .query(queryText, [searchQuery])
+      .query(queryText, [searchTerm])
       .then((result) => {
         res.send(result.rows);
       })
