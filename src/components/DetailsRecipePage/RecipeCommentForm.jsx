@@ -115,14 +115,13 @@ const RecipeCommentForm = ({ recipeId }) => {
     <Typography variant="body1" fontWeight="bold">
       {comment.username} - {comment.formattedTimestamp}
     </Typography>
-    <Typography variant="body2">
-      rating: {comment.rating}...
-    </Typography>
+    <Rating value={comment.rating} readOnly />
     <Typography variant="body2">
       comments: {comment.comment}
     </Typography>
   </div>
 ))}
+
 
             </Box>
           </form>
