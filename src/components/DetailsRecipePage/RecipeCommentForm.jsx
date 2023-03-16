@@ -28,15 +28,13 @@ const RecipeCommentForm = ({ recipeId }) => {
   const username = useSelector((store) => store.username);
   console.log("username", user.username);
 
-  // format timestamp 
+  // format timestamp
   const formattedComments = comments.map((comment) => ({
     ...comment,
     formattedTimestamp: moment(comment.created_at).format(
       "MMMM D, YYYY [at] h:mm a"
     ),
   }));
-
-
 
   const handleRatingChange = (event, value) => {
     setRating(value);
@@ -117,18 +115,16 @@ const RecipeCommentForm = ({ recipeId }) => {
               <h2>Comments</h2>
 
               {formattedComments.map((comment) => (
-    <Box key={comment.commentID} sx={{ mt: 2 }}>
-      <Typography variant="subtitle1">
-        {comment.username} - {comment.formattedTimestamp}
-      </Typography>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Rating value={comment.rating} precision={0.5} readOnly />
-      </Box>
-      <Typography variant="body1">{comment.comment}</Typography>
-    </Box>
-  ))}
-
-
+                <Box key={comment.commentID} sx={{ mt: 2 }}>
+                  <Typography variant="subtitle1">
+                    {comment.username} - {comment.formattedTimestamp}
+                  </Typography>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Rating value={comment.rating} precision={0.5} readOnly />
+                  </Box>
+                  <Typography variant="body1">{comment.comment}</Typography>
+                </Box>
+              ))}
             </Box>
           </form>
           <Snackbar
