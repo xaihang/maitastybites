@@ -1,19 +1,39 @@
-import { useSelector } from 'react-redux';
-import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from "react";
 import RecipeListGallery from '../LandingPage/RecipeListGallery';
-import "../../components/LandingPage/LandingPage.css";
+import { useParams } from "react-router-dom";
+import "./SearchPage.css";
+
 
 export default function SearchPage() {
     const [searchTerm, setSearchTerm] = useState('');
-    const { recipesAll } = useSelector((state) => state.recipe);
+    // const { recipesAll } = useSelector((state) => state.recipe);
+    const dispatch = useDispatch();
+  const { searchResult } = useSelector((state) => state.recipe);
   
-    const filteredRecipes = recipesAll.filter((recipe) =>
-    recipe.recipename.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  
-    return (
-      <div>
-        <RecipeListGallery recipes={filteredRecipes} />
+  useEffect(() => {
+    if (searchTerm) {
+        dispatch({ type: "SEARCH_RECIPE" });
+    }
+  }, [dispatch, searchTerm]);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    setSearchTerm(event.target.searchInput.value);
+  };
+
+  return (
+    <div>
+      <div className="hero-search-container">
+        <div className="hero-search-title">
+        <h1>Search Results For "{searchTerm}"</h1>
+        </div>
+        <form onSubmit={handleSearch}>
+          <input type="text" name="searchInput" className="search-box-search-input" placeholder="Search" />
+          <button type="submit">Search</button>
+        </form>
       </div>
-    );
-  }
+      <RecipeListGallery recipes={searchResult} />
+    </div>
+  );
+}

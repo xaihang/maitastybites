@@ -20,7 +20,9 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <img src={heroImage} alt="hero image" />
+      <div className="hero-image-landing-page">
+        <img src={heroImage} alt="hero image" />
+      </div>
       <div className="rounded-rectangle">
         <div className="rounded-rectangle-text">
           <p>Welcome to</p>
