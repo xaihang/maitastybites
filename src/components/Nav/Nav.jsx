@@ -54,7 +54,7 @@ function Nav() {
     handleCloseUserMenu();
   };
 
-  const handleSearchSubmit = (event) => {
+  const handleSearch = (event) => {
     event.preventDefault();
     history.push(`/search?query=${searchTerm}`);
     setSearchTerm("");
@@ -97,6 +97,8 @@ function Nav() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {/* search input box here */}
+            <form onSubmit={handleSearch}>
+
             <Box className="searchBox">
               <SearchIcon className="searchIcon" />
               <InputBase
@@ -106,7 +108,7 @@ function Nav() {
                   "&:focus": {
                     outline: "none",
                     boxShadow: (theme) =>
-                      `0 0 0 2px ${theme.palette.primary.main} inset`,
+                    `0 0 0 2px ${theme.palette.primary.main} inset`,
                   },
                   "&:hover": {
                     backgroundColor: (theme) => theme.palette.action.hover,
@@ -116,8 +118,9 @@ function Nav() {
                   width: "300px",
                   height: "40px",
                 }}
-              />
+                />
             </Box>
+                </form>
 
             <Link to={`/home`} className="navlink">
               {"Home"}
