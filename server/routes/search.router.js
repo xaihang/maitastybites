@@ -6,7 +6,7 @@ const router = express.Router();
  * GET - search recipes by recipe name
  */
 router.get("/", (req, res) => {
-    const searchTerm = req.query.searchTerm;
+    const searchTerm = req.query.query;
     const queryText = `
       SELECT * FROM "recipe" WHERE "recipename" ILIKE '%' || $1 || '%';
     `;
