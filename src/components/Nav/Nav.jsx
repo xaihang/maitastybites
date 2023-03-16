@@ -98,29 +98,30 @@ function Nav() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {/* search input box here */}
             <form onSubmit={handleSearch}>
-
-            <Box className="searchBox">
-              <SearchIcon className="searchIcon" />
-              <InputBase
-                placeholder="search recipes"
-                className="searchInput"
-                sx={{
-                  "&:focus": {
-                    outline: "none",
-                    boxShadow: (theme) =>
-                    `0 0 0 2px ${theme.palette.primary.main} inset`,
-                  },
-                  "&:hover": {
-                    backgroundColor: (theme) => theme.palette.action.hover,
-                  },
-                  borderRadius: "25px",
-                  padding: "10px 15px",
-                  width: "300px",
-                  height: "40px",
-                }}
+              <Box className="searchBox">
+                <SearchIcon className="searchIcon" />
+                <InputBase
+                  placeholder="search recipes"
+                  className="searchInput"
+                  sx={{
+                    "&:focus": {
+                      outline: "none",
+                      boxShadow: (theme) =>
+                        `0 0 0 2px ${theme.palette.primary.main} inset`,
+                    },
+                    "&:hover": {
+                      backgroundColor: (theme) => theme.palette.action.hover,
+                    },
+                    borderRadius: "25px",
+                    padding: "10px 15px",
+                    width: "300px",
+                    height: "40px",
+                  }}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </Box>
-                </form>
+              </Box>
+            </form>
 
             <Link to={`/home`} className="navlink">
               {"Home"}
