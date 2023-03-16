@@ -29,8 +29,8 @@ export default function SearchPage() {
         <h1>Search Results For "{searchTerm}"</h1>
         </div>
         <form onSubmit={handleSearch}>
-          <input type="text" name="searchInput" className="search-box-search-input" placeholder="Search" />
-          <button type="submit">search recipe name</button>
+          <input type="text" name="searchInput" className="search-box-search-input" placeholder="search recipe name" />
+          <button type="submit">Search</button>
         </form>
       </div>
       <div className="container-search-results">
