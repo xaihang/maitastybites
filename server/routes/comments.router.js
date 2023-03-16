@@ -4,12 +4,13 @@ const router = express.Router();
 
 // Route to add a new comment and rating to the comments table
 router.post("/", async (req, res) => {
-  const { recipeID, id, comment, rating } = req.body;
+  const { recipeid, comment, rating, id } = req.body;
+
 
   try {
     const result = await pool.query(
-      `INSERT INTO "comments" (recipeid, id, comment, rating) VALUES ($1, $2, $3, $4) RETURNING *;`,
-      [recipeID, id, comment, rating]
+      `INSERT INTO "comments" (recipeid, comment, rating, id) VALUES ($1, $2, $3, $4) RETURNING *;`,
+      [Number(recipeid), comment, rating, id]
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
@@ -21,19 +22,20 @@ router.post("/", async (req, res) => {
 });
 
 // Route to get all comments and ratings for a recipe
-router.get("/:recipeID", async (req, res) => {
-  const { recipeID } = req.params;
+router.get("/:recipeid", async (req, res) => {
+  const { recipeid } = req.params;
   console.log('req.params====',req.params)
 
-  if (!recipeID) {
-    return res.status(400).json({ error: "Missing recipeID parameter" });
+  if (!recipeid) {
+    return res.status(400).json({ error: "Missing recipeid parameter" });
   }
 
   try {
     const result = await pool.query(
       `SELECT * FROM "comments" WHERE "recipeid" = $1;`,
-      [recipeID]
+      [recipeid]
     );
+    console.log('result', result)
     res.status(200).json(result.rows);
   } catch (error) {
     console.error(error);
