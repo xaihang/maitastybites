@@ -30,7 +30,7 @@ export default function SearchPage() {
         </div>
         <form onSubmit={handleSearch}>
           <input type="text" name="searchInput" className="search-box-search-input" placeholder="Search" />
-          <button type="submit">Search</button>
+          <button type="submit">search recipe name</button>
         </form>
       </div>
       <div className="container-search-results">

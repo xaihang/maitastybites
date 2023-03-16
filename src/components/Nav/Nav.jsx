@@ -101,7 +101,7 @@ function Nav() {
               <Box className="searchBox">
                 <SearchIcon className="searchIcon" />
                 <InputBase
-                  placeholder="search recipes"
+                  placeholder="search recipe name"
                   className="searchInput"
                   sx={{
                     "&:focus": {

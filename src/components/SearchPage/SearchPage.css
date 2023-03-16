@@ -1,6 +1,6 @@
 .hero-search-container {
     background-color: #F0F3F4;
-    height: 140px;
+    height: 160px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -9,24 +9,25 @@
     margin: 0 auto;
   }
   
-  .hero-search-title {
-    font-size: 12px;
+  .hero-search-title h1 {
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 16px;
+    padding: 20px;
   }
   
   .search-box-search-input {
-    width: 600px;
-    height: 48px;
+    width: 550px;
+    height: 25px;
     border: 1px solid black;
     padding: 12px;
-    font-size: 24px;
+    font-size: 18px;
     margin-right: 12px;
+    margin-left: 20px;
   }
   
   button[type="submit"] {
     height: 48px;
-    font-size: 24px;
+    font-size: 18px;
     background-color: #F0F3F4;
     border: none;
     cursor: pointer;
