@@ -3,6 +3,7 @@ import CustomButton from "../UserPage/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import moment from "moment";
+import { Rating } from "@mui/material";
 import {
   Box,
   Button,
@@ -25,13 +26,21 @@ const RecipeCommentForm = ({ recipeId }) => {
   const user = useSelector((store) => store.user);
   console.log("user", user);
   const username = useSelector((store) => store.username);
-  console.log('username', user.username)
+  console.log("username", user.username);
 
+  // format timestamp 
   const formattedComments = comments.map((comment) => ({
     ...comment,
-    formattedTimestamp: moment(comment.created_at).format("MMMM D, YYYY [at] h:mm a"),
+    formattedTimestamp: moment(comment.created_at).format(
+      "MMMM D, YYYY [at] h:mm a"
+    ),
   }));
 
+  // calculate the average rating on recipe
+  const recipeComments = useSelector((state) => state.recipe.comments);
+const recipeAverageRating =
+  recipeComments.reduce((acc, comment) => acc + comment.rating, 0) /
+  recipeComments.length;
 
   const handleRatingChange = (event, value) => {
     setRating(value);
@@ -111,18 +120,16 @@ const RecipeCommentForm = ({ recipeId }) => {
               </CustomButton>
               <h2>Comments</h2>
               {formattedComments.map((comment) => (
-  <div key={comment.commentID}>
-    <Typography variant="body1" fontWeight="bold">
-      {comment.username} - {comment.formattedTimestamp}
-    </Typography>
-    <Rating value={comment.rating} readOnly />
-    <Typography variant="body2">
-      comments: {comment.comment}
-    </Typography>
-  </div>
-))}
-
-
+                <div key={comment.commentID}>
+                  <Typography variant="body1" fontWeight="bold">
+                    {comment.username} - {comment.formattedTimestamp}
+                  </Typography>
+                  <Rating value={comment.rating} readOnly />
+                  <Typography variant="body2">
+                    comments: {comment.comment}
+                  </Typography>
+                </div>
+              ))}
             </Box>
           </form>
           <Snackbar
