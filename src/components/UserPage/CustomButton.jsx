@@ -47,6 +47,30 @@ const CustomButton = styled(Button)(({ theme }) => ({
       color: "black"
     },
   },
+  "&.saveBtn": {
+    backgroundColor: "red",
+    color: "white",
+    border: "none",
+    padding: "10px 20px",
+    marginTop: "10px",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      backgroundColor: "darkred",
+    },
+  },
+  "&.saveEdBtn": {
+    backgroundColor: "black",
+    color: "white",
+    border: "none",
+    padding: "10px 20px",
+    marginTop: "10px",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      backgroundColor: "white",
+      color: "black"
+    },
+  },
+  
   // "&.editBtn": {
   //   color: "black",
   //   textTransform: "lowercase",

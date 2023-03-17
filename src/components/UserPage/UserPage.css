@@ -42,7 +42,7 @@
     }
   }
 
-  .createdViewBtn, .savedViewBtn, .addRecipeBtn, .deleteBtn, .editBtn, .postCommentBtn {
+  .createdViewBtn, .savedViewBtn, .addRecipeBtn, .deleteBtn, .editBtn, .postCommentBtn, .saveBtn, .saveEdBtn {
     border-radius: 25px !important;
   }
 /*   
