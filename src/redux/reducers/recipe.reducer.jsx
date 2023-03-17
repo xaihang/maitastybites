@@ -39,7 +39,7 @@ export default function recipeReducer(state = initialState, action) {
         ),
       };
     case "ADD_COMMENT_SUCCESS":
-      console.log('action.payloadaction.payload', action.payload)
+      console.log("action.payloadaction.payload", action.payload);
       return {
         ...state,
         comments: [...state.comments, action.payload],
@@ -48,11 +48,6 @@ export default function recipeReducer(state = initialState, action) {
       return {
         ...state,
         comments: action.payload,
-      };
-      case "SEARCH_RECIPES_SUCCESS":
-      return {
-        ...state,
-        recipesAll: action.payload,
       };
     default:
       return state;

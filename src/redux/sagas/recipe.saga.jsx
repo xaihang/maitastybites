@@ -92,10 +92,10 @@ function* addComment(action) {
 
 // get comments 
 function* getComments(action) {
-  console.log('getcomments on saga====ssasd', action.payload);
+  // console.log('getcomments on saga====ssasd', action.payload);
 
   const recipeid = action.payload
-console.log('hmmm', recipeid)
+// console.log('hmmm', recipeid)
   try {
     const response = yield call(axios.get, `/api/comments/${recipeid}`);
     yield put({ type: "GET_COMMENTS_SUCCESS", payload: response.data });
@@ -106,15 +106,6 @@ console.log('hmmm', recipeid)
 }
 
 
-function* searchRecipe(action) {
-  try {
-    const response = yield call(axios.get, `/api/search/${action.payload}`);
-    yield put({ type: "SEARCH_RECIPE_SUCCESS", payload: response.data });
-  } catch (error) {
-    console.log("Error searching for recipes:", error);
-    yield put({ type: "SEARCH_RECIPE_ERROR" });
-  }
-}
 
 function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
@@ -129,6 +120,5 @@ function* recipeSaga() {
   yield takeLatest("DELETE_RECIPE", deleteRecipe);
   yield takeLatest("ADD_COMMENT", addComment);
   yield takeLatest("GET_COMMENTS", getComments);
-  yield takeLatest("SEARCH_RECIPE", searchRecipe);
 }
 export default recipeSaga;

@@ -56,7 +56,9 @@ function Nav() {
 
   const handleSearch = (event) => {
     event.preventDefault();
+    // history.push(`/search?query=${searchTerm}`);
     history.push(`/search?query=${searchTerm}`);
+    setSearchTerm("");
     setSearchTerm("");
   };
 
