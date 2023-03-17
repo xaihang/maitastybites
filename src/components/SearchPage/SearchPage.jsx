@@ -27,8 +27,11 @@ export default function SearchPage() {
     setSearchTerm(event.target.searchInput.value);
   };
 
-  const filteredRecipes = recipesAll?.filter(recipe => {
-    return recipe.recipename.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredRecipes = recipesAll.filter(recipe => {
+    const searchTermLower = searchTerm.toLowerCase();
+    const recipeNameLower = recipe.recipename.toLowerCase();
+    const ingredientsLower = recipe.ingredients.toLowerCase();
+    return recipeNameLower.includes(searchTermLower) || ingredientsLower.includes(searchTermLower);
   });
 
   console.log('filteredRecipes', filteredRecipes)

@@ -106,16 +106,6 @@ function* getComments(action) {
 }
 
 
-function* searchRecipe(action) {
-  console.log('here', action)
-  try {
-    const response = yield call(axios.get, `/api/search/${action.payload}`);
-    yield put({ type: "SEARCH_RECIPE_SUCCESS", payload: response.data });
-  } catch (error) {
-    console.log("Error searching for recipes:", error);
-    yield put({ type: "SEARCH_RECIPE_ERROR" });
-  }
-}
 
 function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
@@ -130,6 +120,5 @@ function* recipeSaga() {
   yield takeLatest("DELETE_RECIPE", deleteRecipe);
   yield takeLatest("ADD_COMMENT", addComment);
   yield takeLatest("GET_COMMENTS", getComments);
-  yield takeLatest("SEARCH_RECIPE", searchRecipe);
 }
 export default recipeSaga;
