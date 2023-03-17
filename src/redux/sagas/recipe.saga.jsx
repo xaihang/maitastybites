@@ -115,6 +115,16 @@ function* saveRecipe(action) {
   }
 }
 
+function* unSaveRecipe(action) {
+  try {
+    yield call(axios.delete, "/api/recipe/unsave", action.payload);
+
+  } catch (error) {
+    console.log("Error unsaving recipe:", error);
+    yield put({ type: "UNSAVE_RECIPE_ERROR" });
+  }
+}
+
 function* getSavedRecipes(action) {
   try {
     const response = yield call(axios.get, `/api/recipe/${action.payload}`);
@@ -139,6 +149,7 @@ function* recipeSaga() {
   yield takeLatest("ADD_COMMENT", addComment);
   yield takeLatest("GET_COMMENTS", getComments);
   yield takeLatest("SAVE_RECIPE", saveRecipe);
+  yield takeLatest("UNSAVE_RECIPE", unSaveRecipe);
   yield takeLatest("GET_SAVED_RECIPES", getSavedRecipes);
 }
 export default recipeSaga;

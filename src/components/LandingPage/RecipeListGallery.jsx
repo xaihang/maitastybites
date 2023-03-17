@@ -6,6 +6,7 @@ import { useState } from "react";
 import CustomButton from "../UserPage/CustomButton";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useDispatch, useSelector } from "react-redux";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -13,8 +14,8 @@ function Alert(props) {
 
 export default function RecipeListGallery({ recipesList }) {
   const history = useHistory();
-  const [savedRecipes, setSavedRecipes] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const user = useSelector((store) => store.user);
 
   const handleClick = (recipeID) => {
     history.push(`/details/${recipeID}`);
@@ -22,11 +23,15 @@ export default function RecipeListGallery({ recipesList }) {
 
   const handleSaveRecipe = (event, recipeID) => {
     event.stopPropagation();
-    if (savedRecipes.includes(recipeID)) {
-      setSavedRecipes(savedRecipes.filter((id) => id !== recipeID));
-    } else {
-      setSavedRecipes([...savedRecipes, recipeID]);
-    }
+    const data = {
+    recipeID,
+      id: user.id,
+    };
+
+     dispatch({ type: "SAVE_RECIPE", payload: data });
+     dispatch({ type: "GET_ALL_RECIPES"});
+
+    setSubmitSuccess(true);
   };
 
   const handleSnackbarClose = (event, reason) => {
@@ -48,14 +53,19 @@ export default function RecipeListGallery({ recipesList }) {
             <div className="overlay">
               <div className="saveRecipeToggleBtnDisplay">
                 <CustomButton
-                  onClick={(event) => handleSaveRecipe(event, recipe.recipeID)}
+                  // onClick={(event) => handleSaveRecipe(event, recipe.recipeID)}
+                  onClick={(event) =>
+                    recipe.saved
+                      ? handleUnSaveRecipe(event, recipe.recipeID)
+                      : handleSaveRecipe(event, recipe.recipeID)
+                  }
                   className={
-                    savedRecipes.includes(recipe.recipeID)
+                    recipe.saved
                       ? "saveEdBtn"
                       : "saveBtn"
                   }
                 >
-                  {savedRecipes.includes(recipe.recipeID) ? "Saved" : "Save"}
+                  {recipe.saved? "Saved" : "Save"}
                 </CustomButton>
               </div>
             </div>

@@ -6,18 +6,27 @@ const router = express.Router();
  * GET - get ALL recipes from database from all users:
  */
 router.get("/", (req, res) => {
+  const userID = req.user.id; // Assuming the user ID is available in the request object
+
   const queryText = `
-    SELECT * FROM "recipe" ORDER BY "id" DESC;
+    SELECT 
+      r.*, 
+      s."saveID" AS "saved", 
+      c."commentID" AS "commented" 
+    FROM 
+      "recipe" r 
+      LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1 
+      LEFT JOIN "comments" c ON r."recipeID" = c."recipeid" AND c."id" = $1 
+    ORDER BY r."recipeID" DESC;
   `;
 
   pool
-    .query(queryText)
+    .query(queryText, [userID])
     .then((result) => {
-      console.log("resultall", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log("Error getting user recipes:", error);
+      console.log("Error getting recipes:", error);
       res.sendStatus(500);
     });
 });
