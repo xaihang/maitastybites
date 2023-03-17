@@ -26,7 +26,7 @@
     /* margin-left: 20px */
   }
   
-  button[type="submit"] {
+ .searchBtn {
     height: 48px;
     font-size: 18px;
     background-color: #F0F3F4;
@@ -36,7 +36,7 @@
     padding: 0 24px;
   }
   
-  button[type="submit"]:hover {
+ .searchBtn:hover {
     background-color: #D1D8DC;
   }
   

@@ -43,7 +43,7 @@ export default function SearchPage() {
             className="search-box-search-input"
             placeholder="search recipe name"
           />
-          <button type="submit">Search</button>
+          <button className="searchBtn" type="submit">Search</button>
         </form>
       </div>
       <div className="container-search-results">

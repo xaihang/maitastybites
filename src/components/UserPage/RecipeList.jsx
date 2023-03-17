@@ -49,9 +49,9 @@ export default function RecipeList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {recipesUser?.map((recipe) => (
+            {recipesUser?.map((recipe, i) => (
               <RecipeItem
-                key={recipe?.recipeID}
+                key={i}
                 recipe={recipe}
                 handleEditRecipe={handleEditRecipe}
               />

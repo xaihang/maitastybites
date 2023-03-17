@@ -6,16 +6,18 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./UserPage.css";
+import RecipeListGallery from "../LandingPage/RecipeListGallery";
 
 function UserPage() {
   const dispatch = useDispatch();
   const recipes = useSelector((store) => store.recipes);
+  const { recipesAll } = useSelector((state) => state.recipe);
 
   const user = useSelector((store) => store.user);
 
-
   useEffect(() => {
     dispatch({ type: "GET_USER_RECIPES" });
+    dispatch({ type: "GET_ALL_RECIPES" });
   }, [dispatch]);
 
   const history = useHistory();
@@ -25,6 +27,13 @@ function UserPage() {
     history.push("/add");
   };
 
+  const filteredSavedRecipes = recipesAll.filter((recipe) => {
+    // console.log('recipe', recipe)
+    return recipe.id === user.id
+  });
+
+
+  console.log('filteredSavedRecipes', filteredSavedRecipes)
   const handleViewChange = (view) => {
     setActiveView(view);
   };
@@ -65,7 +74,7 @@ function UserPage() {
       </div>
 
       {activeView === "created" && <RecipeList />}
-      {/* {activeView === "saved" && <RecipeList />} */}
+      {activeView === "saved" && <RecipeListGallery recipesList={filteredSavedRecipes} />}
     </div>
   );
 }

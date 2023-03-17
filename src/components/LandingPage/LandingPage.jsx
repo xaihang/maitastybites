@@ -20,7 +20,6 @@ function LandingPage() {
 
     const { recipesAll } = useSelector((state) => state.recipe);
 
-
   return (
     <div className="container">
       <div className="hero-image-landing-page">
