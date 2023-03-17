@@ -97,3 +97,16 @@
     text-underline-position: under !important;
     text-decoration-thickness: 3px !important;
   }
+
+  .ImageList-item:hover .saveBtn {
+    display: block;
+  }
+
+  .saveBtn,
+.saveEdBtn {
+  display: none;
+}
+
+.saveEdBtn {
+  display: block;
+}
