@@ -13,13 +13,13 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
 
+
   useEffect(() => {
     dispatch({ type: "GET_USER_RECIPES" });
   }, [dispatch]);
 
   const history = useHistory();
   const [activeView, setActiveView] = useState("created"); // Add state to keep track of active view
-
 
   const handleAddRecipeClick = () => {
     history.push("/add");
@@ -33,16 +33,22 @@ function UserPage() {
     <div className="dashboard-container">
       <h2>Welcome, {user.username}!</h2>
       <div className="button-group">
-      <CustomButton
+        <CustomButton
           variant="text"
-          className={activeView === "created" ? "active createdViewBtn" : "createdViewBtn"} // Use active class if activeView is "created"
+          className={
+            activeView === "created"
+              ? "active createdViewBtn"
+              : "createdViewBtn"
+          } // Use active class if activeView is "created"
           onClick={() => handleViewChange("created")}
         >
           Created
         </CustomButton>
         <CustomButton
           variant="text"
-          className={activeView === "saved" ? "active savedViewBtn" : "savedViewBtn"} // Use active class if activeView is "saved"
+          className={
+            activeView === "saved" ? "active savedViewBtn" : "savedViewBtn"
+          } // Use active class if activeView is "saved"
           onClick={() => handleViewChange("saved")}
         >
           Saved
@@ -58,10 +64,10 @@ function UserPage() {
         </div>
       </div>
 
-      <RecipeList />
+      {activeView === "created" && <RecipeList />}
+      {/* {activeView === "saved" && <RecipeList />} */}
     </div>
   );
 }
 
 export default UserPage;
-
