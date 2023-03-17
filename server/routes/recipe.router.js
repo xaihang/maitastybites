@@ -150,4 +150,34 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// POST route to save a recipe to a user's account
+router.post("/save", (req, res) => {
+  const { id, recipeID } = req.body;
+  const queryText = `INSERT INTO "save" ("id", "recipeID") VALUES ($1, $2) RETURNING *;`;
+  pool
+    .query(queryText, [id, recipeID])
+    .then((response) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log("Error saving recipe:", error);
+      res.sendStatus(500);
+    });
+});
+
+// GET route to retrieve saved recipes by user ID
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+  const queryText = `SELECT * FROM "save" WHERE "id" = $1;`;
+  pool
+    .query(queryText, [id])
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((error) => {
+      console.log("Error retrieving saved recipes:", error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
