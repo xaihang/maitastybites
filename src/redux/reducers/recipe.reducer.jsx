@@ -50,11 +50,16 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         comments: action.payload,
       };
-      case "SAVE_RECIPE":
-  return {
-    ...state,
-    savedRecipes: [...state.savedRecipes, action.payload],
-  };
+    case "SAVE_RECIPE":
+      return {
+        ...state,
+        savedRecipes: [...state.savedRecipes, action.payload],
+      };
+    case "GET_SAVED_RECIPES_SUCCESS":
+      return {
+        ...state,
+        savedRecipes: action.payload,
+      };
     default:
       return state;
   }

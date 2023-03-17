@@ -115,6 +115,16 @@ function* saveRecipe(action) {
   }
 }
 
+function* getSavedRecipes(action) {
+  try {
+    const response = yield call(axios.get, `/api/recipe/${action.payload}`);
+    yield put({ type: "GET_SAVED_RECIPES_SUCCESS", payload: response.data });
+  } catch (error) {
+    console.log("Error getting saved recipes:", error);
+    yield put({ type: "GET_SAVED_RECIPES_ERROR" });
+  }
+}
+
 function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
   yield takeEvery("GET_ALL_RECIPES", getAllRecipes);
@@ -129,5 +139,6 @@ function* recipeSaga() {
   yield takeLatest("ADD_COMMENT", addComment);
   yield takeLatest("GET_COMMENTS", getComments);
   yield takeLatest("SAVE_RECIPE", saveRecipe);
+  yield takeLatest("GET_SAVED_RECIPES", getSavedRecipes);
 }
 export default recipeSaga;
