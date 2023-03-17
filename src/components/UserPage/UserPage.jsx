@@ -40,7 +40,7 @@ function UserPage() {
 
   return (
     <div className="dashboard-container">
-      <h2>Welcome, {user.username}!</h2>
+      <h2>Hello, {user.username}!</h2>
       <div className="button-group">
         <CustomButton
           variant="text"
