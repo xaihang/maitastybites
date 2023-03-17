@@ -3,6 +3,7 @@ const initialState = {
   recipesUser: [],
   selectedRecipe: null,
   comment: [],
+  savedRecipes: [],
 };
 
 export default function recipeReducer(state = initialState, action) {
@@ -49,6 +50,11 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         comments: action.payload,
       };
+      case "SAVE_RECIPE":
+  return {
+    ...state,
+    savedRecipes: [...state.savedRecipes, action.payload],
+  };
     default:
       return state;
   }

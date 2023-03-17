@@ -105,7 +105,15 @@ function* getComments(action) {
   }
 }
 
-
+function* saveRecipe(action) {
+  try {
+    yield call(axios.post, "/api/recipe/save", action.payload);
+    yield put({ type: "SAVE_RECIPE_SUCCESS", payload: action.payload });
+  } catch (error) {
+    console.log("Error saving recipe:", error);
+    yield put({ type: "SAVE_RECIPE_ERROR" });
+  }
+}
 
 function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
@@ -120,5 +128,6 @@ function* recipeSaga() {
   yield takeLatest("DELETE_RECIPE", deleteRecipe);
   yield takeLatest("ADD_COMMENT", addComment);
   yield takeLatest("GET_COMMENTS", getComments);
+  yield takeLatest("SAVE_RECIPE", saveRecipe);
 }
 export default recipeSaga;
