@@ -90,3 +90,10 @@
     text-decoration: underline #1875D1;
     cursor: pointer;
   }
+
+  .active {
+    font-weight: bold !important;
+    text-decoration: underline !important;
+    text-underline-position: under !important;
+    text-decoration-thickness: 3px !important;
+  }

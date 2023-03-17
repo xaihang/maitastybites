@@ -18,19 +18,33 @@ function UserPage() {
   }, [dispatch]);
 
   const history = useHistory();
+  const [activeView, setActiveView] = useState("created"); // Add state to keep track of active view
+
 
   const handleAddRecipeClick = () => {
     history.push("/add");
+  };
+
+  const handleViewChange = (view) => {
+    setActiveView(view);
   };
 
   return (
     <div className="dashboard-container">
       <h2>Welcome, {user.username}!</h2>
       <div className="button-group">
-        <CustomButton variant="text" className="createdViewBtn">
+      <CustomButton
+          variant="text"
+          className={activeView === "created" ? "active createdViewBtn" : "createdViewBtn"} // Use active class if activeView is "created"
+          onClick={() => handleViewChange("created")}
+        >
           Created
         </CustomButton>
-        <CustomButton variant="text" className="savedViewBtn">
+        <CustomButton
+          variant="text"
+          className={activeView === "saved" ? "active savedViewBtn" : "savedViewBtn"} // Use active class if activeView is "saved"
+          onClick={() => handleViewChange("saved")}
+        >
           Saved
         </CustomButton>
         <div>

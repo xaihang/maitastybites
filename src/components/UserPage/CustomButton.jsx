@@ -9,6 +9,7 @@ const CustomButton = styled(Button)(({ theme }) => ({
     padding: "10px 20px",
     marginRight: "10px",
     transition: "all 0.3s ease",
+    
     "&:hover": {
       backgroundColor: "#f0f3f4",
     },
