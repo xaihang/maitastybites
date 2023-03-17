@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import CustomButton from "../UserPage/CustomButton";
 
-export default function RecipeListGallery({recipesList}) {
+export default function RecipeListGallery({ recipesList }) {
   const history = useHistory();
   const [savedRecipes, setSavedRecipes] = useState([]);
 
@@ -22,27 +22,30 @@ export default function RecipeListGallery({recipesList}) {
     }
   };
 
-
   return (
     <div>
       <ImageList sx={{ width: "100%" }} variant="woven" cols={3} gap={8}>
         {recipesList?.map((recipe) => (
           <ImageListItem key={recipe.recipeID} className="ImageList-item">
-              
             <div className="overlay">
-            <CustomButton
-                  onClick={() => handleSaveRecipe(recipe.recipeID)}
-                  className={savedRecipes.includes(recipe.recipeID) ? "saveEdBtn" : "saveBtn"}
+              <div className="saveRecipeToggleBtnDisplay">
+              <CustomButton
+                onClick={() => handleSaveRecipe(recipe.recipeID)}
+                className={
+                  savedRecipes.includes(recipe.recipeID)
+                  ? "saveEdBtn"
+                  : "saveBtn"
+                }
                 >
-                  {savedRecipes.includes(recipe.recipeID) ? "Saved" : "Save"}
-                </CustomButton>
+                {savedRecipes.includes(recipe.recipeID) ? "Saved" : "Save"}
+              </CustomButton>
+                </div>
             </div>
 
             <img src={recipe.url} alt={recipe.recipename} loading="lazy" />
             <ImageListItemBar
               title={recipe.recipename}
               subtitle={recipe.description}
-           
             />
           </ImageListItem>
         ))}
