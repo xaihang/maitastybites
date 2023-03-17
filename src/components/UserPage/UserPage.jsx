@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./UserPage.css";
 import RecipeListGallery from "../LandingPage/RecipeListGallery";
+import userProfile from "../UserPage/user-img.png"
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -18,7 +19,8 @@ function UserPage() {
   useEffect(() => {
     dispatch({ type: "GET_USER_RECIPES" });
     dispatch({ type: "GET_ALL_RECIPES" });
-  }, [dispatch]);
+    dispatch({ type: "GET_SAVED_RECIPES", payload: user.id }); // Fetch saved recipes for current user
+  }, [dispatch, user.id]);
 
   const history = useHistory();
   const [activeView, setActiveView] = useState("created"); // Add state to keep track of active view
@@ -27,6 +29,7 @@ function UserPage() {
     history.push("/add");
   };
 
+  const savedRecipes = useSelector((store) => store.savedRecipes); // Get saved recipes for current user
   const filteredSavedRecipes = recipesAll.filter((recipe) => {
     // console.log('recipe', recipe)
     return recipe.id === user.id
@@ -41,6 +44,10 @@ function UserPage() {
   return (
     <div className="dashboard-container">
       <h2>Hello, {user.username}!</h2>
+      <div className="userProfileImg">
+      <img src={userProfile} alt="user-profile" />
+
+      </div>
       <div className="button-group">
         <CustomButton
           variant="text"

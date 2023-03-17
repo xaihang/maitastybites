@@ -24,7 +24,7 @@
   }
   
   .addRecipeBtn {
-    margin-top: 3rem !important;
+    margin-top: 2rem !important;
     margin-left: 2.25rem !important;
     margin-bottom: 2rem !important;
   }
@@ -119,4 +119,10 @@
 
 p {
   font-style: italic;
+}
+
+.userProfileImg {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
 }
