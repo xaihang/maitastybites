@@ -42,10 +42,10 @@ export default function RecipeList() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Recipe Name</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Edit</TableCell>
-              <TableCell>Delete</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: 16 }}>Recipe Name</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: 16 }}>Description</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: 16 }}>Edit</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: 16 }}>Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
