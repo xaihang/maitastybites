@@ -20,7 +20,8 @@ export default function RecipeListGallery({ recipesList }) {
     history.push(`/details/${recipeID}`);
   };
 
-  const handleSaveRecipe = (recipeID) => {
+  const handleSaveRecipe = (event, recipeID) => {
+    event.stopPropagation();
     if (savedRecipes.includes(recipeID)) {
       setSavedRecipes(savedRecipes.filter((id) => id !== recipeID));
     } else {
@@ -39,11 +40,15 @@ export default function RecipeListGallery({ recipesList }) {
     <div>
       <ImageList sx={{ width: "100%" }} variant="woven" cols={3} gap={8}>
         {recipesList?.map((recipe) => (
-          <ImageListItem key={recipe.recipeID} className="ImageList-item">
+          <ImageListItem
+            key={recipe.recipeID}
+            className="ImageList-item"
+            onClick={() => handleClick(recipe.recipeID)}
+          >
             <div className="overlay">
               <div className="saveRecipeToggleBtnDisplay">
                 <CustomButton
-                  onClick={() => handleSaveRecipe(recipe.recipeID)}
+                  onClick={(event) => handleSaveRecipe(event, recipe.recipeID)}
                   className={
                     savedRecipes.includes(recipe.recipeID)
                       ? "saveEdBtn"
