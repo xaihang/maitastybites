@@ -17,15 +17,12 @@ import {
 import StarIcon from "@mui/icons-material/Star";
 
 const RecipeCommentForm = ({ recipeId }) => {
-  console.log("recipeId", recipeId);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const dispatch = useDispatch();
   const comments = useSelector((state) => state.recipe.comments);
-  console.log("commentscomments", comments);
   const user = useSelector((store) => store.user);
-  console.log("user", user);
 
 
   // format timestamp
@@ -52,8 +49,6 @@ const RecipeCommentForm = ({ recipeId }) => {
       recipeid: recipeId,
       id: user.id,
     };
-    console.log("newComment", newComment);
-    console.log("recipeId", recipeId);
     dispatch({ type: "ADD_COMMENT", payload: newComment });
     dispatch({ type: "GET_COMMENTS", payload: recipeId });
     setRating(0);

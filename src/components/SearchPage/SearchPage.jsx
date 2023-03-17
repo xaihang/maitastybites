@@ -12,15 +12,11 @@ export default function SearchPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const searchWord = queryParams.get("query");
-  console.log("searchWord", searchWord);
-  console.log("recipesAll", recipesAll);
 
   useEffect(() => {
     setSearchTerm(searchWord);
     dispatch({ type: "GET_ALL_RECIPES" });
   }, [dispatch, searchWord]);
-
-  console.log("searchTerm", searchTerm);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -33,8 +29,6 @@ export default function SearchPage() {
     const ingredientsLower = recipe.ingredients.toLowerCase();
     return recipeNameLower.includes(searchTermLower) || ingredientsLower.includes(searchTermLower);
   });
-
-  console.log('filteredRecipes', filteredRecipes)
 
   return (
     <div>

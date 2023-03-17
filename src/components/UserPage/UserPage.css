@@ -42,7 +42,7 @@
     }
   }
 
-  .createdViewBtn, .savedViewBtn, .addRecipeBtn, .deleteBtn, .editBtn, .postCommentBtn {
+  .createdViewBtn, .savedViewBtn, .addRecipeBtn, .deleteBtn, .editBtn, .postCommentBtn, .saveBtn, .saveEdBtn {
     border-radius: 25px !important;
   }
 /*   
@@ -97,3 +97,22 @@
     text-underline-position: under !important;
     text-decoration-thickness: 3px !important;
   }
+
+  .ImageList-item:hover .saveBtn {
+    display: block;
+  }
+
+  .saveBtn,
+.saveEdBtn {
+  display: none;
+}
+
+.saveEdBtn {
+  display: block;
+}
+
+.saveRecipeToggleBtnDisplay {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
