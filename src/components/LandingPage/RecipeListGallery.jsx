@@ -8,14 +8,13 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useDispatch, useSelector } from "react-redux";
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+
 
 export default function RecipeListGallery({ recipesList }) {
   const history = useHistory();
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
   const handleClick = (recipeID) => {
     history.push(`/details/${recipeID}`);
@@ -29,6 +28,16 @@ export default function RecipeListGallery({ recipesList }) {
     };
 
      dispatch({ type: "SAVE_RECIPE", payload: data });
+     dispatch({ type: "GET_ALL_RECIPES"});
+
+    setSubmitSuccess(true);
+  };
+
+  const handleUnSaveRecipe = (event, savedID) => {
+    event.stopPropagation();
+
+
+     dispatch({ type: "UNSAVE_RECIPE", payload: savedID });
      dispatch({ type: "GET_ALL_RECIPES"});
 
     setSubmitSuccess(true);
@@ -53,10 +62,9 @@ export default function RecipeListGallery({ recipesList }) {
             <div className="overlay">
               <div className="saveRecipeToggleBtnDisplay">
                 <CustomButton
-                  // onClick={(event) => handleSaveRecipe(event, recipe.recipeID)}
                   onClick={(event) =>
                     recipe.saved
-                      ? handleUnSaveRecipe(event, recipe.recipeID)
+                      ? handleUnSaveRecipe(event, recipe.saved)
                       : handleSaveRecipe(event, recipe.recipeID)
                   }
                   className={
@@ -78,20 +86,6 @@ export default function RecipeListGallery({ recipesList }) {
           </ImageListItem>
         ))}
       </ImageList>
-
-      <Snackbar
-        open={submitSuccess}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert
-          onClose={handleSnackbarClose}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          Saved successfully!
-        </Alert>
-      </Snackbar>
     </div>
   );
 }

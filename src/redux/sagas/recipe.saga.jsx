@@ -2,10 +2,8 @@ import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
 function* getUserRecipes() {
-  // console.log("getUserRecipes");
   try {
     const response = yield call(axios.get, "/api/recipe/user");
-    console.log("response", response);
     yield put({ type: "GET_USER_RECIPES_SUCCESS", payload: response.data });
   } catch (error) {
     console.log("Error getting recipes:", error);
@@ -14,10 +12,8 @@ function* getUserRecipes() {
 }
 
 function* getAllRecipes() {
-  // console.log("getAllRecipes");
   try {
     const response = yield call(axios.get, "/api/recipe");
-    console.log("response", response);
     yield put({ type: "GET_ALL_RECIPES_SUCCESS", payload: response.data });
   } catch (error) {
     console.log("Error getting all recipes:", error);
@@ -92,10 +88,8 @@ function* addComment(action) {
 
 // get comments 
 function* getComments(action) {
-  // console.log('getcomments on saga====ssasd', action.payload);
 
   const recipeid = action.payload
-// console.log('hmmm', recipeid)
   try {
     const response = yield call(axios.get, `/api/comments/${recipeid}`);
     yield put({ type: "GET_COMMENTS_SUCCESS", payload: response.data });
@@ -107,7 +101,7 @@ function* getComments(action) {
 
 function* saveRecipe(action) {
   try {
-    yield call(axios.post, "/api/recipe/save", action.payload);
+    yield call(axios.post, "/api/recipe/allSave", action.payload);
     yield put({ type: "SAVE_RECIPE_SUCCESS", payload: action.payload });
   } catch (error) {
     console.log("Error saving recipe:", error);
@@ -116,8 +110,9 @@ function* saveRecipe(action) {
 }
 
 function* unSaveRecipe(action) {
+  console.log('unSaveRecipeaction', typeof action.payload)
   try {
-    yield call(axios.delete, "/api/recipe/unsave", action.payload);
+    yield call(axios.delete, `/api/recipe/allSave/${action.payload}`);
 
   } catch (error) {
     console.log("Error unsaving recipe:", error);

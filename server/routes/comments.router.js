@@ -23,7 +23,6 @@ router.post("/", async (req, res) => {
 
 // Route to get all comments and ratings for a recipe
 router.get("/:recipeid", async (req, res) => {
-  console.log('req.params', req.params)
   const { recipeid } = req.params;
 
   if (!recipeid) {
@@ -35,7 +34,6 @@ router.get("/:recipeid", async (req, res) => {
       `SELECT c.*, u.username FROM "comments" c JOIN "user" u ON u.id = c.id WHERE c.recipeid = $1;`,
       [parseInt(recipeid)]
     );
-    console.log('result', result)
     res.status(200).json(result.rows);
   } catch (error) {
     console.error(error);

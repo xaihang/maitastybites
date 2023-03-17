@@ -5,6 +5,20 @@ const router = express.Router();
 /**
  * GET - get ALL recipes from database from all users:
  */
+
+router.delete("/allSave/:saveID", (req, res) => {
+  const saveID = req.params.saveID;
+  const queryText = `DELETE FROM "save" WHERE "saveID" = $1;`;
+  pool
+    .query(queryText, [saveID])
+    .then((response) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log("Error saving recipe:", error);
+      res.sendStatus(500);
+    });
+});
 router.get("/", (req, res) => {
   const userID = req.user.id; // Assuming the user ID is available in the request object
 
@@ -55,8 +69,6 @@ router.get("/user", (req, res) => {
 // GET recipe by ID
 router.get("/:id", (req, res) => {
   const recipeID = req.params.id;
-
-  console.log("recipeID", recipeID);
   const queryText = `
     SELECT * FROM "recipe" WHERE "recipeID" = $1;
   `;
@@ -64,7 +76,6 @@ router.get("/:id", (req, res) => {
   pool
     .query(queryText, [recipeID])
     .then((result) => {
-      console.log("GETSINGLE result.rows", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -81,8 +92,6 @@ router.post("/", (req, res) => {
   const { recipename, description, ingredients, direction, url, userId } =
     recipeData;
 
-  console.log("userId", userId);
-  console.log("recipeData", recipeData);
   const queryText = `
     INSERT INTO "recipe" (recipename, description, ingredients, direction, url, id)
     VALUES ($1, $2, $3, $4, $5, $6);
@@ -160,7 +169,7 @@ router.put("/:id", (req, res) => {
 });
 
 // POST route to save a recipe to a user's account
-router.post("/save", (req, res) => {
+router.post("/allSave", (req, res) => {
   const { id, recipeID } = req.body;
   const queryText = `INSERT INTO "save" ("id", "recipeID") VALUES ($1, $2) RETURNING *;`;
   pool
@@ -174,6 +183,8 @@ router.post("/save", (req, res) => {
     });
 });
 
+
+
 // GET route to retrieve saved recipes by user ID
 router.get("/:id", (req, res) => {
   const id = req.params.id;
@@ -185,6 +196,20 @@ router.get("/:id", (req, res) => {
     })
     .catch((error) => {
       console.log("Error retrieving saved recipes:", error);
+      res.sendStatus(500);
+    });
+});
+
+router.post("/save", (req, res) => {
+  const { id, recipeID } = req.body;
+  const queryText = `INSERT INTO "save" ("id", "recipeID") VALUES ($1, $2) RETURNING *;`;
+  pool
+    .query(queryText, [id, recipeID])
+    .then((response) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log("Error saving recipe:", error);
       res.sendStatus(500);
     });
 });
