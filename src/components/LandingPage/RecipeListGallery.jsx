@@ -52,7 +52,7 @@ export default function RecipeListGallery({ recipesList }) {
 
   return (
     <div>
-      <ImageList sx={{ width: "100%" }} variant="woven" cols={3} gap={8}>
+      <ImageList sx={{ width: "100%" }} variant="woven" cols={4} gap={8}>
         {recipesList?.map((recipe) => (
           <ImageListItem
             key={recipe.recipeID}
