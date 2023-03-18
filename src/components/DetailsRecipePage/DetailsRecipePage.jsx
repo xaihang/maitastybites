@@ -68,24 +68,16 @@ const ShareModal = ({ open, handleClose, url }) => {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-          <FacebookIcon sx={{ fontSize: "32px", marginRight: "10px" }}>
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            </FacebookIcon>
 
+            <div className="share-icons">
+  <div onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`)}>
+    <FacebookIcon sx={{ fontSize: "50px", marginRight: "10px" }} />
+  </div>
+  <div onClick={() => window.open(`https://twitter.com/intent/tweet?url=${url}`)}>
+    <TwitterIcon sx={{ fontSize: "50px" }} />
+  </div>
+</div>
 
-               <TwitterIcon sx={{ fontSize: "32px" }}>
-              <a
-                href={`https://twitter.com/intent/tweet?url=${url}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            </TwitterIcon>
-
-            
           </Box>
 
           <CopyToClipboard text={url} onCopy={handleCopyLink}>
