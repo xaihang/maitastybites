@@ -67,3 +67,17 @@
   .comments-header {
 text-decoration: underline;
   }
+
+  .share-icons div {
+    cursor: pointer;
+    
+  }
+
+  .share-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .share-icons > div {
+    margin-right: 10px;
+  }
