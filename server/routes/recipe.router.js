@@ -180,18 +180,43 @@ router.post("/", (req, res) => {
 /**
  * DELETE - recipe by id
  */
+// router.delete("/:id", (req, res) => {
+//   const recipeId = req.params.id;
+//   const queryText = `DELETE FROM "recipe" WHERE "recipeID" = $1;`;
+
+//   pool
+//     .query(queryText, [recipeId])
+//     .then(() => res.sendStatus(204))
+//     .catch((error) => {
+//       console.log("Error deleting recipe from database", error);
+//       res.sendStatus(500);
+//     });
+// });
+
+// DELETE - delete comments for recipe and then delete recipe id by user
 router.delete("/:id", (req, res) => {
   const recipeId = req.params.id;
-  const queryText = `DELETE FROM "recipe" WHERE "recipeID" = $1;`;
-
-  pool
-    .query(queryText, [recipeId])
-    .then(() => res.sendStatus(204))
+  
+  // Delete associated comments for the recipe
+  const deleteCommentsQuery = `DELETE FROM "comments" WHERE "recipeid" = $1;`;
+  pool.query(deleteCommentsQuery, [recipeId])
+    .then(() => {
+      // Delete the recipe after the comments have been deleted
+      const deleteRecipeQuery = `DELETE FROM "recipe" WHERE "recipeID" = $1;`;
+      pool.query(deleteRecipeQuery, [recipeId])
+        .then(() => res.sendStatus(204))
+        .catch((error) => {
+          console.log("Error deleting recipe from database", error);
+          res.sendStatus(500);
+        });
+    })
     .catch((error) => {
-      console.log("Error deleting recipe from database", error);
+      console.log("Error deleting comments from database", error);
       res.sendStatus(500);
     });
 });
+
+
 
 /**
  * PUT - edit a recipe by ID
