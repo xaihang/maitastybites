@@ -70,32 +70,19 @@ const CustomButton = styled(Button)(({ theme }) => ({
       color: "black"
     },
   },
+  "&.shareBtn": {
+    backgroundColor: "#EFEFEF",
+    color: "black",
+    outline: "none",
+    padding: "10px 20px",
+    marginRight: "10px",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      backgroundColor: "#BDBDBD",
+      color: "black"
+    },
+  },
   
-  // "&.editBtn": {
-  //   color: "black",
-  //   textTransform: "lowercase",
-  //   outline: "none",
-  //   padding: "5px 10px",
-  //   marginRight: "10px",
-  //   transition: "all 0.3s ease",
-  //   "&:hover": {
-  //     backgroundColor: "transparent",
-  //     textDecoration: "underline",
-  //   },
-  // },
-  // "&.deleteBtn": {
-  //   color: "black",
-  //   textTransform: "lowercase",
-  //   outline: "none",
-  //   padding: "5px 10px",
-  //   marginLeft: "10px",
-  //   transition: "all 0.3s ease",
-  //   "&:hover": {
-  //     backgroundColor: 'transparent',
-  //     color: "red",
-  //     textDecoration: "underline",
-  //   },
-  // }
 }));
 
 export default CustomButton;

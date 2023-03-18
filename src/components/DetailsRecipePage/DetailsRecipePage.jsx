@@ -6,6 +6,8 @@ import RecipeCommentForm from "./RecipeCommentForm";
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
 import { Box, Typography } from "@mui/material";
+import CustomButton from "../UserPage/CustomButton";
+
 
 
 const DetailsRecipePage = () => {
@@ -49,10 +51,17 @@ const DetailsRecipePage = () => {
                 </Typography>
               </Box>
 
+              <div className="buttons-details-page">
+                <CustomButton className="saveBtn">Save</CustomButton>
+          <CustomButton className="shareBtn">Share</CustomButton>
+        </div>
+
             </div>
             <div className="recipe-image">
               <img src={recipe.url} alt={recipe.recipename} />
             </div>
+
+      
 
           </div>
           <div className="recipe-ingredients">
