@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import "./DetailsRecipePage.css";
 import RecipeCommentForm from "./RecipeCommentForm";
 import StarIcon from "@mui/icons-material/Star";
@@ -9,6 +10,16 @@ import { Box, Typography } from "@mui/material";
 import CustomButton from "../UserPage/CustomButton";
 import { styled } from '@mui/material/styles';
 import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Modal from "@mui/material/Modal";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkIcon from "@mui/icons-material/Link";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import { Divider } from "@mui/material";
 
 const ShareButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#EFEFEF",
@@ -25,11 +36,82 @@ const ShareButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+
+
+  const ShareModal = ({ open, handleClose, url }) => {
+    const handleCopyLink = () => {
+      alert(`Link copied to clipboard: ${url}`);
+    };
+  
+    return (
+      <Modal open={open} onClose={handleClose}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            borderRadius: "25px",
+          }}
+        >
+          <Typography variant="h4" sx={{ mb: 1 }}>
+            Share this recipe
+          </Typography>
+          <Divider sx={{ mb: 1 }} />
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <CopyToClipboard text={url} onCopy={handleCopyLink}>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<LinkIcon />}
+                sx={{ mb: 1 }}
+              >
+                Copy link
+              </Button>
+            </CopyToClipboard>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<FacebookIcon />}
+                sx={{ mb: 1 }}
+              >
+                Facebook
+              </Button>
+            </a>
+            <a
+              href={`https://twitter.com/intent/tweet?url=${url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<TwitterIcon />}
+              >
+                Twitter
+              </Button>
+            </a>
+          </Box>
+        </Box>
+      </Modal>
+    );
+  };
+
+  
 const DetailsRecipePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const recipe = useSelector((state) => state.recipe.selectedRecipe);
   const comments = useSelector((state) => state.recipe.comments);
+  const [openModal, setOpenModal] = useState(false);
 
  
 
@@ -46,6 +128,14 @@ const DetailsRecipePage = () => {
     // Calculate the average rating
     const sumRating = comments?.reduce((acc, comment) => acc + comment.rating, 0);
     const avgRating = sumRating / comments?.length;
+
+    const handleOpen = () => {
+      setOpenModal(true);
+    };
+  
+    const handleClose = () => {
+      setOpenModal(false);
+    };
 
   return (
     <>
@@ -68,7 +158,8 @@ const DetailsRecipePage = () => {
 
               <div className="buttons-details-page">
                 <CustomButton className="saveBtn"  sx={{ marginRight: "10px" }}>Save</CustomButton>
-                <ShareButton>Share</ShareButton>
+                <ShareButton onClick={handleOpen}>Share</ShareButton>
+                <ShareModal open={openModal} handleClose={handleClose} />
               </div>
 
 
