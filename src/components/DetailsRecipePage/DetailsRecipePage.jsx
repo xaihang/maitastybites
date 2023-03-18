@@ -107,6 +107,7 @@ const ShareButton = styled(Button)(({ theme }) => ({
 
   
 const DetailsRecipePage = () => {
+  const url = window.location.href;
   const dispatch = useDispatch();
   const { id } = useParams();
   const recipe = useSelector((state) => state.recipe.selectedRecipe);
@@ -159,7 +160,7 @@ const DetailsRecipePage = () => {
               <div className="buttons-details-page">
                 <CustomButton className="saveBtn"  sx={{ marginRight: "10px" }}>Save</CustomButton>
                 <ShareButton onClick={handleOpen}>Share</ShareButton>
-                <ShareModal open={openModal} handleClose={handleClose} />
+                <ShareModal open={openModal} handleClose={handleClose} url={url}/>
               </div>
 
 
