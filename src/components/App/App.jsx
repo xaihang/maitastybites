@@ -14,7 +14,6 @@ import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
-import UserPage from "../UserPage/UserPage";
 import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -24,6 +23,8 @@ import RecipeForm from "../UserPage/RecipeForm";
 
 import "./App.css";
 import SearchPage from "../SearchPage/SearchPage";
+import UserCreatedPage from "../UserPage/UserCreatedPage";
+import UserSavedPage from "../UserPage/UserSavedPage";
 
 
 function App() {
@@ -70,7 +71,15 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
+            <UserCreatedPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/saved"
+          >
+            <UserSavedPage />
           </ProtectedRoute>
           <ProtectedRoute
             exact

@@ -110,7 +110,6 @@ function* saveRecipe(action) {
 }
 
 function* unSaveRecipe(action) {
-  console.log('unSaveRecipeaction', typeof action.payload)
   try {
     yield call(axios.delete, `/api/recipe/allSave/${action.payload}`);
 
@@ -122,7 +121,7 @@ function* unSaveRecipe(action) {
 
 function* getSavedRecipes(action) {
   try {
-    const response = yield call(axios.get, `/api/recipe/${action.payload}`);
+    const response = yield call(axios.get, `/api/recipe/userSavedRecipe/${action.payload}`);
     yield put({ type: "GET_SAVED_RECIPES_SUCCESS", payload: response.data });
   } catch (error) {
     console.log("Error getting saved recipes:", error);
@@ -134,9 +133,7 @@ function* recipeSaga() {
   yield takeLatest("ADD_RECIPE", addRecipe);
   yield takeEvery("GET_ALL_RECIPES", getAllRecipes);
   yield takeEvery("GET_USER_RECIPES", function* () {
-    console.log("GET_USER_RECIPES action dispatched");
     yield call(getUserRecipes);
-    console.log("GET_USER_RECIPES finished");
   });
   yield takeLatest("GET_RECIPE_BY_ID", getRecipeById);
   yield takeLatest("UPDATE_RECIPE", updateRecipe);
