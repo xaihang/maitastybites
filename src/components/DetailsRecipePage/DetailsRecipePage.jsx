@@ -7,8 +7,23 @@ import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
 import { Box, Typography } from "@mui/material";
 import CustomButton from "../UserPage/CustomButton";
+import { styled } from '@mui/material/styles';
+import Button from "@mui/material/Button";
 
-
+const ShareButton = styled(Button)(({ theme }) => ({
+  backgroundColor: "#EFEFEF",
+  border: "black",
+  outline: "none",
+  padding: "10px 20px",
+  marginTop: "10px",
+  transition: "all 0.3s ease",
+  border: "1px solid darkgrey",
+  borderRadius: "25px",
+  "&:hover": {
+    backgroundColor: "#BDBDBD",
+    color: "black",
+  },
+}));
 
 const DetailsRecipePage = () => {
   const dispatch = useDispatch();
@@ -53,8 +68,9 @@ const DetailsRecipePage = () => {
 
               <div className="buttons-details-page">
                 <CustomButton className="saveBtn">Save</CustomButton>
-          <CustomButton className="shareBtn">Share</CustomButton>
-        </div>
+                <ShareButton>Share</ShareButton>
+              </div>
+
 
             </div>
             <div className="recipe-image">

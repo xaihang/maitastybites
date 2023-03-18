@@ -75,7 +75,7 @@ const CustomButton = styled(Button)(({ theme }) => ({
     color: "black",
     outline: "none",
     padding: "10px 20px",
-    marginRight: "10px",
+    marginTop: "10px",
     transition: "all 0.3s ease",
     "&:hover": {
       backgroundColor: "#BDBDBD",
