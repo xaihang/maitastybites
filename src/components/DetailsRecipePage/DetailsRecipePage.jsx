@@ -20,6 +20,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkIcon from "@mui/icons-material/Link";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { Divider } from "@mui/material";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 const ShareButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#EFEFEF",
@@ -37,8 +39,9 @@ const ShareButton = styled(Button)(({ theme }) => ({
 }));
 
 const ShareModal = ({ open, handleClose, url }) => {
+  const [showCopySuccess, setShowCopySuccess] = useState(false);
   const handleCopyLink = () => {
-    alert(`Link copied to clipboard: ${url}`);
+    setShowCopySuccess(true);
   };
 
   return (
@@ -80,16 +83,19 @@ const ShareModal = ({ open, handleClose, url }) => {
 
           </Box>
 
-          <CopyToClipboard text={url} onCopy={handleCopyLink}>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<LinkIcon />}
-              sx={{ mb: 1 }}
-            >
-              Copy link
-            </Button>
-          </CopyToClipboard>
+          <Box sx={{ position: 'relative' }}>
+  <CopyToClipboard text={url} onCopy={handleCopyLink}>
+    <Button variant="contained" color="primary" startIcon={<LinkIcon />} sx={{ mb: 1 }}>
+      Copy link
+    </Button>
+  </CopyToClipboard>
+  {showCopySuccess && (
+    <Alert sx={{ position: 'absolute', top: 0, right: 0 }} severity="success" onClose={() => setShowCopySuccess(false)}>
+      <AlertTitle>Link copied to clipboard</AlertTitle>
+      {url}
+    </Alert>
+  )}
+</Box>
         </Box>
       </Box>
     </Modal>
@@ -103,6 +109,7 @@ const DetailsRecipePage = () => {
   const recipe = useSelector((state) => state.recipe.selectedRecipe);
   const comments = useSelector((state) => state.recipe.comments);
   const [openModal, setOpenModal] = useState(false);
+
 
   useEffect(() => {
     dispatch({ type: "GET_RECIPE_BY_ID", payload: id });
