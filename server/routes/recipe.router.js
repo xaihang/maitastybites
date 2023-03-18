@@ -6,6 +6,63 @@ const router = express.Router();
  * GET - get ALL recipes from database from all users:
  */
 
+router.get("/userSavedRecipe/:id", (req, res) => {
+  const userID = req.params.id; // Retrieve the user ID from the request parameter
+
+  const queryText = `
+    SELECT 
+      r.*, 
+      s."saveID" AS "saved"
+    FROM 
+      "recipe" r 
+      JOIN "save" s ON r."recipeID" = s."recipeID"
+    WHERE 
+      s."id" = $1;
+  `;
+
+  pool
+    .query(queryText, [userID])
+    .then((result) => {
+      const recipes = result.rows;
+      res.send(recipes);
+    })
+    .catch((error) => {
+      console.log("Error getting saved recipes:", error);
+      res.sendStatus(500);
+    });
+});
+
+
+router.get("/", (req, res) => {
+  const userID = req.user.id;
+  const queryText = `
+    SELECT 
+      r.*, 
+      s."saveID" AS "saved", 
+      c."commentID" AS "commented",
+      u."id" AS "userID"
+    FROM 
+      "recipe" r 
+      LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1 
+      LEFT JOIN "comments" c ON r."recipeID" = c."recipeid" AND c."id" = $1 
+      JOIN "user" u ON r."id" = u."id"
+    ORDER BY r."recipeID" DESC;
+  `;
+
+  pool
+    .query(queryText, [userID])
+    .then((result) => {
+      const recipes = result.rows.map((recipe) => ({
+        ...recipe,
+      }));
+      res.send(recipes);
+    })
+    .catch((error) => {
+      console.log("Error getting recipes:", error);
+      res.sendStatus(500);
+    });
+});
+
 router.delete("/allSave/:saveID", (req, res) => {
   const saveID = req.params.saveID;
   const queryText = `DELETE FROM "save" WHERE "saveID" = $1;`;
@@ -20,30 +77,35 @@ router.delete("/allSave/:saveID", (req, res) => {
     });
 });
 router.get("/", (req, res) => {
-  const userID = req.user.id; // Assuming the user ID is available in the request object
-
+  const userID = req.user.id;
   const queryText = `
     SELECT 
       r.*, 
       s."saveID" AS "saved", 
-      c."commentID" AS "commented" 
+      c."commentID" AS "commented",
+      u."id" AS "userID"
     FROM 
       "recipe" r 
       LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1 
       LEFT JOIN "comments" c ON r."recipeID" = c."recipeid" AND c."id" = $1 
+      JOIN "user" u ON r."id" = u."id"
     ORDER BY r."recipeID" DESC;
   `;
 
   pool
     .query(queryText, [userID])
     .then((result) => {
-      res.send(result.rows);
+      const recipes = result.rows.map((recipe) => ({
+        ...recipe,
+      }));
+      res.send(recipes);
     })
     .catch((error) => {
       console.log("Error getting recipes:", error);
       res.sendStatus(500);
     });
 });
+
 
 /**
  * GET - get user's recipes from database (user id)

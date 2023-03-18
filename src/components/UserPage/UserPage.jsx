@@ -11,14 +11,10 @@ import userProfile from "../UserPage/user-img.png"
 
 function UserPage() {
   const dispatch = useDispatch();
-  const recipes = useSelector((store) => store.recipes);
-  const { recipesAll } = useSelector((state) => state.recipe);
-
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: "GET_USER_RECIPES" });
-    dispatch({ type: "GET_ALL_RECIPES" });
     dispatch({ type: "GET_SAVED_RECIPES", payload: user.id }); // Fetch saved recipes for current user
   }, [dispatch, user.id]);
 
@@ -29,14 +25,9 @@ function UserPage() {
     history.push("/add");
   };
 
-  const savedRecipes = useSelector((store) => store.savedRecipes); // Get saved recipes for current user
-  const filteredSavedRecipes = recipesAll.filter((recipe) => {
-    // console.log('recipe', recipe)
-    return recipe.id === user.id
-  });
+  const {savedRecipes} = useSelector((store) => store.recipe); // Get saved recipes for current user
 
 
-  console.log('filteredSavedRecipes', filteredSavedRecipes)
   const handleViewChange = (view) => {
     setActiveView(view);
   };
@@ -81,7 +72,7 @@ function UserPage() {
       </div>
 
       {activeView === "created" && <RecipeList />}
-      {activeView === "saved" && <RecipeListGallery recipesList={filteredSavedRecipes} />}
+      {activeView === "saved" && <RecipeListGallery recipesList={savedRecipes} fromDashboard={true}/>}
     </div>
   );
 }
