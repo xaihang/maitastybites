@@ -70,18 +70,6 @@ const CustomButton = styled(Button)(({ theme }) => ({
       color: "black"
     },
   },
-  "&.shareBtn": {
-    backgroundColor: "#EFEFEF",
-    color: "black",
-    outline: "none",
-    padding: "10px 20px",
-    marginTop: "10px",
-    transition: "all 0.3s ease",
-    "&:hover": {
-      backgroundColor: "#BDBDBD",
-      color: "black"
-    },
-  },
   
 }));
 

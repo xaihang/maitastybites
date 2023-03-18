@@ -67,7 +67,7 @@ const DetailsRecipePage = () => {
               </Box>
 
               <div className="buttons-details-page">
-                <CustomButton className="saveBtn">Save</CustomButton>
+                <CustomButton className="saveBtn"  sx={{ marginRight: "10px" }}>Save</CustomButton>
                 <ShareButton>Share</ShareButton>
               </div>
 
