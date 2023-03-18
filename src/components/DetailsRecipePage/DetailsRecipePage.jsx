@@ -20,8 +20,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkIcon from "@mui/icons-material/Link";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { Divider } from "@mui/material";
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 const ShareButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#EFEFEF",
@@ -71,31 +71,48 @@ const ShareModal = ({ open, handleClose, url }) => {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-
             <div className="share-icons">
-  <div onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`)}>
-    <FacebookIcon sx={{ fontSize: "50px", marginRight: "10px" }} />
-  </div>
-  <div onClick={() => window.open(`https://twitter.com/intent/tweet?url=${url}`)}>
-    <TwitterIcon sx={{ fontSize: "50px" }} />
-  </div>
-</div>
-
+              <div
+                onClick={() =>
+                  window.open(
+                    `https://www.facebook.com/sharer/sharer.php?u=${url}`
+                  )
+                }
+              >
+                <FacebookIcon sx={{ fontSize: "50px", marginRight: "10px" }} />
+              </div>
+              <div
+                onClick={() =>
+                  window.open(`https://twitter.com/intent/tweet?url=${url}`)
+                }
+              >
+                <TwitterIcon sx={{ fontSize: "50px" }} />
+              </div>
+            </div>
           </Box>
 
-          <Box sx={{ position: 'relative' }}>
-  <CopyToClipboard text={url} onCopy={handleCopyLink}>
-    <Button variant="contained" color="primary" startIcon={<LinkIcon />} sx={{ mb: 1 }}>
-      Copy link
-    </Button>
-  </CopyToClipboard>
-  {showCopySuccess && (
-    <Alert sx={{ position: 'absolute', top: 0, right: 0 }} severity="success" onClose={() => setShowCopySuccess(false)}>
-      <AlertTitle>Link copied to clipboard</AlertTitle>
-      {url}
-    </Alert>
-  )}
-</Box>
+          <Box sx={{ position: "relative" }}>
+            <CopyToClipboard text={url} onCopy={handleCopyLink}>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<LinkIcon />}
+                sx={{ mb: 1 }}
+              >
+                Copy link
+              </Button>
+            </CopyToClipboard>
+            {showCopySuccess && (
+              <Alert
+                sx={{ position: "absolute", top: 0, right: 0 }}
+                severity="success"
+                onClose={() => setShowCopySuccess(false)}
+              >
+                <AlertTitle>Link copied to clipboard</AlertTitle>
+                {url}
+              </Alert>
+            )}
+          </Box>
         </Box>
       </Box>
     </Modal>
@@ -110,7 +127,6 @@ const DetailsRecipePage = () => {
   const comments = useSelector((state) => state.recipe.comments);
   const [openModal, setOpenModal] = useState(false);
 
-
   useEffect(() => {
     dispatch({ type: "GET_RECIPE_BY_ID", payload: id });
     dispatch({ type: "GET_COMMENTS", payload: id });
@@ -119,6 +135,10 @@ const DetailsRecipePage = () => {
   if (!recipe) {
     return <div>Loading...</div>;
   }
+
+  const handleSave = (userID, recipeID) => {
+    dispatch({ type: "SAVE_RECIPE", payload: { userID, recipeID } });
+  };
 
   // Calculate the average rating
   const sumRating = comments?.reduce((acc, comment) => acc + comment.rating, 0);
@@ -152,7 +172,7 @@ const DetailsRecipePage = () => {
               </Box>
 
               <div className="buttons-details-page">
-                <CustomButton className="saveBtn" sx={{ marginRight: "10px" }}>
+                <CustomButton onClick={() => handleSave(recipe._id)} className="saveBtn" sx={{ marginRight: "10px" }}>
                   Save
                 </CustomButton>
                 <ShareButton onClick={handleOpen}>Share</ShareButton>

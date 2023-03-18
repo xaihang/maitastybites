@@ -1,4 +1,4 @@
-import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
+import { call, put, takeLatest, takeEvery, select } from "redux-saga/effects";
 import axios from "axios";
 
 function* getUserRecipes() {
@@ -99,10 +99,23 @@ function* getComments(action) {
   }
 }
 
+// function* saveRecipe(action) {
+//   try {
+//     yield call(axios.post, "/api/recipe/allSave", action.payload);
+//     yield put({ type: "SAVE_RECIPE_SUCCESS", payload: action.payload });
+//   } catch (error) {
+//     console.log("Error saving recipe:", error);
+//     yield put({ type: "SAVE_RECIPE_ERROR" });
+//   }
+// }
+
+
 function* saveRecipe(action) {
   try {
-    yield call(axios.post, "/api/recipe/allSave", action.payload);
-    yield put({ type: "SAVE_RECIPE_SUCCESS", payload: action.payload });
+    const userId = yield select(state => state.user.id);
+    const payload = { ...action.payload, id: userId };
+    yield call(axios.post, "/api/recipe/allSave", payload);
+    yield put({ type: "SAVE_RECIPE_SUCCESS", payload });
   } catch (error) {
     console.log("Error saving recipe:", error);
     yield put({ type: "SAVE_RECIPE_ERROR" });
