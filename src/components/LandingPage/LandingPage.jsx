@@ -21,10 +21,12 @@ function LandingPage() {
     const { recipesAll } = useSelector((state) => state.recipe);
 
   return (
-    <div className="container">
-      <div className="hero-image-landing-page">
+    <>
+        <div className="hero-image-landing-page">
         <img src={heroImage} alt="hero image" />
       </div>
+    <div className="container">
+  
       <div className="rounded-rectangle">
         <div className="rounded-rectangle-text">
           <p>Welcome to</p>
@@ -37,6 +39,7 @@ function LandingPage() {
       </div>
       <RecipeListGallery recipesList={recipesAll}/>
     </div>
+          </>
   );
 }
 

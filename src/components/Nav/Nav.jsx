@@ -118,7 +118,7 @@ function Nav() {
                 sx={{ marginLeft: isMobile ? "auto" : "600px" }}
               >
                 <InputBase
-                  placeholder="search recipe"
+                  placeholder="search recipes"
                   className="searchInput"
                   sx={{
                     "&:focus": {
