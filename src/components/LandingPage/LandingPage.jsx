@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import RecipeListGallery from "./RecipeListGallery";
 import heroImage from "../LandingPage/hero.png";
 
-
 function LandingPage() {
   const history = useHistory();
   const dispatch = useDispatch();
