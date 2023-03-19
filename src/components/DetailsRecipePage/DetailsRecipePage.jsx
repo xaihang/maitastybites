@@ -23,12 +23,13 @@ import { Divider } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 
-const ShareButton = styled(Button)(({ theme }) => ({
+const GenericButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#EFEFEF",
   border: "black",
   outline: "none",
   padding: "10px 20px",
   marginTop: "10px",
+  marginLeft: "10px",
   transition: "all 0.3s ease",
   border: "1px solid darkgrey",
   borderRadius: "25px",
@@ -38,14 +39,14 @@ const ShareButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const ShareModal = ({ open, handleClose, url }) => {
+const ShareModal = ({ open, handleCloseShare, url }) => {
   const [showCopySuccess, setShowCopySuccess] = useState(false);
   const handleCopyLink = () => {
     setShowCopySuccess(true);
   };
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open} onClose={handleCloseShare}>
       <Box
         sx={{
           position: "absolute",
@@ -126,7 +127,7 @@ const DetailsRecipePage = () => {
   const recipe = useSelector((state) => state.recipe.selectedRecipe);
   const [recipeSelected, setRecipeSelected] = useState(recipe)
   const comments = useSelector((state) => state.recipe.comments);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenShareModal] = useState(false);
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
@@ -147,8 +148,8 @@ const DetailsRecipePage = () => {
   const sumRating = comments?.reduce((acc, comment) => acc + comment.rating, 0);
   const avgRating = sumRating / comments?.length;
 
-  const handleOpen = () => setOpenModal(true);
-  const handleClose = () => setOpenModal(false);
+  const handleOpenShare = () => setOpenShareModal(true);
+  const handleCloseShare = () => setOpenShareModal(false);
 
   const handleSaveRecipe = (recipeID) => {
     const data = { recipeID, id: user.id };
@@ -195,10 +196,14 @@ const DetailsRecipePage = () => {
                 >
                   {recipeSelected?.saved ? "Saved" : "Save"}
                 </CustomButton>
-                <ShareButton onClick={handleOpen}>Share</ShareButton>
+                <GenericButton onClick={handleOpenShare}>Share</GenericButton>
+                <GenericButton onClick={() => window.print()}>Print</GenericButton>
+
+                {/* <button>Print</button> */}
+                
                 <ShareModal
                   open={openModal}
-                  handleClose={handleClose}
+                  handleCloseShare={handleCloseShare}
                   url={url}
                 />
               </div>
