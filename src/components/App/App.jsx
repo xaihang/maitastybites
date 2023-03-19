@@ -89,7 +89,7 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute
             exact
-            path="/add/:id"
+            path="/edit/:id"
           >
             <RecipeForm />
           </ProtectedRoute>

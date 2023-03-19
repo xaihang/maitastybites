@@ -22,11 +22,13 @@ export default function RecipeList() {
   const { recipesUser } = useSelector((store) => store.recipe);
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector((store) => store.user);
 
 
   const handleEditRecipe = (recipeID) => {
-    dispatch({ type: "GET_RECIPE_BY_ID", payload: recipeID });
-    history.push(`/add/${recipeID}`);
+    const data = { recipeID, id: user.id };
+    dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
+    history.push(`/edit/${recipeID}`);
   };
 
 

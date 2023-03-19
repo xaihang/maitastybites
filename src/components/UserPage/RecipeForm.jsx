@@ -24,7 +24,9 @@ function RecipeForm() {
 
   useEffect(() => {
     if (id) {
-      dispatch({ type: "GET_RECIPE_BY_ID", payload: id });
+      const data = { recipeID: id, id: user.id };
+
+      dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
     }
   }, [dispatch, id]);
 
