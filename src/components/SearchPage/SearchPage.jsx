@@ -23,11 +23,14 @@ export default function SearchPage() {
     setSearchTerm(event.target.searchInput.value);
   };
 
-  const filteredRecipes = recipesAll.filter(recipe => {
+  const filteredRecipes = recipesAll.filter((recipe) => {
     const searchTermLower = searchTerm.toLowerCase();
     const recipeNameLower = recipe.recipename.toLowerCase();
     const ingredientsLower = recipe.ingredients.toLowerCase();
-    return recipeNameLower.includes(searchTermLower) || ingredientsLower.includes(searchTermLower);
+    return (
+      recipeNameLower.includes(searchTermLower) ||
+      ingredientsLower.includes(searchTermLower)
+    );
   });
 
   return (
@@ -43,12 +46,23 @@ export default function SearchPage() {
             className="search-box-search-input"
             placeholder="search recipes"
           />
-          <button className="searchBtn" type="submit">Search</button>
+          <button className="searchBtn" type="submit">
+            Search
+          </button>
         </form>
       </div>
-      <div className="container-search-results">
-        <RecipeListGallery recipesList={filteredRecipes} />
-      </div>
+      {filteredRecipes.length === 0 && (
+        <div className="no-results-container">
+          <h2 className="no-results-message">
+            No results found for "{searchTerm}".
+          </h2>
+        </div>
+      )}
+      {filteredRecipes.length > 0 && (
+        <div className="container-search-results">
+          <RecipeListGallery recipesList={filteredRecipes} />
+        </div>
+      )}
     </div>
   );
 }

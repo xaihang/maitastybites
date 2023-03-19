@@ -22,7 +22,7 @@ import "./Nav.css";
 import Collapse from "@mui/material/Collapse";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import defaultAvatar from "../../assets/images/defaultAvatar.png";
+import defaultAvatar from "../../assets/images/defaultAvatar.png"
 const settings = ["Dashboard", "Log Out"];
 
 function Nav() {
