@@ -35,6 +35,7 @@ function* updateUserProfileImage(action) {
       profileImage: profileImage
     };
     yield axios.post(`/api/user/${id}/profileimage`, data, config);
+    yield put({ type: 'UPDATE_AVATAR', payload: profileImage });
   } catch (error) {
     console.log('Error updating user profile image:', error);
   }

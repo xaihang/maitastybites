@@ -6,6 +6,7 @@ import CustomButton from "./CustomButton";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import defaultAvatar from '../../assets/images/defaultAvatar.png'
 
 export default function UserHeader({ view }) {
   const { id, username, profileimage } = useSelector((store) => store.user);
@@ -39,7 +40,7 @@ export default function UserHeader({ view }) {
       <h2>Hello, {username}!</h2>
       <div className="userProfileImgContainer">
         <img
-          src={OGprofileImage}
+          src={OGprofileImage ? OGprofileImage : defaultAvatar}
           alt="user-profile"
           className="userProfileImg"
         />

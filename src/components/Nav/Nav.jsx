@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useDispatch } from "react-redux";
@@ -22,7 +22,7 @@ import "./Nav.css";
 import Collapse from "@mui/material/Collapse";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-
+import defaultAvatar from "../../assets/images/defaultAvatar.png";
 const settings = ["Dashboard", "Log Out"];
 
 function Nav() {
@@ -35,6 +35,15 @@ function Nav() {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  console.log('nav user', user);
+  // useEffect(() => {
+  //   dispatch({ type: "FETCH_USER" });
+  // }, [user]);
+
+  // useEffect(() => {
+  //   dispatch({ type: "FETCH_USER" });
+  // }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -137,7 +146,10 @@ function Nav() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <SearchIcon className="searchIcon" onClick={(event) => handleSearch(event)}/>
+                <SearchIcon
+                  className="searchIcon"
+                  onClick={(event) => handleSearch(event)}
+                />
               </Box>
             </form>
 
@@ -170,13 +182,22 @@ function Nav() {
             {user.id && (
               <>
                 <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       className="avatar"
                       alt="User Avatar"
                       src={avatarImage}
                     />
-                  </IconButton>
+                  </IconButton> */}
+                  <img
+                    onClick={handleOpenUserMenu}
+                    src={
+                      user?.profileimage ? user?.profileimage : defaultAvatar
+                    }
+                    alt="user-profile"
+                    className="avatar"
+                    key={user?.profileimage} // add key prop
+                  />
                 </Tooltip>
                 <Menu
                   sx={{ mt: "45px" }}

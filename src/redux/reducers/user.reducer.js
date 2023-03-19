@@ -4,6 +4,11 @@ const userReducer = (state = {}, action) => {
       return action.payload;
     case 'UNSET_USER':
       return {};
+    case 'UPDATE_AVATAR':
+      return {
+        ...state,
+        profileimage: action.payload
+      };
     default:
       return state;
   }
