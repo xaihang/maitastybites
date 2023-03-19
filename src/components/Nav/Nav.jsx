@@ -19,6 +19,9 @@ import MenuItem from "@mui/material/MenuItem";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Nav.css";
+import Collapse from "@mui/material/Collapse";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const settings = ["Dashboard", "Log Out"];
 
@@ -29,6 +32,9 @@ function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -97,10 +103,12 @@ function Nav() {
             <h2 className="navtitle">MTB</h2>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "space-between" }}>
+            
             {/* search input box here */}
             <form onSubmit={handleSearch}>
-              <Box className="searchBox">
+              {/* <Box className="searchBox"> */}
+              <Box className="searchBox" sx={{ marginLeft: isMobile ? "auto" : "600px" }}>
                 <SearchIcon className="searchIcon" />
                 <InputBase
                   placeholder="search recipe name"
@@ -125,6 +133,8 @@ function Nav() {
               </Box>
             </form>
 
+
+
             <Link to={`/home`} className="navlink">
               {"Home"}
             </Link>
@@ -136,6 +146,20 @@ function Nav() {
               </Link>
             )}
           </Box>
+
+{/* Mobile content */}
+<Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+            <Link to={`/home`} className="navlink">
+              {"Home"}
+            </Link>
+
+            <form onSubmit={handleSearch} style={{ marginLeft: "auto" }}>
+              <Box className="searchBox">
+                {/* ... search bar components */}
+              </Box>
+            </form>
+          </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             {user.id && (
               <>
