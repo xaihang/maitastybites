@@ -24,8 +24,26 @@ function* fetchUser() {
   }
 }
 
+function* updateUserProfileImage(action) {
+  try {
+    const { id, profileImage } = action.payload;
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+    const data = {
+      profileImage: profileImage
+    };
+    yield axios.post(`/api/user/${id}/profileimage`, data, config);
+  } catch (error) {
+    console.log('Error updating user profile image:', error);
+  }
+}
+
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('UPDATE_USER_PROFILE_IMAGE', updateUserProfileImage);
 }
 
 export default userSaga;
