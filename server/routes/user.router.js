@@ -48,4 +48,55 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+
+/**
+ * GET - get user's profile image by user ID
+ */
+router.get("/profileimage/:id", (req, res) => {
+  const userId = req.params.id;
+
+  const queryText = `
+    SELECT profileimage FROM "user" WHERE id = $1;
+  `;
+
+  pool
+    .query(queryText, [userId])
+    .then((result) => {
+      if (result.rows.length === 0) {
+        res.sendStatus(404);
+      } else {
+        const profileImage = result.rows[0].profileimage;
+        res.send(profileImage);
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting user's profile image:", error);
+      res.sendStatus(500);
+    });
+});
+
+
+// POST route to update a user's profile image by their user ID
+router.post("/:id/profile-image", (req, res) => {
+  const userId = req.params.id;
+  const { profileImage } = req.body;
+
+  const queryText = `
+    UPDATE "user" 
+    SET "profileimage" = $1
+    WHERE "id" = $2;
+  `;
+
+  const queryValues = [profileImage, userId];
+
+  pool
+    .query(queryText, queryValues)
+    .then(() => res.sendStatus(200))
+    .catch((error) => {
+      console.log("Error updating user profile image:", error);
+      res.sendStatus(500);
+    });
+});
+
+
 module.exports = router;

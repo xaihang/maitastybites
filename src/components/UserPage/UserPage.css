@@ -1,112 +1,118 @@
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-container {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+@media (max-width: 600px) {
   .buttons-container {
-    display: inline-block;
-    margin-right: 1rem;
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
-  
-  @media (max-width: 600px) {
-    .buttons-container {
-      margin-right: 0;
-      margin-bottom: 1rem;
-    }
+}
+
+@media (min-width: 601px) {
+  .buttons-container {
+    margin-right: 2rem;
   }
-  
-  @media (min-width: 601px) {
-    .buttons-container {
-      margin-right: 2rem;
-    }
-  }
-  
+}
+
+.addRecipeBtn {
+  margin-top: 2rem !important;
+  margin-left: 0.3rem !important;
+  margin-bottom: 2rem !important;
+}
+
+@media (max-width: 600px) {
   .addRecipeBtn {
-    margin-top: 2rem !important;
-    margin-left: .3rem !important;
-    margin-bottom: 2rem !important;
+    margin-top: 2rem;
   }
-  
-  
-  @media (max-width: 600px) {
-    .addRecipeBtn {
-      margin-top: 2rem;
-    }
-  }
-  
-  @media (min-width: 601px) {
-    .addRecipeBtn {
-      margin-top: 3rem;
-    }
-  }
+}
 
-  .createdViewBtn, .savedViewBtn, .addRecipeBtn, .deleteBtn, .editBtn, .postCommentBtn, .saveBtn, .saveEdBtn {
-    border-radius: 25px !important;
+@media (min-width: 601px) {
+  .addRecipeBtn {
+    margin-top: 3rem;
   }
-  
-  .createdViewBtn {
-    margin-right: 45px !important; 
-  }
+}
 
-  .form-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    /* border-radius: 10px; */
-    outline: none;
-    border: none;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 650px;
-    height: 100%;
-    max-height: 700px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-  }
-  
-  .modal-textfield {
-    margin-right: 1rem;
-    margin-left: 4rem;
-  }
+.createdViewBtn,
+.savedViewBtn,
+.addRecipeBtn,
+.deleteBtn,
+.editBtn,
+.postCommentBtn,
+.saveBtn,
+.saveEdBtn {
+  border-radius: 25px !important;
+}
 
-  .modal-buttons {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 2.5rem;
-    margin-left: 6rem;
-  }
+.createdViewBtn {
+  margin-right: 45px !important;
+}
 
-  .delete-hovered {
-    color: red;
-    text-decoration: underline red;
-    cursor: pointer;
-  }
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  /* border-radius: 10px; */
+  outline: none;
+  border: none;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 650px;
+  height: 100%;
+  max-height: 700px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
 
-  .edit-hovered {
-    color: #1875D1;
-    text-decoration: underline #1875D1;
-    cursor: pointer;
-  }
+.modal-textfield {
+  margin-right: 1rem;
+  margin-left: 4rem;
+}
 
-  .active {
-    font-weight: bold !important;
-    text-decoration: underline !important;
-    text-underline-position: under !important;
-    text-decoration-thickness: 3px !important;
-  }
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2.5rem;
+  margin-left: 6rem;
+}
 
-  .ImageList-item:hover .saveBtn {
-    display: block;
-  }
+.delete-hovered {
+  color: red;
+  text-decoration: underline red;
+  cursor: pointer;
+}
 
-  .saveBtn,
+.edit-hovered {
+  color: #1875d1;
+  text-decoration: underline #1875d1;
+  cursor: pointer;
+}
+
+.active {
+  font-weight: bold !important;
+  text-decoration: underline !important;
+  text-underline-position: under !important;
+  text-decoration-thickness: 3px !important;
+}
+
+.ImageList-item:hover .saveBtn {
+  display: block;
+}
+
+.saveBtn,
 .saveEdBtn {
   display: none;
 }
@@ -130,3 +136,39 @@ p {
   height: 200px;
   margin-bottom: 20px;
 }
+
+.userProfileImgContainer {
+  position: relative;
+  cursor: pointer;
+}
+
+.userProfileImg {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0;
+}
+
+.cameraIconContainer {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+
+.cameraIcon {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.8);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  cursor: pointer;
+}
+
+
