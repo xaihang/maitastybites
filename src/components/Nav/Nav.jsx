@@ -103,13 +103,20 @@ function Nav() {
             <h2 className="navtitle">MTB</h2>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "space-between" }}>
-            
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-end",
+            }}
+          >
             {/* search input box here */}
             <form onSubmit={handleSearch}>
               {/* <Box className="searchBox"> */}
-              <Box className="searchBox" sx={{ marginLeft: isMobile ? "auto" : "600px" }}>
-                <SearchIcon className="searchIcon" />
+              <Box
+                className="searchBox"
+                sx={{ marginLeft: isMobile ? "auto" : "600px" }}
+              >
                 <InputBase
                   placeholder="search recipe name"
                   className="searchInput"
@@ -130,33 +137,32 @@ function Nav() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
+                <SearchIcon className="searchIcon" onClick={(event) => handleSearch(event)}/>
               </Box>
             </form>
 
-
-
-            <Link to={`/home`} className="navlink">
-              {"Home"}
-            </Link>
-
-            {/* User is not login, show login/register link  */}
-            {!user.id && (
-              <Link to={`/login`} className="navlink">
-                {"Login/Register"}
+            <Box sx={{ display: "flex" }}>
+              <Link to={`/home`} className="navlink">
+                {"Home"}
               </Link>
-            )}
+
+              {/* User is not login, show login/register link  */}
+              {!user.id && (
+                <Link to={`/login`} className="navlink">
+                  {"Login/Register"}
+                </Link>
+              )}
+            </Box>
           </Box>
 
-{/* Mobile content */}
-<Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+          {/* Mobile content */}
+          <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
             <Link to={`/home`} className="navlink">
               {"Home"}
             </Link>
 
             <form onSubmit={handleSearch} style={{ marginLeft: "auto" }}>
-              <Box className="searchBox">
-                {/* ... search bar components */}
-              </Box>
+              <Box className="searchBox">{/* ... search bar components */}</Box>
             </form>
           </Box>
 

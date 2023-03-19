@@ -7,7 +7,7 @@
   color: black;
   padding-left: 10px;
   margin: 0;
-  margin-right: 230px;
+  margin-right: 0;
 }
 
 
@@ -47,7 +47,7 @@
     border-radius: 4px;
     padding-left: 2px;
     padding-right: 2px;
-    margin-left: 600px;
+    margin-left: 20px;
     margin-right: 10px;
     margin-top: 14.5px;
     width: 300px;
@@ -57,8 +57,10 @@
   
   .searchIcon {
     color: gray;
+    cursor: pointer;
   }
-  
+
+
   .searchInput {
     margin-left: 1px;
     flex: 5;
