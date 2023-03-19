@@ -96,9 +96,9 @@ export default function RecipeListGallery({
   return (
     <div>
       <ImageList sx={{ width: "100%" }} variant="woven" cols={4} gap={8}>
-        {updatedRecipesList?.map((recipe) => (
+        {updatedRecipesList?.map((recipe, i) => (
           <ImageListItem
-            key={recipe.recipeID}
+            key={i}
             className="ImageList-item"
             onClick={() => handleClick(recipe.recipeID)}
           >

@@ -131,14 +131,26 @@ router.get("/user", (req, res) => {
 // GET recipe by ID
 router.get("/:id", (req, res) => {
   const recipeID = req.params.id;
+  const userID = req.user.id; 
   const queryText = `
-    SELECT * FROM "recipe" WHERE "recipeID" = $1;
+    SELECT 
+      r.*, 
+      s."saveID" AS "saved"
+    FROM 
+      "recipe" r 
+      LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1 
+    WHERE r."recipeID" = $2;
   `;
 
   pool
-    .query(queryText, [recipeID])
+    .query(queryText, [userID, recipeID])
     .then((result) => {
-      res.send(result.rows);
+      if (result.rows.length === 0) {
+        res.sendStatus(404);
+      } else {
+        const recipe = result.rows[0];
+        res.send(recipe);
+      }
     })
     .catch((error) => {
       console.log("Error getting recipe by ID:", error);
