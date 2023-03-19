@@ -19,6 +19,9 @@ import MenuItem from "@mui/material/MenuItem";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Nav.css";
+import Collapse from "@mui/material/Collapse";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const settings = ["Dashboard", "Log Out"];
 
@@ -29,6 +32,9 @@ function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -97,13 +103,22 @@ function Nav() {
             <h2 className="navtitle">MTB</h2>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-end",
+            }}
+          >
             {/* search input box here */}
             <form onSubmit={handleSearch}>
-              <Box className="searchBox">
-                <SearchIcon className="searchIcon" />
+              {/* <Box className="searchBox"> */}
+              <Box
+                className="searchBox searchWrapper"
+                sx={{ marginLeft: isMobile ? "auto" : "600px" }}
+              >
                 <InputBase
-                  placeholder="search recipe name"
+                  placeholder="search recipes"
                   className="searchInput"
                   sx={{
                     "&:focus": {
@@ -122,20 +137,35 @@ function Nav() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
+                <SearchIcon className="searchIcon" onClick={(event) => handleSearch(event)}/>
               </Box>
             </form>
 
+            <Box sx={{ display: "flex" }}>
+              <Link to={`/home`} className="navlink">
+                {"Home"}
+              </Link>
+
+              {/* User is not login, show login/register link  */}
+              {!user.id && (
+                <Link to={`/login`} className="navlink">
+                  {"Login/Register"}
+                </Link>
+              )}
+            </Box>
+          </Box>
+
+          {/* Mobile content */}
+          <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
             <Link to={`/home`} className="navlink">
               {"Home"}
             </Link>
 
-            {/* User is not login, show login/register link  */}
-            {!user.id && (
-              <Link to={`/login`} className="navlink">
-                {"Login/Register"}
-              </Link>
-            )}
+            <form onSubmit={handleSearch} style={{ marginLeft: "auto" }}>
+              <Box className="searchBox">{/* ... search bar components */}</Box>
+            </form>
           </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             {user.id && (
               <>
