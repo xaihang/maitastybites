@@ -26,7 +26,7 @@ export default function recipeReducer(state = initialState, action) {
     case "GET_SELECTED_RECIPE_SUCCESS":
       return {
         ...state,
-        selectedRecipe: action.payload[0],
+        selectedRecipe: action.payload,
       };
     case "UPDATE_RECIPE_SUCCESS":
       return state;

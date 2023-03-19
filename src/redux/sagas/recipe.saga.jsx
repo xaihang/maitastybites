@@ -34,14 +34,14 @@ function* addRecipe(action) {
 
 function* getRecipeById(action) {
   try {
-    const response = yield call(axios.get, `/api/recipe/${action.payload}`);
+    const userID = yield select(state => state);
+    const response = yield call(axios.get, `/api/recipe/${action.payload.recipeID}`, { params: { userID: action.payload.id } });
     yield put({ type: "GET_SELECTED_RECIPE_SUCCESS", payload: response.data });
   } catch (error) {
     console.log("Error getting recipe by id:", error);
     yield put({ type: "GET_RECIPE_BY_ID_ERROR" });
   }
 }
-
 
 function* updateRecipe(action) {
   try {

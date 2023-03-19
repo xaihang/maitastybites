@@ -124,42 +124,55 @@ const DetailsRecipePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const recipe = useSelector((state) => state.recipe.selectedRecipe);
+  const [recipeSelected, setRecipeSelected] = useState(recipe)
   const comments = useSelector((state) => state.recipe.comments);
   const [openModal, setOpenModal] = useState(false);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
-    dispatch({ type: "GET_RECIPE_BY_ID", payload: id });
+    setRecipeSelected(recipe)
+  }, [recipe])
+  
+  useEffect(() => {
+    const data = { recipeID: id, id: user.id };
+    dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
     dispatch({ type: "GET_COMMENTS", payload: id });
-  }, [dispatch, id]);
+  }, [dispatch, id, user]);
 
   if (!recipe) {
     return <div>Loading...</div>;
   }
 
-  const handleSave = (userID, recipeID) => {
-    dispatch({ type: "SAVE_RECIPE", payload: { userID, recipeID } });
-  };
-
   // Calculate the average rating
   const sumRating = comments?.reduce((acc, comment) => acc + comment.rating, 0);
   const avgRating = sumRating / comments?.length;
 
-  const handleOpen = () => {
-    setOpenModal(true);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+
+  const handleSaveRecipe = (recipeID) => {
+    const data = { recipeID, id: user.id };
+    dispatch({ type: "SAVE_RECIPE", payload: data });
+    dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
+    setRecipeSelected((prevState) => ({ ...prevState, saved: true }));
   };
 
-  const handleClose = () => {
-    setOpenModal(false);
+  const handleUnSaveRecipe = (savedID, recipeID) => {
+    const data = { recipeID, id: user.id };
+    dispatch({ type: "UNSAVE_RECIPE", payload: savedID });
+    dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
+    setRecipeSelected((prevState) => ({ ...prevState, saved: false }));
   };
 
+  
   return (
     <>
       <div className="parent-details-container">
         <div className="child-details-container">
           <div className="recipe-details">
             <div className="recipe-info">
-              <h1>{recipe.recipename}</h1>
-              <p>{recipe.description}</p>
+              <h1>{recipeSelected?.recipename}</h1>
+              <p>{recipeSelected?.description}</p>
 
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Rating value={avgRating} precision={0.5} readOnly />
@@ -167,13 +180,20 @@ const DetailsRecipePage = () => {
                   variant="subtitle2"
                   sx={{ ml: 1, color: "text.secondary" }}
                 >
-                  ({avgRating.toFixed(1)} stars)
+                  ({!avgRating ? 0 : avgRating.toFixed(1)} stars)
                 </Typography>
               </Box>
 
               <div className="buttons-details-page">
-                <CustomButton onClick={() => handleSave(recipe._id)} className="saveBtn" sx={{ marginRight: "10px" }}>
-                  Save
+              <CustomButton
+                  onClick={() =>
+                    recipeSelected?.saved
+                      ? handleUnSaveRecipe(recipeSelected?.saved, recipeSelected?.recipeID)
+                      : handleSaveRecipe(recipeSelected?.recipeID)
+                  }
+                  className={recipeSelected?.saved ? "saveEdBtn" : "saveBtn"}
+                >
+                  {recipeSelected?.saved ? "Saved" : "Save"}
                 </CustomButton>
                 <ShareButton onClick={handleOpen}>Share</ShareButton>
                 <ShareModal
@@ -184,13 +204,13 @@ const DetailsRecipePage = () => {
               </div>
             </div>
             <div className="recipe-image">
-              <img src={recipe.url} alt={recipe.recipename} />
+              <img src={recipeSelected?.url} alt={recipeSelected?.recipename} />
             </div>
           </div>
           <div className="recipe-ingredients">
             <h2>Ingredients</h2>
             <ul>
-              {recipe.ingredients.split("\n").map((ingredient, index) => (
+              {recipeSelected?.ingredients.split("\n").map((ingredient, index) => (
                 <li key={index}>{ingredient}</li>
               ))}
             </ul>
@@ -198,7 +218,7 @@ const DetailsRecipePage = () => {
           <div className="recipe-directions">
             <h2>Directions</h2>
             <ol>
-              {recipe.direction.split("\n").map((step, index) => (
+              {recipeSelected?.direction.split("\n").map((step, index) => (
                 <li key={index}>{step}</li>
               ))}
             </ol>
