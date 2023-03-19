@@ -66,3 +66,11 @@
     flex: 5;
   }
   
+
+  .searchWrapper:hover .searchIcon {
+    color: black;
+  }
+  
+  .searchWrapper:hover .searchBox {
+    background-color: black;
+  }

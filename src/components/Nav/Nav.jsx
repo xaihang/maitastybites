@@ -114,7 +114,7 @@ function Nav() {
             <form onSubmit={handleSearch}>
               {/* <Box className="searchBox"> */}
               <Box
-                className="searchBox"
+                className="searchBox searchWrapper"
                 sx={{ marginLeft: isMobile ? "auto" : "600px" }}
               >
                 <InputBase
