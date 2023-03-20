@@ -22,7 +22,7 @@ CREATE TABLE "user" (
 CREATE TABLE "recipe" (
      "recipeID" SERIAL PRIMARY KEY, 
      "recipename" VARCHAR(255), 
-     "description" VARCHAR(255),
+     "description" TEXT,
      "ingredients" TEXT, 
      "direction" TEXT, 
      "url" TEXT, 

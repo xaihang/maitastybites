@@ -26,6 +26,7 @@ export default function RecipeList() {
 
 
   const handleEditRecipe = (recipeID) => {
+    
     const data = { recipeID, id: user.id };
     dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
     history.push(`/edit/${recipeID}`);
