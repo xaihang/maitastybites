@@ -29,6 +29,11 @@ export default function RecipeListGallery({
 
   const handleSaveRecipe = (event, recipeID) => {
     event.stopPropagation();
+
+    if (Object.keys(user).length === 0) {
+      history.push(`/login`);
+      return
+    }
     const data = {
       recipeID,
       id: user.id,

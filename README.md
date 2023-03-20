@@ -1,7 +1,7 @@
 # Mai Tasty Bites
 
 ## Description
-MaiTastyBites is a website application that focuses on cooking, recipes, tips, and tricks for different Asian cuisines. Users can sign up to the website or view it as a guest, and they have the ability to add, edit, and delete their own recipes, as well as like and share them with others.
+Mai Tasty Bites is a website application that focuses on cooking, recipes, tips, and tricks for different Asian cuisines. Users can sign up to the website or view it as a guest, and they have the ability to add, edit, and delete their own recipes, as well as like and share them with others.
 
 
 ---

@@ -34,23 +34,27 @@ router.get("/userSavedRecipe/:id", (req, res) => {
 
 
 router.get("/", (req, res) => {
-  const userID = req.user.id;
+  const userID = req.user?.id;
+  const selectSaved = userID ? ', s."saveID" AS "saved"' : '';
+  const selectCommented = userID ? ', c."commentID" AS "commented"' : '';
   const queryText = `
     SELECT 
       r.*, 
-      s."saveID" AS "saved", 
-      c."commentID" AS "commented",
       u."id" AS "userID"
+      ${selectSaved}
+      ${selectCommented}
     FROM 
       "recipe" r 
-      LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1 
-      LEFT JOIN "comments" c ON r."recipeID" = c."recipeid" AND c."id" = $1 
       JOIN "user" u ON r."id" = u."id"
+      ${userID ? 'LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1' : ''}
+      ${userID ? 'LEFT JOIN "comments" c ON r."recipeID" = c."recipeid" AND c."id" = $1' : ''}
     ORDER BY r."recipeID" DESC;
   `;
 
+  const queryParams = userID ? [userID] : [];
+
   pool
-    .query(queryText, [userID])
+    .query(queryText, queryParams)
     .then((result) => {
       const recipes = result.rows.map((recipe) => ({
         ...recipe,
@@ -131,19 +135,33 @@ router.get("/user", (req, res) => {
 // GET recipe by ID
 router.get("/:id", (req, res) => {
   const recipeID = req.params.id;
-  const userID = req.user.id; 
-  const queryText = `
+  const userID = req.user?.id; // use optional chaining to check if req.user exists
+
+  let queryText = `
     SELECT 
-      r.*, 
-      s."saveID" AS "saved"
+      r.*
     FROM 
       "recipe" r 
-      LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1 
-    WHERE r."recipeID" = $2;
+    WHERE r."recipeID" = $1;
   `;
+  let queryParams = [recipeID];
+
+  // add JOIN and userID check if userID is passed
+  if (userID) {
+    queryText = `
+      SELECT 
+        r.*, 
+        s."saveID" AS "saved"
+      FROM 
+        "recipe" r 
+        LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1 
+      WHERE r."recipeID" = $2;
+    `;
+    queryParams = [userID, recipeID];
+  }
 
   pool
-    .query(queryText, [userID, recipeID])
+    .query(queryText, queryParams)
     .then((result) => {
       if (result.rows.length === 0) {
         res.sendStatus(404);
@@ -157,6 +175,34 @@ router.get("/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
+// router.get("/:id", (req, res) => {
+//   const recipeID = req.params.id;
+//   const userID = req.user.id; 
+//   const queryText = `
+//     SELECT 
+//       r.*, 
+//       s."saveID" AS "saved"
+//     FROM 
+//       "recipe" r 
+//       LEFT JOIN "save" s ON r."recipeID" = s."recipeID" AND s."id" = $1 
+//     WHERE r."recipeID" = $2;
+//   `;
+
+//   pool
+//     .query(queryText, [userID, recipeID])
+//     .then((result) => {
+//       if (result.rows.length === 0) {
+//         res.sendStatus(404);
+//       } else {
+//         const recipe = result.rows[0];
+//         res.send(recipe);
+//       }
+//     })
+//     .catch((error) => {
+//       console.log("Error getting recipe by ID:", error);
+//       res.sendStatus(500);
+//     });
+// });
 
 /**
  * POST - add a new recipe to the database (user id)

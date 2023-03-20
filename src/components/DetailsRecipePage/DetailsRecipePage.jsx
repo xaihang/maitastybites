@@ -24,6 +24,7 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import ShareIcon from '@mui/icons-material/Share';
 import PrintIcon from '@mui/icons-material/Print';
+import { useHistory } from "react-router-dom";
 
 const GenericButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#EFEFEF",
@@ -131,13 +132,14 @@ const DetailsRecipePage = () => {
   const comments = useSelector((state) => state.recipe.comments);
   const [openModal, setOpenShareModal] = useState(false);
   const user = useSelector((store) => store.user);
-
+  const history = useHistory();
   useEffect(() => {
     setRecipeSelected(recipe)
   }, [recipe])
   
   useEffect(() => {
     const data = { recipeID: id, id: user.id };
+    console.log('data', data)
     dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
     dispatch({ type: "GET_COMMENTS", payload: id });
   }, [dispatch, id, user]);
@@ -154,6 +156,12 @@ const DetailsRecipePage = () => {
   const handleCloseShare = () => setOpenShareModal(false);
 
   const handleSaveRecipe = (recipeID) => {
+
+
+    if (Object.keys(user).length === 0) {
+      history.push(`/login`);
+      return
+    }
     const data = { recipeID, id: user.id };
     dispatch({ type: "SAVE_RECIPE", payload: data });
     dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
