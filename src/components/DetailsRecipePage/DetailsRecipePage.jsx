@@ -22,6 +22,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import { Divider } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import ShareIcon from '@mui/icons-material/Share';
+import PrintIcon from '@mui/icons-material/Print';
 
 const GenericButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#EFEFEF",
@@ -196,10 +198,10 @@ const DetailsRecipePage = () => {
                 >
                   {recipeSelected?.saved ? "Saved" : "Save"}
                 </CustomButton>
-                <GenericButton onClick={handleOpenShare}>Share</GenericButton>
-                <GenericButton onClick={() => window.print()}>Print</GenericButton>
+                <GenericButton onClick={handleOpenShare}>Share  <ShareIcon /></GenericButton>
+                <GenericButton onClick={() => window.print()}>Print <PrintIcon /></GenericButton>
 
-                {/* <button>Print</button> */}
+
                 
                 <ShareModal
                   open={openModal}
