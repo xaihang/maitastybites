@@ -198,8 +198,18 @@ const DetailsRecipePage = () => {
                 >
                   {recipeSelected?.saved ? "Saved" : "Save"}
                 </CustomButton>
-                <GenericButton onClick={handleOpenShare}>Share  <ShareIcon /></GenericButton>
-                <GenericButton onClick={() => window.print()}>Print <PrintIcon /></GenericButton>
+
+                <GenericButton 
+                  onClick={handleOpenShare}>
+                  Share&nbsp;  
+                  <ShareIcon sx={{ fontSize: 18 }}/>
+                </GenericButton>
+
+                <GenericButton 
+                  onClick={() => window.print()}>
+                  Print&nbsp; 
+                  <PrintIcon sx={{ fontSize: 18 }} />
+                </GenericButton>
 
 
                 
