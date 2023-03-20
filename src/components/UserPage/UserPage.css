@@ -81,13 +81,13 @@
 
 .delete-hovered {
   color: red;
-  text-decoration: underline red;
+  /* text-decoration: underline red; */
   cursor: pointer;
 }
 
 .edit-hovered {
   color: #1875d1;
-  text-decoration: underline #1875d1;
+  /* text-decoration: underline #1875d1; */
   cursor: pointer;
 }
 

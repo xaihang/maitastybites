@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import "./UserPage.css";
 import RecipeModal from "./RecipeForm";
 import { TableCell, TableRow } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function RecipeItem({ recipe, handleEditRecipe }) {
   const [isHoveredEdit, setIsHoveredEdit] = useState(false);
@@ -33,7 +35,8 @@ export default function RecipeItem({ recipe, handleEditRecipe }) {
             onMouseEnter={() => setIsHoveredEdit(true)}
             onMouseLeave={() => setIsHoveredEdit(false)}
           >
-            Edit
+            Edit&nbsp; 
+            <EditIcon sx={{ fontSize: 18 }}/>
           </p>
         </TableCell>
         <TableCell>
@@ -43,7 +46,8 @@ export default function RecipeItem({ recipe, handleEditRecipe }) {
             onMouseEnter={() => setIsHoveredDelete(true)}
             onMouseLeave={() => setIsHoveredDelete(false)}
           >
-            Delete
+            Delete&nbsp; 
+            <DeleteIcon sx={{ fontSize: 18 }}/>
           </p>
         </TableCell>
       </TableRow>
