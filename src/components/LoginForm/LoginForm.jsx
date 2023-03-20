@@ -34,27 +34,31 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          Username
+        </label>
+        <div>
+        <input
             type="text"
             name="username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        </div>
       </div>
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+          Password
+        </label>
+        <div>
+        <input
             type="password"
             name="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </div>
       </div>
       <div className="btn-group">
         <button className="btn" type="submit">Log In</button>

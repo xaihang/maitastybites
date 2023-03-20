@@ -85,6 +85,7 @@ Button
   text-decoration: underline;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 40px;
 }
 
 .btn_asLink:hover {
@@ -112,12 +113,13 @@ Form Treatment
 -------------------------------------------------------------------------------- */
 
 .formPanel {
-  max-width: 400px;
+  max-width: 300px;
   margin: 0 auto;
   background-color: #ffffff;
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 100px;
 }
 
 input {
@@ -139,7 +141,7 @@ input {
 
 .formPanel input[type="text"],
 .formPanel input[type="password"] {
-  width:60%;
+  width:90%;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
