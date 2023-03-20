@@ -7,6 +7,7 @@ import CustomButton from "../UserPage/CustomButton";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from 'sweetalert2';
 
 export default function RecipeListGallery({
   recipesList,
@@ -48,18 +49,47 @@ export default function RecipeListGallery({
     setSubmitSuccess(true);
   };
 
+  // const handleDeleteSaveRecipe = (event, savedID) => {
+  //   event.stopPropagation();
+  //   dispatch({ type: "UNSAVE_RECIPE", payload: savedID });
+  
+  //   // Remove the deleted recipe from updatedRecipesList
+  //   const updatedList = updatedRecipesList.filter(
+  //     (recipe) => recipe.saved !== savedID
+  //   );
+  //   setUpdatedRecipesList(updatedList);
+  
+  //   setSubmitSuccess(true);
+  // };
+
   const handleDeleteSaveRecipe = (event, savedID) => {
     event.stopPropagation();
-    dispatch({ type: "UNSAVE_RECIPE", payload: savedID });
   
-    // Remove the deleted recipe from updatedRecipesList
-    const updatedList = updatedRecipesList.filter(
-      (recipe) => recipe.saved !== savedID
-    );
-    setUpdatedRecipesList(updatedList);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({ type: "UNSAVE_RECIPE", payload: savedID });
   
-    setSubmitSuccess(true);
+        // Remove the deleted recipe from updatedRecipesList
+        const updatedList = updatedRecipesList.filter(
+          (recipe) => recipe.saved !== savedID
+        );
+        setUpdatedRecipesList(updatedList);
+  
+        setSubmitSuccess(true);
+  
+        Swal.fire("Deleted!", "Your saved recipe has been deleted.", "success");
+      }
+    });
   };
+
 
   const handleSnackbarClose = (event, reason) => {
     if (reason === "clickaway") {
