@@ -107,7 +107,7 @@ function RecipeForm() {
           <TextField
             required
             label="Directions"
-            placeholder="Explain how to make your recipe, including oven temperatures, baking or cooking times, and pan sizes, etc. "
+            placeholder="Enter one step per line. Explain how to make your recipe, including oven temperatures, baking or cooking times, and pan sizes, etc. "
             name="direction"
             value={formValues?.direction}
             onChange={handleChange}
