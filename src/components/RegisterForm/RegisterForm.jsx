@@ -66,8 +66,9 @@ function RegisterForm() {
         </label>
       </div>
 
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+      <div className="btn-group">
+        {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
+        <button className="btn" type="submit">Register</button>
       </div>
     </form>
   );

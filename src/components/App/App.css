@@ -60,7 +60,7 @@ Button
 } */
 
 /* This line makes the "Register" and "Login" buttons look like links */
-.btn_asLink {
+/* .btn_asLink {
   padding: 0;
   border-width: 0;
   border-bottom: 1px solid #444;
@@ -68,13 +68,29 @@ Button
   background: none;
   font: inherit;
   color: #444;
-}
+} */
 
 /* .btn_asLink:hover {
   background-color: transparent;
   border-color: #008183;
   color: #008183;
 } */
+
+
+.btn_asLink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #0073aa;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn_asLink:hover {
+  color: #004e70;
+}
+
 
 /* --------------------------------------------------------------------------------
 Alert
@@ -96,17 +112,59 @@ Form Treatment
 -------------------------------------------------------------------------------- */
 
 .formPanel {
-  box-sizing: border-box;
-  width: 400px;
-  max-width: 100%;
-  padding: 25px;
-  margin: 0 auto 20px;
-  background-color: #efefef;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+.formPanel h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #222222;
+}
+
+.formPanel label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.formPanel input[type="text"],
+.formPanel input[type="password"] {
+  width:60%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f5f5f5;
+  color: #555555;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.formPanel .btn-group {
+  text-align: right;
+}
+
+.formPanel button[type="submit"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #66b3ff;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.formPanel button[type="submit"]:hover {
+  background-color: #3385ff;
 }
