@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import moment from "moment";
 import "./DetailsRecipePage.css";
+import { useHistory } from "react-router-dom";
 
 import {
   Box,
@@ -23,6 +24,7 @@ const RecipeCommentForm = ({ recipeId }) => {
   const dispatch = useDispatch();
   const comments = useSelector((state) => state.recipe.comments);
   const user = useSelector((store) => store.user);
+  const history = useHistory();
 
 
   // format timestamp
@@ -43,6 +45,12 @@ const RecipeCommentForm = ({ recipeId }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (Object.keys(user).length === 0) {
+      history.push(`/login`);
+      return
+    }
+
     const newComment = {
       rating: rating,
       comment: comment.trim(),

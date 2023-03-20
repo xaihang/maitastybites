@@ -133,6 +133,7 @@ const DetailsRecipePage = () => {
   const [openModal, setOpenShareModal] = useState(false);
   const user = useSelector((store) => store.user);
   const history = useHistory();
+  
   useEffect(() => {
     setRecipeSelected(recipe)
   }, [recipe])
