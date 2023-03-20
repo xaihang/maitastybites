@@ -64,7 +64,7 @@ function RecipeForm() {
   return (
     <div className="form-container">
       <form onSubmit={handleSave}>
-        <div className="modal-textfield">
+        <div className="form-textfield">
           <TextField
             required
             label="Recipe Name"
@@ -117,7 +117,7 @@ function RecipeForm() {
           />
           
         </div>
-        <div className="modal-buttons">
+        <div className="form-buttons">
           <Button onClick={handleCancel}>Cancel</Button>
           <Button type="submit" variant="contained" color="primary">
             Save
