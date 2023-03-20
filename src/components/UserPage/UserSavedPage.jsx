@@ -20,9 +20,14 @@ function UserSavedPage() {
   return (
     <div className="dashboard-container">
       <UserHeader view={"saved"} />
-      <RecipeListGallery recipesList={savedRecipes} fromDashboard={true} />
+      {savedRecipes.length === 0 ? (
+        <p>Nothing to show...yet! Recipes you saved will live here.</p>
+      ) : (
+        <RecipeListGallery recipesList={savedRecipes} fromDashboard={true} />
+      )}
     </div>
   );
 }
+
 
 export default UserSavedPage;

@@ -14,6 +14,13 @@ export default function RecipeItem({ recipe, handleEditRecipe }) {
     dispatch({ type: "DELETE_RECIPE", payload: recipeID });
   };
 
+  const handleEditClick = () => {
+    if (recipe && recipe.recipeID) {
+      handleEditRecipe(recipe.recipeID);
+    }
+  };
+
+
   return (
     <>
       <TableRow>
@@ -21,7 +28,7 @@ export default function RecipeItem({ recipe, handleEditRecipe }) {
         <TableCell>{recipe?.description}</TableCell>
         <TableCell>
           <p
-            onClick={() => handleEditRecipe(recipe.recipeID)}
+            onClick={handleEditClick}
             className={isHoveredEdit ? "edit-hovered" : ""}
             onMouseEnter={() => setIsHoveredEdit(true)}
             onMouseLeave={() => setIsHoveredEdit(false)}

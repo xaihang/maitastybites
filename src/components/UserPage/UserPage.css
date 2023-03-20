@@ -57,32 +57,22 @@
 }
 
 .form-container {
+  width: 60%;
+  margin: 60px auto;
+  border: 1px solid #E0E0E0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  padding: 27px;
   justify-content: center;
-  background-color: #fff;
-  /* border-radius: 10px; */
-  outline: none;
-  border: none;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 650px;
-  height: 100%;
-  max-height: 700px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
+  align-items: center;
 }
 
-.modal-textfield {
+.form-textfield {
   margin-right: 1rem;
-  margin-left: 4rem;
+  margin-left: 6rem;
 }
 
-.modal-buttons {
+.form-buttons {
   display: flex;
   justify-content: flex-end;
   margin-right: 2.5rem;
