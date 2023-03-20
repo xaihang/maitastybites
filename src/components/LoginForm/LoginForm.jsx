@@ -26,7 +26,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <h2>Mai Tasty Bites!</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -34,30 +34,34 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          Username
+        </label>
+        <div>
+        <input
             type="text"
             name="username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        </div>
       </div>
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+          Password
+        </label>
+        <div>
+        <input
             type="password"
             name="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </div>
       </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+      <div className="btn-group">
+        <button className="btn" type="submit">Log In</button>
       </div>
     </form>
   );

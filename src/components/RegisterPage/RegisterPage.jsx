@@ -18,7 +18,7 @@ function RegisterPage() {
             history.push('/login');
           }}
         >
-          Login
+          Already have an account? SIGN IN
         </button>
       </center>
     </div>
