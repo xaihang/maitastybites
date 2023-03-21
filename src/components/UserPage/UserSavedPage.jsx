@@ -17,13 +17,20 @@ function UserSavedPage() {
 
   const { savedRecipes } = useSelector((store) => store.recipe); // Get saved recipes for current user
 
+  const galleryStyle = {
+    padding: "20px",
+    marginTop: "40px",
+  };
+
   return (
     <div className="dashboard-container">
       <UserHeader view={"saved"} />
       {savedRecipes.length === 0 ? (
         <p>Nothing to show...yet! Recipes you saved will live here.</p>
       ) : (
+        <div style={galleryStyle}>
         <RecipeListGallery recipesList={savedRecipes} fromDashboard={true} />
+        </div>
       )}
     </div>
   );

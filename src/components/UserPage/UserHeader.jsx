@@ -35,6 +35,10 @@ export default function UserHeader({ view }) {
     setModalOpen(false);
   };
 
+  const buttonGroupStyle = {
+    marginTop: "20px",
+  };
+
   return (
     <>
       <h2>Hello, {username}!</h2>
@@ -52,7 +56,7 @@ export default function UserHeader({ view }) {
         </div>
       </div>
 
-      <div className="button-group">
+      <div className="button-group" style={buttonGroupStyle}>
         <CustomButton
           variant="text"
           className={`${

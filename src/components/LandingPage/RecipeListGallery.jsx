@@ -54,19 +54,6 @@ export default function RecipeListGallery({
     setSubmitSuccess(true);
   };
 
-  // const handleDeleteSaveRecipe = (event, savedID) => {
-  //   event.stopPropagation();
-  //   dispatch({ type: "UNSAVE_RECIPE", payload: savedID });
-  
-  //   // Remove the deleted recipe from updatedRecipesList
-  //   const updatedList = updatedRecipesList.filter(
-  //     (recipe) => recipe.saved !== savedID
-  //   );
-  //   setUpdatedRecipesList(updatedList);
-  
-  //   setSubmitSuccess(true);
-  // };
-
   const handleDeleteSaveRecipe = (event, savedID) => {
     event.stopPropagation();
   
