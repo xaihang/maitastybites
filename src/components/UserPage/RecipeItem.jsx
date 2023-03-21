@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import "./UserPage.css";
 import RecipeModal from "./RecipeForm";
 import { TableCell, TableRow } from "@mui/material";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function RecipeItem({ recipe, handleEditRecipe }) {
   const [isHoveredEdit, setIsHoveredEdit] = useState(false);
@@ -22,7 +22,6 @@ export default function RecipeItem({ recipe, handleEditRecipe }) {
     }
   };
 
-
   return (
     <>
       <TableRow>
@@ -31,23 +30,25 @@ export default function RecipeItem({ recipe, handleEditRecipe }) {
         <TableCell>
           <p
             onClick={handleEditClick}
-            className={isHoveredEdit ? "edit-hovered" : ""}
+            className={`${isHoveredEdit ? "edit-hovered" : ""} edit-container`}
             onMouseEnter={() => setIsHoveredEdit(true)}
             onMouseLeave={() => setIsHoveredEdit(false)}
           >
-            Edit&nbsp; 
-            <EditIcon sx={{ fontSize: 18 }}/>
+            Edit&nbsp;
+            <EditIcon sx={{ fontSize: 18 }} />
           </p>
         </TableCell>
         <TableCell>
           <p
             onClick={() => handleDeleteRecipe(recipe?.recipeID)}
-            className={isHoveredDelete ? "delete-hovered" : ""}
+            className={`${
+              isHoveredDelete ? "delete-hovered" : ""
+            } delete-container`}
             onMouseEnter={() => setIsHoveredDelete(true)}
             onMouseLeave={() => setIsHoveredDelete(false)}
           >
-            Delete&nbsp; 
-            <DeleteIcon sx={{ fontSize: 18}}/>
+            Delete&nbsp;
+            <DeleteIcon sx={{ fontSize: 18 }} />
           </p>
         </TableCell>
       </TableRow>
