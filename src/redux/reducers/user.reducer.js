@@ -3,6 +3,7 @@ const userReducer = (state = {}, action) => {
     case 'SET_USER':
       return action.payload;
     case 'UNSET_USER':
+      console.log('unset')
       return {};
     case 'UPDATE_AVATAR':
       return {

@@ -47,7 +47,7 @@ export default function RecipeItem({ recipe, handleEditRecipe }) {
             onMouseLeave={() => setIsHoveredDelete(false)}
           >
             Delete&nbsp; 
-            <DeleteIcon sx={{ fontSize: 18 }}/>
+            <DeleteIcon sx={{ fontSize: 18}}/>
           </p>
         </TableCell>
       </TableRow>

@@ -36,15 +36,6 @@ function Nav() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  console.log('nav user', user);
-  // useEffect(() => {
-  //   dispatch({ type: "FETCH_USER" });
-  // }, [user]);
-
-  // useEffect(() => {
-  //   dispatch({ type: "FETCH_USER" });
-  // }, []);
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };

@@ -57,6 +57,8 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         savedRecipes: action.payload,
       };
+      case 'CLEAR_RECIPE':
+         return initialState
     default:
       return state;
   }

@@ -140,7 +140,6 @@ const DetailsRecipePage = () => {
   
   useEffect(() => {
     const data = { recipeID: id, id: user.id };
-    console.log('data', data)
     dispatch({ type: "GET_RECIPE_BY_ID", payload: data });
     dispatch({ type: "GET_COMMENTS", payload: id });
   }, [dispatch, id, user]);
