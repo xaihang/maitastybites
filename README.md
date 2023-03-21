@@ -1,21 +1,29 @@
-# Mai Tasty Bites
+# Mai Tasty Bites!
 
 ## Description
-Mai Tasty Bites is a website application that focuses on cooking, recipes, tips, and tricks for different Asian cuisines. Users can sign up to the website or view it as a guest, and they have the ability to add, edit, and delete their own recipes, as well as like and share them with others.
+Mai Tasty Bites! is a recipe application that caters to Chef Mai's digital content creation community, known for their significant following on Facebook and YouTube. The platform features a search function for easy recipe discovery and a rating system to share feedback. It allows all users, whether guests or registered, to explore a vast collection of recipes, share them on social media, and print them out.
+
+Registered users have access to additional features, including saving recipes for later, commenting on and rating recipes, and adding their own recipes to the platform. Users can also personalize their dashboard by uploading their avatar.
 
 
 ---
 ## **TABLE OF CONTENT:**
+1. [Deployed Link](#deployed-linked)
 1. [App Demo](#app-demo)
 1. [Installation & Setup](#installation--setup)
 1. [Usage](#usage)
 1. [Technologies utilization](#technologies-utilization)
 1. [Contact](#contact)
 
+---
+## Deployed linked
+[Click here to experience application]()
 
 ---
 ## App Demo
-![app demo]()
+![app demo gif]()
+
+[Click here to see video demo of project]()
 
 ---
 
@@ -29,8 +37,11 @@ Mai Tasty Bites is a website application that focuses on cooking, recipes, tips,
 ---
 
 ## Usage
+To use Mai Tasty Bites! simply visit the website and start exploring the vast collection of recipes available on the platform. As a guest, you can read recipes, share them on social media, and print them out.
 
+To access additional features, such as saving recipes for later, commenting on and rating recipes, and adding your own recipes to the platform, you need to register for an account. Once registered, you can personalize your dashboard by uploading your avatar.
 
+The platform features a search function that makes it easy to discover recipes, and a rating system for sharing feedback. With Mai Tasty Bites, you can discover, share, and submit your favorite recipes, making it the perfect recipe application for Chef Mai's digital content creation community.
 
 ---
 
