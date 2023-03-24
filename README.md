@@ -8,22 +8,10 @@ Registered users have access to additional features, including saving recipes fo
 
 ---
 ## **TABLE OF CONTENT:**
-1. [Deployed Link](#deployed-linked)
-1. [App Demo](#app-demo)
 1. [Installation & Setup](#installation--setup)
 1. [Usage](#usage)
 1. [Technologies utilization](#technologies-utilization)
 1. [Contact](#contact)
-
----
-## Deployed linked
-[Click here to experience application]()
-
----
-## App Demo
-![app demo gif]()
-
-[Click here to see video demo of project]()
 
 ---
 

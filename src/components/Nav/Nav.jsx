@@ -70,7 +70,7 @@ function Nav() {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
-      <Container maxWidth="xl">
+      <div style={{paddingLeft: 10, paddingRight: 10}}>
         <Toolbar disableGutters>
           <IconButton
             size="large"
@@ -229,7 +229,7 @@ function Nav() {
             {!user.id && <div to="/login">Login / Register</div>}
           </Box>
         </Toolbar>
-      </Container>
+      </div>
     </AppBar>
   );
 }

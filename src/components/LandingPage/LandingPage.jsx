@@ -23,7 +23,7 @@ function LandingPage() {
   return (
     <>
       <div className="hero-image-landing-page">
-        <img src={heroImage} alt="hero image" />
+        <img src={heroImage} alt="hero image" style={{width: '100%'}} />
       </div>
       <div className="container">
         <div className="rounded-rectangle">
