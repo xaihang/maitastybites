@@ -8,22 +8,23 @@ Registered users have access to additional features, including saving recipes fo
 
 ---
 ## **TABLE OF CONTENT:**
-1. [Installation & Setup](#installation--setup)
+1. [Deployed Link](#deployed-link)
+1. [Video Demo Link](#video-demo-link)
 1. [Usage](#usage)
 1. [Technologies utilization](#technologies-utilization)
 1. [Contact](#contact)
 
 ---
 
-## Installation & Setup
-1. Start postgres using brew services start postgresql (database name: `prime_app`)
-1. `npm install`
-1. `npm run server` in your terminal
-1. `npm run client` in another terminal. 
-1. Navigate to localhost:3000
+## Deployed Link
+[Clicked here to experience Mai Tasty Bites!](https://maitastybites.herokuapp.com/)
 
 ---
 
+## Video Demo Link
+[Click here to for a quick demo of Mai Tasty Bites!]()
+
+---
 ## Usage
 To use Mai Tasty Bites! simply visit the website and start exploring the vast collection of recipes available on the platform. As a guest, you can read recipes, share them on social media, and print them out.
 
