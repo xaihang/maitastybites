@@ -9,7 +9,6 @@ Registered users have access to additional features, including saving recipes fo
 ---
 ## **TABLE OF CONTENT:**
 1. [Deployed Link](#deployed-link)
-1. [Video Demo Link](#video-demo-link)
 1. [Usage](#usage)
 1. [Technologies utilization](#technologies-utilization)
 1. [Contact](#contact)
@@ -18,11 +17,6 @@ Registered users have access to additional features, including saving recipes fo
 
 ## Deployed Link
 [Clicked here to experience Mai Tasty Bites!](https://maitastybites.herokuapp.com/)
-
----
-
-## Video Demo Link
-[Click here to for a quick demo of Mai Tasty Bites!]()
 
 ---
 ## Usage
